@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://unls4hgk08y8"]
+
+[ext_resource type="PackedScene" uid="uid://cvwtexlflelje" path="res://3d models import/dodecahedron/scene.gltf" id="1_tml5y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qkso"]
+albedo_color = Color(1, 0.27999997, 0.44799984, 1)
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_tml5y")]
+
+[node name="Object_2" parent="Sketchfab_model/d16097a6d5b54b64bdd7a8ed5dd6b258_stl_cleaner_materialmerger_gles" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1qkso")

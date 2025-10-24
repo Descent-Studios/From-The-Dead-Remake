@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dewsu8n58ipev"]
+
+[ext_resource type="Shader" uid="uid://cvv20gbi8qk4i" path="res://shaders/subpixel.gdshader" id="1_ow3i4"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_wg7ke"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcwh6"]
+render_priority = 0
+shader = ExtResource("1_ow3i4")
+shader_parameter/lightIntensity = 1.25
+shader_parameter/lineAlpha = 0.7
+shader_parameter/useLighting = true
+shader_parameter/lineHighlight = 0.2
+shader_parameter/lineShadow = 0.55
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 0, 0)
+projection = 1
+current = true
+size = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_wg7ke")
+surface_material_override/0 = SubResource("ShaderMaterial_rcwh6")

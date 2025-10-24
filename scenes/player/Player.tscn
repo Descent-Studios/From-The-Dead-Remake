@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://div52utmarvlq"]
+
+[ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
+[ext_resource type="Texture2D" uid="uid://tmpsmhjuf8lg" path="res://textures/Player/sprite2-Sheet.png" id="2_gfjak"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
+
+[sub_resource type="Gradient" id="Gradient_gfjak"]
+offsets = PackedFloat32Array(0, 0.50127226, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.58431375, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4kuee"]
+gradient = SubResource("Gradient_gfjak")
+
+[sub_resource type="Curve" id="Curve_gfjak"]
+_data = [Vector2(0, 0.25229234), 0.0, 6.0662346, 0, 0, Vector2(0.1113689, 0.89886075), -0.017298238, -0.017298238, 0, 0, Vector2(1, 0), -0.07339892, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4kuee"]
+curve = SubResource("Curve_gfjak")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gfjak"]
+lifetime_randomness = 0.67
+particle_flag_rotate_y = true
+emission_shape_offset = Vector3(0, 0.095, 0)
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -39.79999
+angle_max = 81.90001
+gravity = Vector3(0, 0.98, 0)
+scale_min = 0.79999995
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_4kuee")
+color_ramp = SubResource("GradientTexture1D_4kuee")
+turbulence_enabled = true
+turbulence_noise_strength = 1.32
+turbulence_noise_scale = 1.874
+turbulence_noise_speed_random = 1.59
+turbulence_influence_max = 0.18400002
+turbulence_initial_displacement_min = 1.490116e-06
+turbulence_initial_displacement_max = 1.490116e-06
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfjak"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_gfjak"]
+material = SubResource("StandardMaterial3D_gfjak")
+radius = 0.339
+height = 0.314
+radial_segments = 12
+rings = 12
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_spyh3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+shape = SubResource("SphereShape3D_spyh3")
+
+[node name="Visuals" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.608, 0.07107282)
+
+[node name="Sprite3D" type="Sprite3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+layers = 2
+gi_mode = 2
+pixel_size = 0.05
+shaded = true
+double_sided = false
+alpha_cut = 3
+texture_filter = 0
+texture = ExtResource("2_gfjak")
+hframes = 10
+
+[node name="Particles" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55864656)
+emitting = false
+amount = 32
+lifetime = 1.46
+randomness = 0.28
+process_material = SubResource("ParticleProcessMaterial_gfjak")
+draw_pass_1 = SubResource("SphereMesh_gfjak")
