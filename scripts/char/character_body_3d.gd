@@ -22,6 +22,12 @@ var ride_height : float
 var spring_strength : float
 var spring_dampner : float
 
+@export_group("Package Throwing")
+@export var package_throw_node : Node3D
+@export var package_instance : PackedScene
+@export var throw_force : float
+var package_throw_pos : Vector3
+var _mouse_pos : Vector3
 
 
 # Priv animation params
@@ -31,7 +37,6 @@ var anim_state_machine : AnimationNodeStateMachinePlayback
 
 # Priv walk params
 var should_emit_particles_override := false
-
 var was_grounded := false
 
 
@@ -39,19 +44,17 @@ var was_grounded := false
 
 func _ready():
 	anim_state_machine = anim_tree["parameters/playback"]
+	package_throw_pos = package_throw_node.position
 	pass
 
 func _process(_delta):
-	aim_ring_at()
-	
+	update_player_input()
 	
 	
 	pass
 
 
 func _physics_process(_delta):
-	
-	
 	
 	if velocity.length() > 0.1:
 		anim_state_machine.travel("walk_anim")
@@ -65,7 +68,6 @@ func _physics_process(_delta):
 		sprite.flip_h = false
 	elif velocity.x < -0.1:
 		sprite.flip_h = true
-	
 	
 	if is_on_floor():
 		should_emit_particles_override = true
@@ -105,6 +107,19 @@ func update_input_mkb(_delta) -> void:
 	#wanted_vel.clamp(-speed_vector, speed_vector)
 	velocity = wanted_vel
 	
+func update_player_input():
+	
+	#region Throw package
+	if Input.is_action_pressed("throw_package"):
+		_mouse_pos = get_mouse_pos_3D()
+		aim_ring.show()
+		aim_ring_at(_mouse_pos)
+	elif Input.is_action_just_released("throw_package"):
+		aim_ring.hide()
+		var target_vector = (_mouse_pos - global_position).normalized()
+		throw_package(target_vector)
+		pass
+	#endregion
 
 func raycast_player_height(ray_hit_distance):
 	var vel = velocity 
@@ -120,9 +135,16 @@ func raycast_player_height(ray_hit_distance):
 	velocity += force
 	pass
 
-func aim_ring_at():
-	var lookat := get_mouse_pos_3D()
-	var target_vector := aim_ring.global_position.direction_to(lookat)
+func throw_package(towards : Vector3):
+	var instance : RigidBody3D = package_instance.instantiate()
+	instance.global_position = global_position + package_throw_pos
+	get_parent().add_child(instance)
+	instance.apply_impulse(towards * throw_force)
+	
+	pass
+
+func aim_ring_at(vector : Vector3):
+	var target_vector := aim_ring.global_position.direction_to(vector)
 	var target_basis := Basis.looking_at(target_vector)
 	aim_ring.basis = aim_ring.basis.slerp(target_basis, 0.5)
 
@@ -142,6 +164,7 @@ func get_mouse_pos_3D() -> Vector3:
 	
 	var space_state := get_world_3d().direct_space_state
 	var query := PhysicsRayQueryParameters3D.create(origin, end)
+	query.set_collision_mask(0x0001)
 	var result := space_state.intersect_ray(query)
 	
 	#endregion

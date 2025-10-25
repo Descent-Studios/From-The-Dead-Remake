@@ -26,6 +26,6 @@ mesh = SubResource("TorusMesh_nv5lc")
 material = SubResource("StandardMaterial3D_hakb0")
 
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.7)
+transform = Transform3D(-1, 8.742278e-08, 0, 3.821371e-15, 4.371139e-08, -1, -8.742278e-08, -1, -4.371139e-08, 0, 0, -0.7)
 mesh = SubResource("PrismMesh_8jdx3")
 material = SubResource("StandardMaterial3D_tai3l")

@@ -31,6 +31,15 @@ window/size/viewport_height=1080
 
 enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://scenes/": "purple",
+"res://scripts/": "red",
+"res://shaders/": "green",
+"res://textures/": "blue"
+}
+
 [input]
 
 move_left={
@@ -63,6 +72,13 @@ retrieve_package={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+
+[layer_names]
+
+3d_physics/layer_1="Terrain"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Packages"
+3d_physics/layer_5="Terrain Decor"
 
 [physics]
 

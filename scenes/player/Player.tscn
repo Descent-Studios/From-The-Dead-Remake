@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=28 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
+[ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
 [ext_resource type="Texture2D" uid="uid://tmpsmhjuf8lg" path="res://textures/Player/sprite2-Sheet.png" id="2_gfjak"]
 [ext_resource type="PackedScene" uid="uid://blhy7c7dcd4fr" path="res://scenes/player/aim_ring.tscn" id="3_4kuee"]
 
@@ -167,7 +168,9 @@ turbulence_influence_max = 0.18400002
 turbulence_initial_displacement_min = 1.490116e-06
 turbulence_initial_displacement_max = 1.490116e-06
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "sprite", "aim_ring", "walk_particle_controller", "fall_particle_controller")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "sprite", "aim_ring", "walk_particle_controller", "fall_particle_controller", "package_throw_node")]
+collision_layer = 2
+collision_mask = 17
 script = ExtResource("1_spyh3")
 speed = 8.0
 acceleration = 0.5
@@ -178,6 +181,8 @@ sprite = NodePath("Visuals/Sprite3D")
 aim_ring = NodePath("AimRing")
 walk_particle_controller = NodePath("Particles/ParticlesWalk")
 fall_particle_controller = NodePath("Particles/ParticlesFall")
+package_throw_node = NodePath("PackageThrower")
+package_instance = ExtResource("2_524rm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -238,3 +243,6 @@ draw_pass_1 = SubResource("SphereMesh_gfjak")
 
 [node name="AimRing" parent="." instance=ExtResource("3_4kuee")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="PackageThrower" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2056346, 0)
