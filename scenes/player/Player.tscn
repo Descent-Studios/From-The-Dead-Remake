@@ -1,9 +1,103 @@
-[gd_scene load_steps=11 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=27 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
 [ext_resource type="Texture2D" uid="uid://tmpsmhjuf8lg" path="res://textures/Player/sprite2-Sheet.png" id="2_gfjak"]
+[ext_resource type="PackedScene" uid="uid://blhy7c7dcd4fr" path="res://scenes/player/aim_ring.tscn" id="3_4kuee"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
+
+[sub_resource type="Animation" id="Animation_4kuee"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_524rm"]
+resource_name = "idle_anim"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_gfjak"]
+resource_name = "walk_anim"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_524rm"]
+_data = {
+&"RESET": SubResource("Animation_4kuee"),
+&"idle_anim": SubResource("Animation_524rm"),
+&"walk_anim": SubResource("Animation_gfjak")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gfjak"]
+animation = &"idle_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4kuee"]
+animation = &"walk_anim"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_524rm"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tpg5x"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c3xxp"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_npwbq"]
+states/idle_anim/node = SubResource("AnimationNodeAnimation_gfjak")
+states/idle_anim/position = Vector2(358, 102.33333)
+states/walk_anim/node = SubResource("AnimationNodeAnimation_4kuee")
+states/walk_anim/position = Vector2(548, 2.3333282)
+transitions = ["Start", "idle_anim", SubResource("AnimationNodeStateMachineTransition_524rm"), "idle_anim", "walk_anim", SubResource("AnimationNodeStateMachineTransition_tpg5x"), "walk_anim", "idle_anim", SubResource("AnimationNodeStateMachineTransition_c3xxp")]
+graph_offset = Vector2(-66, -129)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4kuee"]
+radius = 0.3
+height = 0.7
+radial_segments = 16
+rings = 16
+
+[sub_resource type="Gradient" id="Gradient_4kuee"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_524rm"]
+gradient = SubResource("Gradient_4kuee")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpg5x"]
+albedo_texture = SubResource("GradientTexture2D_524rm")
 
 [sub_resource type="Gradient" id="Gradient_gfjak"]
 offsets = PackedFloat32Array(0, 0.50127226, 1)
@@ -50,22 +144,54 @@ height = 0.314
 radial_segments = 12
 rings = 12
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4kuee"]
+lifetime_randomness = 0.67
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.05, 0.5)
+angle_min = -39.79999
+angle_max = 81.90001
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 2.6
+gravity = Vector3(0, 0.98, 0)
+scale_min = 0.79999995
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_4kuee")
+color_ramp = SubResource("GradientTexture1D_4kuee")
+turbulence_enabled = true
+turbulence_noise_strength = 1.32
+turbulence_noise_scale = 1.874
+turbulence_noise_speed_random = 1.59
+turbulence_influence_max = 0.18400002
+turbulence_initial_displacement_min = 1.490116e-06
+turbulence_initial_displacement_max = 1.490116e-06
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "sprite", "aim_ring", "walk_particle_controller", "fall_particle_controller")]
 script = ExtResource("1_spyh3")
+speed = 8.0
+acceleration = 0.5
+deceleration = 0.25
+anim_player = NodePath("Visuals/AnimationPlayer")
+anim_tree = NodePath("Visuals/AnimationTree")
+sprite = NodePath("Visuals/Sprite3D")
+aim_ring = NodePath("AimRing")
+walk_particle_controller = NodePath("Particles/ParticlesWalk")
+fall_particle_controller = NodePath("Particles/ParticlesFall")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-visible = false
 shape = SubResource("SphereShape3D_spyh3")
 
 [node name="Visuals" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.608, 0.07107282)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
 [node name="Sprite3D" type="Sprite3D" parent="Visuals"]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 layers = 2
 gi_mode = 2
 pixel_size = 0.05
+billboard = 1
 shaded = true
 double_sided = false
 alpha_cut = 3
@@ -73,13 +199,42 @@ texture_filter = 0
 texture = ExtResource("2_gfjak")
 hframes = 10
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
+libraries = {
+&"": SubResource("AnimationLibrary_524rm")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Visuals"]
+tree_root = SubResource("AnimationNodeStateMachine_npwbq")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.5, 0)
+visible = false
+mesh = SubResource("SphereMesh_4kuee")
+material = SubResource("StandardMaterial3D_tpg5x")
+
 [node name="Particles" type="Node3D" parent="."]
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Particles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55864656)
+[node name="ParticlesWalk" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109, 0.398)
 emitting = false
 amount = 32
 lifetime = 1.46
 randomness = 0.28
 process_material = SubResource("ParticleProcessMaterial_gfjak")
 draw_pass_1 = SubResource("SphereMesh_gfjak")
+
+[node name="ParticlesFall" type="GPUParticles3D" parent="Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109, 0.398)
+emitting = false
+amount = 16
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+randomness = 0.28
+process_material = SubResource("ParticleProcessMaterial_4kuee")
+draw_pass_1 = SubResource("SphereMesh_gfjak")
+
+[node name="AimRing" parent="." instance=ExtResource("3_4kuee")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
