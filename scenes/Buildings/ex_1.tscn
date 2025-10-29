@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://da1cg53mv7r2v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txyr4"]
+albedo_color = Color(0.62, 0.5146, 0.5146, 1)
+distance_fade_mode = 3
+distance_fade_min_distance = 19.0
+distance_fade_max_distance = 20.0
+stencil_flags = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1werq"]
+albedo_color = Color(0.61960787, 0.5137255, 0.5137255, 1)
+distance_fade_min_distance = 19.0
+distance_fade_max_distance = 20.0
+stencil_flags = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_txyr4"]
+size = Vector3(7, 4, 4)
+
+[node name="Ex1" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(7, 4, 4)
+material = SubResource("StandardMaterial3D_txyr4")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+size = Vector3(7, 1, 4)
+material = SubResource("StandardMaterial3D_1werq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_txyr4")

@@ -29,6 +29,13 @@ var spring_dampner : float
 var package_throw_pos : Vector3
 var _mouse_pos : Vector3
 
+@export_group("Player Health Settings")
+@export var health_max : int
+@export var invincibility_timer : Timer
+@export var invincibility_timer_time : float
+var cur_health : int
+
+
 
 # Priv animation params
 var anim_state_machine : AnimationNodeStateMachinePlayback
@@ -45,6 +52,7 @@ var was_grounded := false
 func _ready():
 	anim_state_machine = anim_tree["parameters/playback"]
 	package_throw_pos = package_throw_node.position
+	cur_health = health_max
 	pass
 
 func _process(_delta):
@@ -139,6 +147,7 @@ func throw_package(towards : Vector3):
 	var instance : RigidBody3D = package_instance.instantiate()
 	instance.global_position = global_position + package_throw_pos
 	get_parent().add_child(instance)
+	instance.linear_velocity = velocity
 	instance.apply_impulse(towards * throw_force)
 	
 	pass
@@ -171,3 +180,17 @@ func get_mouse_pos_3D() -> Vector3:
 	var mouse_pos_3D : Vector3 = result.get("position",end)
 	
 	return mouse_pos_3D
+
+func hurt(dmg):
+	cur_health -= dmg
+	if cur_health <= 0:
+		#die
+		pass
+	pass
+
+
+func on_hurtbox_hit(_area):
+	if invincibility_timer.is_stopped():
+		hurt(1)
+		invincibility_timer.start(invincibility_timer_time)
+	pass # Replace with function body.

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bymyripkmwl2a"]
+
+[ext_resource type="PackedScene" uid="uid://svjpwkosll1k" path="res://3d models import/packages/3dCharTest.blend" id="1_0ejjj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ejjj"]
+cull_mode = 2
+billboard_mode = 1
+billboard_keep_scale = true
+
+[node name="3dCharTest" instance=ExtResource("1_0ejjj")]
+
+[node name="Skeleton3D" parent="metarig" index="0"]
+bones/6/position = Vector3(-0.004987698, 0.22655252, -0.029692166)
+bones/6/rotation = Quaternion(0.57892376, -0.5908489, 0.16231444, -0.5379582)
+bones/9/position = Vector3(-0.027658956, 0.22170399, -0.025124853)
+bones/9/rotation = Quaternion(0.62046456, 0.5762114, -0.20895275, -0.4892269)
+bones/13/position = Vector3(0.09694388, -0.004662687, 0.024097027)
+bones/16/position = Vector3(-0.099232726, 0.004703073, 0.06042627)
+
+[node name="Arms" parent="metarig/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_0ejjj")

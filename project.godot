@@ -34,6 +34,8 @@ enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://3d models import/": "yellow",
+"res://GridMap/": "orange",
 "res://scenes/": "purple",
 "res://scripts/": "red",
 "res://shaders/": "green",
@@ -78,7 +80,11 @@ retrieve_package={
 3d_physics/layer_1="Terrain"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Packages"
+3d_physics/layer_4="Zombies"
 3d_physics/layer_5="Terrain Decor"
+3d_physics/layer_6="PlayerHurt"
+3d_physics/layer_8="Zombie Hit"
+3d_physics/layer_9="Buildings"
 
 [physics]
 

@@ -1,0 +1,4 @@
+[gd_resource type="MeshLibrary" format=3 uid="uid://bl4uhfxp52vcy"]
+
+[resource]
+metadata/_editor_source_scene = "res://GridMap/Roads_Mesh_Library.tscn"

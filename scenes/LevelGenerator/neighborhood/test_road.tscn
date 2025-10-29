@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw2brj6cn7y1u"]
+
+[ext_resource type="Texture2D" uid="uid://cnh2w7yf5asxt" path="res://textures/Neighborhoods/test_road_1.png" id="1_ljq6c"]
+[ext_resource type="PackedScene" uid="uid://da1cg53mv7r2v" path="res://scenes/Buildings/ex_1.tscn" id="2_jfd4i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_c4w3k"]
+size = Vector3(33, 0, 22.002)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hn3o6"]
+albedo_texture = ExtResource("1_ljq6c")
+uv1_scale = Vector3(3, 1.667, 1)
+uv1_offset = Vector3(0, -0.75, 0)
+texture_filter = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ljq6c"]
+size = Vector3(33, 0.1, 22)
+
+[node name="ex_level_1" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("BoxMesh_c4w3k")
+material = SubResource("StandardMaterial3D_hn3o6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.046246946, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_ljq6c")
+
+[node name="Ex1" parent="." instance=ExtResource("2_jfd4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)

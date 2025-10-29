@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=34 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
 [ext_resource type="Texture2D" uid="uid://tmpsmhjuf8lg" path="res://textures/Player/sprite2-Sheet.png" id="2_gfjak"]
 [ext_resource type="PackedScene" uid="uid://blhy7c7dcd4fr" path="res://scenes/player/aim_ring.tscn" id="3_4kuee"]
+[ext_resource type="PackedScene" uid="uid://bymyripkmwl2a" path="res://scenes/player/3d_char_test.tscn" id="4_tpg5x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
 
@@ -100,19 +101,19 @@ fill_to = Vector2(0, 0)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpg5x"]
 albedo_texture = SubResource("GradientTexture2D_524rm")
 
-[sub_resource type="Gradient" id="Gradient_gfjak"]
+[sub_resource type="Gradient" id="Gradient_5g0nn"]
 offsets = PackedFloat32Array(0, 0.50127226, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.58431375, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4kuee"]
-gradient = SubResource("Gradient_gfjak")
+gradient = SubResource("Gradient_5g0nn")
 
-[sub_resource type="Curve" id="Curve_gfjak"]
+[sub_resource type="Curve" id="Curve_qx1uw"]
 _data = [Vector2(0, 0.25229234), 0.0, 6.0662346, 0, 0, Vector2(0.1113689, 0.89886075), -0.017298238, -0.017298238, 0, 0, Vector2(1, 0), -0.07339892, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_4kuee"]
-curve = SubResource("Curve_gfjak")
+curve = SubResource("Curve_qx1uw")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gfjak"]
 lifetime_randomness = 0.67
@@ -135,15 +136,29 @@ turbulence_influence_max = 0.18400002
 turbulence_initial_displacement_min = 1.490116e-06
 turbulence_initial_displacement_max = 1.490116e-06
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfjak"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_524rm"]
 vertex_color_use_as_albedo = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_gfjak"]
-material = SubResource("StandardMaterial3D_gfjak")
-radius = 0.339
-height = 0.314
+material = SubResource("StandardMaterial3D_524rm")
+radius = 0.313
+height = 0.253
 radial_segments = 12
 rings = 12
+
+[sub_resource type="Gradient" id="Gradient_gfjak"]
+offsets = PackedFloat32Array(0, 0.50127226, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.58431375, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tpg5x"]
+gradient = SubResource("Gradient_gfjak")
+
+[sub_resource type="Curve" id="Curve_gfjak"]
+_data = [Vector2(0, 0.25229234), 0.0, 6.0662346, 0, 0, Vector2(0.1113689, 0.89886075), -0.017298238, -0.017298238, 0, 0, Vector2(1, 0), -0.07339892, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_c3xxp"]
+curve = SubResource("Curve_gfjak")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4kuee"]
 lifetime_randomness = 0.67
@@ -158,8 +173,8 @@ initial_velocity_max = 2.6
 gravity = Vector3(0, 0.98, 0)
 scale_min = 0.79999995
 scale_max = 1.1999999
-scale_curve = SubResource("CurveTexture_4kuee")
-color_ramp = SubResource("GradientTexture1D_4kuee")
+scale_curve = SubResource("CurveTexture_c3xxp")
+color_ramp = SubResource("GradientTexture1D_tpg5x")
 turbulence_enabled = true
 turbulence_noise_strength = 1.32
 turbulence_noise_scale = 1.874
@@ -168,9 +183,13 @@ turbulence_influence_max = 0.18400002
 turbulence_initial_displacement_min = 1.490116e-06
 turbulence_initial_displacement_max = 1.490116e-06
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "sprite", "aim_ring", "walk_particle_controller", "fall_particle_controller", "package_throw_node")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_524rm"]
+radius = 0.5620117
+height = 1.3979492
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "sprite", "aim_ring", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "invincibility_timer")]
 collision_layer = 2
-collision_mask = 17
+collision_mask = 273
 script = ExtResource("1_spyh3")
 speed = 8.0
 acceleration = 0.5
@@ -183,6 +202,9 @@ walk_particle_controller = NodePath("Particles/ParticlesWalk")
 fall_particle_controller = NodePath("Particles/ParticlesFall")
 package_throw_node = NodePath("PackageThrower")
 package_instance = ExtResource("2_524rm")
+health_max = 5
+invincibility_timer = NodePath("HurtBox and Timer/Invincibilty Timer")
+invincibility_timer_time = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -192,7 +214,8 @@ shape = SubResource("SphereShape3D_spyh3")
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
 [node name="Sprite3D" type="Sprite3D" parent="Visuals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+visible = false
 layers = 2
 gi_mode = 2
 pixel_size = 0.05
@@ -219,10 +242,13 @@ visible = false
 mesh = SubResource("SphereMesh_4kuee")
 material = SubResource("StandardMaterial3D_tpg5x")
 
+[node name="3dCharTest" parent="Visuals" instance=ExtResource("4_tpg5x")]
+transform = Transform3D(1.36, 0, 0, 0, 1.36, 0, 0, 0, 1.36, 0, 0, 0.6)
+
 [node name="Particles" type="Node3D" parent="."]
 
 [node name="ParticlesWalk" type="GPUParticles3D" parent="Particles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109, 0.398)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013, 0.384)
 emitting = false
 amount = 32
 lifetime = 1.46
@@ -243,6 +269,24 @@ draw_pass_1 = SubResource("SphereMesh_gfjak")
 
 [node name="AimRing" parent="." instance=ExtResource("3_4kuee")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+visible = false
 
 [node name="PackageThrower" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2056346, 0)
+
+[node name="HurtBox and Timer" type="Node3D" parent="."]
+
+[node name="Invincibilty Timer" type="Timer" parent="HurtBox and Timer"]
+one_shot = true
+
+[node name="Area3D" type="Area3D" parent="HurtBox and Timer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 32
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox and Timer/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3010254, 0)
+shape = SubResource("CapsuleShape3D_524rm")
+debug_color = Color(0.99, 0, 0.23099978, 0.8)
+
+[connection signal="area_entered" from="HurtBox and Timer/Area3D" to="." method="on_hurtbox_hit"]
