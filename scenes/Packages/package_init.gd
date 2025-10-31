@@ -21,4 +21,5 @@ func _on_body_entered(body):
 		collider_particle.global_position = state.get_contact_collider_position(0)
 		collider_particle.rotation = state.get_contact_local_normal(0) * 180 / PI
 		collider_particle.set_emitting(true)
+		set_collision_mask_value(2, true)
 	pass # Replace with function body.

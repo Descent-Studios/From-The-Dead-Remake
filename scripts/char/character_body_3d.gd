@@ -13,6 +13,7 @@ class_name Player
 @export_group("Visuals")
 @export var sprite : Sprite3D
 @export var aim_ring : Node3D
+var sprite_flip_override := false
 
 @export_group("Walk Params")
 @export var walk_particle_controller : GPUParticles3D
@@ -24,10 +25,14 @@ var spring_dampner : float
 
 @export_group("Package Throwing")
 @export var package_throw_node : Node3D
-@export var package_instance : PackedScene
+@export var package : PackedScene
 @export var throw_force : float
+var package_instance : RigidBody3D
+var package_created := false
 var package_throw_pos : Vector3
+var package_throw_pos_x : float
 var _mouse_pos : Vector3
+var wants_throw := false
 
 @export_group("Player Health Settings")
 @export var health_max : int
@@ -52,6 +57,7 @@ var was_grounded := false
 func _ready():
 	anim_state_machine = anim_tree["parameters/playback"]
 	package_throw_pos = package_throw_node.position
+	package_throw_pos_x = package_throw_pos.x
 	cur_health = health_max
 	pass
 
@@ -65,18 +71,22 @@ func _process(_delta):
 func _physics_process(_delta):
 	
 	if velocity.length() > 0.1:
-		anim_state_machine.travel("walk_anim")
-		pass
+		if wants_throw : anim_state_machine.travel("throw_walk")
+		else : anim_state_machine.travel("walk")
 	else:
-		anim_state_machine.travel("idle_anim")
+		if wants_throw : anim_state_machine.travel("throw_hold")
+		else : anim_state_machine.travel("default")
 		walk_particle_controller.set_emitting(false)
 		
-	
-	if velocity.x > 0.1:
-		sprite.flip_h = false
-	elif velocity.x < -0.1:
-		sprite.flip_h = true
-	
+	if !sprite_flip_override:
+		if velocity.x > 0.1:
+			sprite.flip_h = false
+			package_throw_pos.x = package_throw_pos_x
+		elif velocity.x < -0.1:
+			sprite.flip_h = true
+			package_throw_pos.x = -package_throw_pos_x
+			
+			
 	if is_on_floor():
 		should_emit_particles_override = true
 		if !was_grounded:
@@ -86,7 +96,7 @@ func _physics_process(_delta):
 	else:
 		was_grounded = false
 		should_emit_particles_override = false
-		anim_state_machine.travel("idle_anim")
+		anim_state_machine.travel("default")
 		walk_particle_controller.set_emitting(false)
 	
 		
@@ -119,10 +129,14 @@ func update_player_input():
 	
 	#region Throw package
 	if Input.is_action_pressed("throw_package"):
+		wants_throw = true
 		_mouse_pos = get_mouse_pos_3D()
 		aim_ring.show()
 		aim_ring_at(_mouse_pos)
+		prepare_package()
 	elif Input.is_action_just_released("throw_package"):
+		wants_throw = false
+		#anim_state_machine.start("throw_anim")
 		aim_ring.hide()
 		var target_vector = (_mouse_pos - global_position).normalized()
 		throw_package(target_vector)
@@ -143,13 +157,23 @@ func raycast_player_height(ray_hit_distance):
 	velocity += force
 	pass
 
+func prepare_package():
+	if !package_created:
+		package_created = true
+		package_instance = package.instantiate()
+		package_instance.position = package_throw_pos
+		package_instance.freeze = true
+		add_child(package_instance)
+	if package_created:
+		package_instance.position = package_throw_pos
+	pass
+
 func throw_package(towards : Vector3):
-	var instance : RigidBody3D = package_instance.instantiate()
-	instance.global_position = global_position + package_throw_pos
-	get_parent().add_child(instance)
-	instance.linear_velocity = velocity
-	instance.apply_impulse(towards * throw_force)
-	
+	package_instance.reparent(get_parent())
+	package_instance.freeze = false
+	package_instance.linear_velocity = velocity
+	package_instance.apply_impulse(towards * throw_force)
+	package_created = false
 	pass
 
 func aim_ring_at(vector : Vector3):
