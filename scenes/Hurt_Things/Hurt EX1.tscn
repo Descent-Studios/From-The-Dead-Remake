@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdr4fn66n437j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5vcc"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_fr4g5"]
+material = SubResource("StandardMaterial3D_a5vcc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cb0ur"]
+size = Vector3(1.1210938, 1, 1.2246094)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a5vcc"]
+
+[node name="HurtEx1" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("PrismMesh_fr4g5")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 4096
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017499924, 0, 0)
+shape = SubResource("BoxShape3D_cb0ur")
+debug_color = Color(0.9928444, 0, 0.25281918, 0.41960785)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_a5vcc")

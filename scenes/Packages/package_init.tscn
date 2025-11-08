@@ -58,7 +58,7 @@ rings = 12
 
 [node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("collider_particle")]
 collision_layer = 4
-collision_mask = 277
+collision_mask = 789
 mass = 8.0
 physics_material_override = SubResource("PhysicsMaterial_77544")
 freeze = true

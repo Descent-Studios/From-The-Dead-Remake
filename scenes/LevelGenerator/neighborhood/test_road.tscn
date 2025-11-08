@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw2brj6cn7y1u"]
+[gd_scene load_steps=7 format=3 uid="uid://dw2brj6cn7y1u"]
 
 [ext_resource type="Texture2D" uid="uid://cnh2w7yf5asxt" path="res://textures/Neighborhoods/test_road_1.png" id="1_ljq6c"]
 [ext_resource type="PackedScene" uid="uid://da1cg53mv7r2v" path="res://scenes/Buildings/ex_1.tscn" id="2_jfd4i"]
+[ext_resource type="PackedScene" uid="uid://cdr4fn66n437j" path="res://scenes/Hurt_Things/Hurt EX1.tscn" id="3_03lg3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_c4w3k"]
 size = Vector3(33, 0, 22.002)
@@ -29,3 +30,6 @@ shape = SubResource("BoxShape3D_ljq6c")
 
 [node name="Ex1" parent="." instance=ExtResource("2_jfd4i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="HurtEx1" parent="." instance=ExtResource("3_03lg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)

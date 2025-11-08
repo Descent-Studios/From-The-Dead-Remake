@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=59 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
@@ -21,22 +21,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_5stf6"]
-resource_name = "dead_anim"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [12, 16, 19, 21, 23]
 }
 
 [sub_resource type="Animation" id="Animation_524rm"]
@@ -69,7 +53,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.033333335),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [25, 24]
+"values": [14, 13]
 }
 
 [sub_resource type="Animation" id="Animation_tpg5x"]
@@ -102,7 +86,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.20000002, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [26, 28, 25, 34, 37]
+"values": [14, 17, 20, 23, 14]
 }
 
 [sub_resource type="Animation" id="Animation_gfjak"]
@@ -125,16 +109,12 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_524rm"]
 _data = {
 &"RESET": SubResource("Animation_4kuee"),
-&"dead_anim": SubResource("Animation_5stf6"),
 &"idle_anim": SubResource("Animation_524rm"),
 &"throw_anim": SubResource("Animation_npwbq"),
 &"throw_hold": SubResource("Animation_tpg5x"),
 &"throw_walk": SubResource("Animation_c3xxp"),
 &"walk_anim": SubResource("Animation_gfjak")
 }
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pn6s4"]
-animation = &"dead_anim"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gfjak"]
 animation = &"idle_anim"
@@ -176,12 +156,8 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ov1oi"]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2xrq6"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_npwbq"]
 states/End/position = Vector2(1210, 154.66667)
-states/dead/node = SubResource("AnimationNodeAnimation_pn6s4")
-states/dead/position = Vector2(357.8889, -26.666662)
 states/default/node = SubResource("AnimationNodeAnimation_gfjak")
 states/default/position = Vector2(358, 102.33333)
 states/throw_anim/node = SubResource("AnimationNodeAnimation_c3xxp")
@@ -192,8 +168,8 @@ states/throw_walk/node = SubResource("AnimationNodeAnimation_tpg5x")
 states/throw_walk/position = Vector2(840.99994, 114.88203)
 states/walk/node = SubResource("AnimationNodeAnimation_4kuee")
 states/walk/position = Vector2(600.6667, -53.000004)
-transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_524rm"), "default", "walk", SubResource("AnimationNodeStateMachineTransition_tpg5x"), "walk", "default", SubResource("AnimationNodeStateMachineTransition_c3xxp"), "walk", "throw_walk", SubResource("AnimationNodeStateMachineTransition_npwbq"), "default", "throw_hold", SubResource("AnimationNodeStateMachineTransition_pn6s4"), "throw_walk", "throw_hold", SubResource("AnimationNodeStateMachineTransition_5stf6"), "throw_hold", "throw_walk", SubResource("AnimationNodeStateMachineTransition_180ig"), "throw_hold", "throw_anim", SubResource("AnimationNodeStateMachineTransition_v42im"), "throw_walk", "throw_anim", SubResource("AnimationNodeStateMachineTransition_7oing"), "throw_anim", "walk", SubResource("AnimationNodeStateMachineTransition_20koh"), "throw_anim", "default", SubResource("AnimationNodeStateMachineTransition_ov1oi"), "default", "dead", SubResource("AnimationNodeStateMachineTransition_2xrq6")]
-graph_offset = Vector2(-33, -92)
+transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_524rm"), "default", "walk", SubResource("AnimationNodeStateMachineTransition_tpg5x"), "walk", "default", SubResource("AnimationNodeStateMachineTransition_c3xxp"), "walk", "throw_walk", SubResource("AnimationNodeStateMachineTransition_npwbq"), "default", "throw_hold", SubResource("AnimationNodeStateMachineTransition_pn6s4"), "throw_walk", "throw_hold", SubResource("AnimationNodeStateMachineTransition_5stf6"), "throw_hold", "throw_walk", SubResource("AnimationNodeStateMachineTransition_180ig"), "throw_hold", "throw_anim", SubResource("AnimationNodeStateMachineTransition_v42im"), "throw_walk", "throw_anim", SubResource("AnimationNodeStateMachineTransition_7oing"), "throw_anim", "walk", SubResource("AnimationNodeStateMachineTransition_20koh"), "throw_anim", "default", SubResource("AnimationNodeStateMachineTransition_ov1oi")]
+graph_offset = Vector2(-199, 89)
 
 [sub_resource type="Gradient" id="Gradient_5g0nn"]
 offsets = PackedFloat32Array(0, 0.50127226, 1)
@@ -344,7 +320,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "method"
 tracks/3/imported = false
-tracks/3/enabled = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -459,7 +435,7 @@ graph_offset = Vector2(-18, -7)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "aim_ring", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "invincibility_timer")]
 collision_layer = 2
-collision_mask = 785
+collision_mask = 273
 script = ExtResource("1_spyh3")
 speed = 8.0
 acceleration = 0.5
@@ -496,8 +472,8 @@ double_sided = false
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("3_524rm")
-hframes = 12
-vframes = 4
+hframes = 13
+vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/Sprite3D"]
 root_node = NodePath("../..")
@@ -534,12 +510,12 @@ draw_pass_1 = SubResource("SphereMesh_gfjak")
 
 [node name="SwearingParticle" type="GPUParticles3D" parent="Particles"]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 1.8479004, 0)
-visible = false
 emitting = false
 amount = 1
 lifetime = 1.52
 one_shot = true
 explosiveness = 0.49
+randomness = 0.21
 process_material = SubResource("ParticleProcessMaterial_c3xxp")
 draw_pass_1 = SubResource("PlaneMesh_524rm")
 

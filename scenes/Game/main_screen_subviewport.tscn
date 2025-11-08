@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cypf2c753bon1"]
+[gd_scene load_steps=17 format=3 uid="uid://cypf2c753bon1"]
 
 [ext_resource type="Shader" uid="uid://cvv20gbi8qk4i" path="res://shaders/subpixel.gdshader" id="2_443qg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_raa3n"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="6_ilmfu"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="8_ilmfu"]
 [ext_resource type="PackedScene" uid="uid://dw2brj6cn7y1u" path="res://scenes/LevelGenerator/neighborhood/test_road.tscn" id="8_j50ms"]
+[ext_resource type="PackedScene" uid="uid://7051m57uajg3" path="res://scenes/Truck/truck.tscn" id="9_j50ms"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_wg7ke"]
 flip_faces = true
@@ -133,3 +134,6 @@ directional_shadow_blend_splits = true
 directional_shadow_max_distance = 200.0
 
 [node name="Node3D" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("8_j50ms")]
+
+[node name="Truck" parent="SubViewportContainer/SubViewport/World" instance=ExtResource("9_j50ms")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.4417477, 0.523, -0.122)

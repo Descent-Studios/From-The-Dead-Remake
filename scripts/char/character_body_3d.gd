@@ -9,15 +9,18 @@ class_name Player
 @export_group("Animation")
 @export var anim_player : AnimationPlayer
 @export var anim_tree : AnimationTree
+@export var hurt_anim_tree : AnimationTree
 
 @export_group("Visuals")
 @export var sprite : Sprite3D
 @export var aim_ring : Node3D
+@export var swear_partiles : GPUParticles3D
 var sprite_flip_override := false
 
 @export_group("Walk Params")
 @export var walk_particle_controller : GPUParticles3D
 @export var fall_particle_controller : GPUParticles3D
+@export var can_move : bool = true
 var floor_raycast : RayCast3D
 var ride_height : float
 var spring_strength : float
@@ -44,6 +47,7 @@ var cur_health : int
 
 # Priv animation params
 var anim_state_machine : AnimationNodeStateMachinePlayback
+var hurt_anim_state_machine : AnimationNodeStateMachinePlayback
 
 
 
@@ -56,14 +60,16 @@ var was_grounded := false
 
 func _ready():
 	anim_state_machine = anim_tree["parameters/playback"]
+	hurt_anim_state_machine = hurt_anim_tree["parameters/playback"]
 	package_throw_pos = package_throw_node.position
 	package_throw_pos_x = package_throw_pos.x
 	cur_health = health_max
 	pass
 
 func _process(_delta):
-	update_player_input()
-	
+	if can_move :
+		update_player_input()
+	#print(cur_health)
 	
 	pass
 
@@ -101,7 +107,8 @@ func _physics_process(_delta):
 	
 		
 	velocity.y -= gravity * _delta
-	update_input_mkb(_delta)
+	if can_move :
+		update_input_mkb(_delta)
 	
 	
 	move_and_slide()
@@ -205,16 +212,32 @@ func get_mouse_pos_3D() -> Vector3:
 	
 	return mouse_pos_3D
 
+func knockback(from : Vector3, multiplier : float):
+	var dir = -global_position.direction_to(from).normalized()
+	dir.y = 0
+	print(dir)
+	var force = dir * multiplier
+	print(force)
+	velocity = force
+	pass
+
 func hurt(dmg):
 	cur_health -= dmg
 	if cur_health <= 0:
-		#die
+		print("oops i died!")
+		can_move = false
+		anim_state_machine.start("dead",true)
 		pass
 	pass
 
+func emit_swear():
+	swear_partiles.emitting = true
 
-func on_hurtbox_hit(_area):
+func on_hurtbox_hit(_area : Area3D):
 	if invincibility_timer.is_stopped():
 		hurt(1)
+		var area_global_pos = _area.global_position if _area else self.global_position
 		invincibility_timer.start(invincibility_timer_time)
+		hurt_anim_state_machine.travel("Hit")
+		knockback(area_global_pos,10.0)
 	pass # Replace with function body.

@@ -85,6 +85,8 @@ retrieve_package={
 3d_physics/layer_6="PlayerHurt"
 3d_physics/layer_8="Zombie Hit"
 3d_physics/layer_9="Buildings"
+3d_physics/layer_10="Truck"
+3d_physics/layer_13="Evil Objects"
 
 [physics]
 
