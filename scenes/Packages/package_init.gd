@@ -23,3 +23,13 @@ func _on_body_entered(body):
 		collider_particle.set_emitting(true)
 		set_collision_mask_value(2, true)
 	pass # Replace with function body.
+
+
+func call_change_color(color : GameManager.Colors):
+	match color:
+		RED:
+			
+
+
+func change_mesh_color(color):
+	

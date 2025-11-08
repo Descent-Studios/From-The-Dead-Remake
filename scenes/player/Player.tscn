@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=63 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
@@ -457,7 +457,9 @@ states/Start/position = Vector2(200.66667, 89.20988)
 transitions = ["Start", "Hit", SubResource("AnimationNodeStateMachineTransition_rn7t0"), "Hit", "Invincibility_Flicker", SubResource("AnimationNodeStateMachineTransition_8qjgm"), "Invincibility_Flicker", "End", SubResource("AnimationNodeStateMachineTransition_ejd4k")]
 graph_offset = Vector2(-18, -7)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "aim_ring", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "invincibility_timer")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_tpg5x"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "aim_ring", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer")]
 collision_layer = 2
 collision_mask = 785
 script = ExtResource("1_spyh3")
@@ -474,6 +476,7 @@ walk_particle_controller = NodePath("Particles/ParticlesWalk")
 fall_particle_controller = NodePath("Particles/ParticlesFall")
 package_throw_node = NodePath("PackageThrower")
 package = ExtResource("2_524rm")
+package_pickup_area = NodePath("PackagePickup/Area3D")
 health_max = 5
 invincibility_timer = NodePath("HurtBox and Timer/Invincibilty Timer")
 invincibility_timer_time = 1.0
@@ -487,6 +490,7 @@ shape = SubResource("SphereShape3D_spyh3")
 
 [node name="Sprite3D" type="Sprite3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.5, 0)
+visible = false
 layers = 2
 gi_mode = 2
 pixel_size = 0.02
@@ -575,4 +579,15 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_2xrq6")
 anim_player = NodePath("../Hurt Animations")
 
+[node name="PackagePickup" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.21169996)
+
+[node name="Area3D" type="Area3D" parent="PackagePickup"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PackagePickup/Area3D"]
+shape = SubResource("SphereShape3D_tpg5x")
+
 [connection signal="area_entered" from="HurtBox and Timer/Area3D" to="." method="on_hurtbox_hit"]
+[connection signal="body_entered" from="PackagePickup/Area3D" to="." method="on_package_body_enter"]

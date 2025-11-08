@@ -26,6 +26,9 @@ var ride_height : float
 var spring_strength : float
 var spring_dampner : float
 
+@export_group("Package Settings")
+@export var package_list : Array[PackedScene]
+
 @export_group("Package Throwing")
 @export var package_throw_node : Node3D
 @export var package : PackedScene
@@ -37,6 +40,14 @@ var package_throw_pos_x : float
 var _mouse_pos : Vector3
 var wants_throw := false
 
+@export_group("Package Pickup")
+@export var package_pickup_area : Area3D
+@export var package_pickup_radius : float = 0.5
+var packages_in_radius : Array[RigidBody3D]
+var closest_package : RigidBody3D
+
+
+
 @export_group("Player Health Settings")
 @export var health_max : int
 @export var invincibility_timer : Timer
@@ -44,6 +55,9 @@ var wants_throw := false
 var cur_health : int
 
 
+# Priv Inventory 
+## Vector2(Package Type, Color from GameManager.Color
+@export var package_inventory : Array[Vector2i]
 
 # Priv animation params
 var anim_state_machine : AnimationNodeStateMachinePlayback
@@ -76,6 +90,7 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	
+	#region Velocity based Animation
 	if velocity.length() > 0.1:
 		if wants_throw : anim_state_machine.travel("throw_walk")
 		else : anim_state_machine.travel("walk")
@@ -91,8 +106,8 @@ func _physics_process(_delta):
 		elif velocity.x < -0.1:
 			sprite.flip_h = true
 			package_throw_pos.x = -package_throw_pos_x
-			
-			
+	#endregion
+	#region particle controller
 	if is_on_floor():
 		should_emit_particles_override = true
 		if !was_grounded:
@@ -104,13 +119,15 @@ func _physics_process(_delta):
 		should_emit_particles_override = false
 		anim_state_machine.travel("default")
 		walk_particle_controller.set_emitting(false)
-	
+	#endregion
 		
+	#region Package area check
+	
+	
 	velocity.y -= gravity * _delta
 	if can_move :
 		update_input_mkb(_delta)
-	
-	
+		
 	move_and_slide()
 	pass
 
@@ -241,3 +258,9 @@ func on_hurtbox_hit(_area : Area3D):
 		hurt_anim_state_machine.travel("Hit")
 		knockback(area_global_pos,10.0)
 	pass # Replace with function body.
+
+
+# Package pickup stuff
+func on_package_body_enter(body):
+	
+	pass
