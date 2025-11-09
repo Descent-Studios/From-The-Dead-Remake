@@ -1,9 +1,9 @@
-[gd_scene load_steps=63 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=67 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://blhy7c7dcd4fr" path="res://scenes/player/aim_ring.tscn" id="3_4kuee"]
-[ext_resource type="Texture2D" uid="uid://lu7msdql2ije" path="res://textures/Player/spritesheet.png" id="3_524rm"]
+[ext_resource type="Texture2D" uid="uid://ikdkxuqtli6n" path="res://textures/Player/spritesheetPickup.png" id="3_tpg5x"]
 [ext_resource type="Texture2D" uid="uid://vhunc8mtgk3w" path="res://textures/swears/fuck.png" id="4_tpg5x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
@@ -69,7 +69,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.033333335),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [25, 24]
+"values": [37, 36]
 }
 
 [sub_resource type="Animation" id="Animation_tpg5x"]
@@ -85,7 +85,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [26]
+"values": [37]
 }
 
 [sub_resource type="Animation" id="Animation_c3xxp"]
@@ -102,7 +102,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.20000002, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [26, 28, 25, 34, 37]
+"values": [37, 39, 42, 45, 37]
 }
 
 [sub_resource type="Animation" id="Animation_gfjak"]
@@ -122,11 +122,42 @@ tracks/0/keys = {
 "values": [0, 2, 0, 8, 0]
 }
 
+[sub_resource type="Animation" id="Animation_180ig"]
+resource_name = "pickup"
+length = 0.20000334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.16666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 27, 29, 32, 34, 35]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.06666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"kill_nearest_package"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_524rm"]
 _data = {
 &"RESET": SubResource("Animation_4kuee"),
 &"dead_anim": SubResource("Animation_5stf6"),
 &"idle_anim": SubResource("Animation_524rm"),
+&"pickup": SubResource("Animation_180ig"),
 &"throw_anim": SubResource("Animation_npwbq"),
 &"throw_hold": SubResource("Animation_tpg5x"),
 &"throw_walk": SubResource("Animation_c3xxp"),
@@ -138,6 +169,9 @@ animation = &"dead_anim"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gfjak"]
 animation = &"idle_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7oing"]
+animation = &"pickup"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c3xxp"]
 animation = &"throw_anim"
@@ -178,12 +212,20 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2xrq6"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pi3ps"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kswpp"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_npwbq"]
 states/End/position = Vector2(1210, 154.66667)
 states/dead/node = SubResource("AnimationNodeAnimation_pn6s4")
 states/dead/position = Vector2(357.8889, -26.666662)
 states/default/node = SubResource("AnimationNodeAnimation_gfjak")
 states/default/position = Vector2(358, 102.33333)
+states/pickup/node = SubResource("AnimationNodeAnimation_7oing")
+states/pickup/position = Vector2(357.03705, 229)
 states/throw_anim/node = SubResource("AnimationNodeAnimation_c3xxp")
 states/throw_anim/position = Vector2(590.6666, 114.93415)
 states/throw_hold/node = SubResource("AnimationNodeAnimation_524rm")
@@ -191,9 +233,9 @@ states/throw_hold/position = Vector2(577.6667, 332.99997)
 states/throw_walk/node = SubResource("AnimationNodeAnimation_tpg5x")
 states/throw_walk/position = Vector2(840.99994, 114.88203)
 states/walk/node = SubResource("AnimationNodeAnimation_4kuee")
-states/walk/position = Vector2(600.6667, -53.000004)
-transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_524rm"), "default", "walk", SubResource("AnimationNodeStateMachineTransition_tpg5x"), "walk", "default", SubResource("AnimationNodeStateMachineTransition_c3xxp"), "walk", "throw_walk", SubResource("AnimationNodeStateMachineTransition_npwbq"), "default", "throw_hold", SubResource("AnimationNodeStateMachineTransition_pn6s4"), "throw_walk", "throw_hold", SubResource("AnimationNodeStateMachineTransition_5stf6"), "throw_hold", "throw_walk", SubResource("AnimationNodeStateMachineTransition_180ig"), "throw_hold", "throw_anim", SubResource("AnimationNodeStateMachineTransition_v42im"), "throw_walk", "throw_anim", SubResource("AnimationNodeStateMachineTransition_7oing"), "throw_anim", "walk", SubResource("AnimationNodeStateMachineTransition_20koh"), "throw_anim", "default", SubResource("AnimationNodeStateMachineTransition_ov1oi"), "default", "dead", SubResource("AnimationNodeStateMachineTransition_2xrq6")]
-graph_offset = Vector2(-33, -92)
+states/walk/position = Vector2(601.3334, -53.66667)
+transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_524rm"), "default", "walk", SubResource("AnimationNodeStateMachineTransition_tpg5x"), "walk", "default", SubResource("AnimationNodeStateMachineTransition_c3xxp"), "walk", "throw_walk", SubResource("AnimationNodeStateMachineTransition_npwbq"), "default", "throw_hold", SubResource("AnimationNodeStateMachineTransition_pn6s4"), "throw_walk", "throw_hold", SubResource("AnimationNodeStateMachineTransition_5stf6"), "throw_hold", "throw_walk", SubResource("AnimationNodeStateMachineTransition_180ig"), "throw_hold", "throw_anim", SubResource("AnimationNodeStateMachineTransition_v42im"), "throw_walk", "throw_anim", SubResource("AnimationNodeStateMachineTransition_7oing"), "throw_anim", "walk", SubResource("AnimationNodeStateMachineTransition_20koh"), "throw_anim", "default", SubResource("AnimationNodeStateMachineTransition_ov1oi"), "default", "dead", SubResource("AnimationNodeStateMachineTransition_2xrq6"), "default", "pickup", SubResource("AnimationNodeStateMachineTransition_pi3ps"), "pickup", "default", SubResource("AnimationNodeStateMachineTransition_kswpp")]
+graph_offset = Vector2(-211, -39)
 
 [sub_resource type="Gradient" id="Gradient_5g0nn"]
 offsets = PackedFloat32Array(0, 0.50127226, 1)
@@ -458,6 +500,7 @@ transitions = ["Start", "Hit", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(-18, -7)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tpg5x"]
+radius = 1.5
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "aim_ring", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer")]
 collision_layer = 2
@@ -480,6 +523,7 @@ package_pickup_area = NodePath("PackagePickup/Area3D")
 health_max = 5
 invincibility_timer = NodePath("HurtBox and Timer/Invincibilty Timer")
 invincibility_timer_time = 1.0
+package_inventory = Array[Vector2i]([Vector2i(1, 1), Vector2i(1, 1)])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -490,7 +534,6 @@ shape = SubResource("SphereShape3D_spyh3")
 
 [node name="Sprite3D" type="Sprite3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.5, 0)
-visible = false
 layers = 2
 gi_mode = 2
 pixel_size = 0.02
@@ -499,7 +542,7 @@ shaded = true
 double_sided = false
 alpha_cut = 1
 texture_filter = 0
-texture = ExtResource("3_524rm")
+texture = ExtResource("3_tpg5x")
 hframes = 12
 vframes = 4
 
@@ -583,6 +626,7 @@ anim_player = NodePath("../Hurt Animations")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.21169996)
 
 [node name="Area3D" type="Area3D" parent="PackagePickup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
 collision_layer = 0
 collision_mask = 4
 
@@ -591,3 +635,4 @@ shape = SubResource("SphereShape3D_tpg5x")
 
 [connection signal="area_entered" from="HurtBox and Timer/Area3D" to="." method="on_hurtbox_hit"]
 [connection signal="body_entered" from="PackagePickup/Area3D" to="." method="on_package_body_enter"]
+[connection signal="body_exited" from="PackagePickup/Area3D" to="." method="on_package_body_exit"]

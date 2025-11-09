@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c6rulpnx3roas" path="res://scenes/Packages/package_1x_1_inherited.tscn" id="2_5g0nn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_77544"]
-bounce = 0.23
+bounce = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sncrs"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -56,7 +56,7 @@ height = 0.253
 radial_segments = 12
 rings = 12
 
-[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("collider_particle")]
+[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("collider_particle", "package_mesh_node")]
 collision_layer = 4
 collision_mask = 789
 mass = 8.0
@@ -67,6 +67,8 @@ max_contacts_reported = 1
 script = ExtResource("1_5g0nn")
 velocity_threshold = 0.2
 collider_particle = NodePath("Particles/ParticlesFall")
+package_mesh_node = NodePath("package1x1/Cube")
+package_type = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_sncrs")

@@ -1,4 +1,5 @@
 extends RigidBody3D
+class_name PackageSmall
 
 
 @export var velocity_threshold : float = 2.0
@@ -6,13 +7,18 @@ var previous_velocity : float
 
 @export var collider_particle : GPUParticles3D
 
+@export var package_mesh_node : MeshInstance3D
+
+@export var package_type : GameManager.PackageType
+
 var deactivated := false
 
 func _physics_process(delta):
 	previous_velocity = linear_velocity.length()
-	
-	
 
+func _process(delta):
+	if Input.is_key_pressed(KEY_F):
+		change_mesh_color(Color("#ff00ff"))
 
 func _on_body_entered(body):
 	var vel_length = linear_velocity.length()
@@ -24,12 +30,10 @@ func _on_body_entered(body):
 		set_collision_mask_value(2, true)
 	pass # Replace with function body.
 
+func change_mesh_color(color : Color):
+	package_mesh_node.material_override.albedo_color = color
+	pass
 
-func call_change_color(color : GameManager.Colors):
-	match color:
-		RED:
-			
-
-
-func change_mesh_color(color):
-	
+func get_package_type() -> GameManager.PackageType:
+	return package_type
+	#Yeah thats... all this method does...

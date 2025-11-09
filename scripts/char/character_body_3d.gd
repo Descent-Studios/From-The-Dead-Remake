@@ -43,8 +43,9 @@ var wants_throw := false
 @export_group("Package Pickup")
 @export var package_pickup_area : Area3D
 @export var package_pickup_radius : float = 0.5
+var should_check_packages := false
 var packages_in_radius : Array[RigidBody3D]
-var closest_package : RigidBody3D
+var closest_package : PackageSmall
 
 
 
@@ -123,6 +124,7 @@ func _physics_process(_delta):
 		
 	#region Package area check
 	
+	#endregion
 	
 	velocity.y -= gravity * _delta
 	if can_move :
@@ -152,13 +154,13 @@ func update_input_mkb(_delta) -> void:
 func update_player_input():
 	
 	#region Throw package
-	if Input.is_action_pressed("throw_package"):
+	if Input.is_action_pressed("throw_package") && !package_inventory.is_empty():
 		wants_throw = true
 		_mouse_pos = get_mouse_pos_3D()
 		aim_ring.show()
 		aim_ring_at(_mouse_pos)
 		prepare_package()
-	elif Input.is_action_just_released("throw_package"):
+	elif Input.is_action_just_released("throw_package") && package_created:
 		wants_throw = false
 		#anim_state_machine.start("throw_anim")
 		aim_ring.hide()
@@ -166,6 +168,14 @@ func update_player_input():
 		throw_package(target_vector)
 		pass
 	#endregion
+	
+	#region Pickup Package
+	if Input.is_action_just_pressed("retrieve_package"):
+		closest_package = find_closest_package(packages_in_radius)
+		if closest_package:
+			anim_state_machine.start("pickup")
+			
+			
 
 func raycast_player_height(ray_hit_distance):
 	var vel = velocity 
@@ -181,12 +191,19 @@ func raycast_player_height(ray_hit_distance):
 	velocity += force
 	pass
 
+#region Package Throwing
+
 func prepare_package():
-	if !package_created:
+	if !package_created && !package_inventory.is_empty():
 		package_created = true
-		package_instance = package.instantiate()
+		
+		var package_type = package_inventory.pop_back()
+		package_instance = GameManager.get_package(package_type.x).instantiate()
+		
+		#Change color of package
 		package_instance.position = package_throw_pos
 		package_instance.freeze = true
+		
 		add_child(package_instance)
 	if package_created:
 		package_instance.position = package_throw_pos
@@ -228,7 +245,40 @@ func get_mouse_pos_3D() -> Vector3:
 	var mouse_pos_3D : Vector3 = result.get("position",end)
 	
 	return mouse_pos_3D
+#endregion
 
+#region Package pickup stuff
+func on_package_body_enter(_body):
+	if !should_check_packages:
+		should_check_packages = true
+	packages_in_radius.push_back(_body)
+	pass
+
+func on_package_body_exit(body):
+	if packages_in_radius.has(body):
+		packages_in_radius.erase(body)
+	if packages_in_radius.is_empty():
+		should_check_packages = false
+	pass
+
+func find_closest_package(body_array : Array[RigidBody3D]) -> RigidBody3D:
+	var closest_body : RigidBody3D
+	var closest_distance : float = INF
+	for body in body_array:
+		var distance = self.global_position.distance_to(body.global_position)
+		if distance < closest_distance:
+			closest_distance = distance
+			closest_body = body
+	return closest_body
+
+## Called by pickup animation 
+func kill_nearest_package():
+	package_inventory.push_front(Vector2i(closest_package.get_package_type(),1))
+	closest_package.queue_free()
+	
+#endregion
+
+#region Player Damage Functions
 func knockback(from : Vector3, multiplier : float):
 	var dir = -global_position.direction_to(from).normalized()
 	dir.y = 0
@@ -258,9 +308,4 @@ func on_hurtbox_hit(_area : Area3D):
 		hurt_anim_state_machine.travel("Hit")
 		knockback(area_global_pos,10.0)
 	pass # Replace with function body.
-
-
-# Package pickup stuff
-func on_package_body_enter(body):
-	
-	pass
+#endregion

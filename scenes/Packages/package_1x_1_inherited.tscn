@@ -1,16 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6rulpnx3roas"]
+[gd_scene load_steps=2 format=3 uid="uid://c6rulpnx3roas"]
 
 [ext_resource type="PackedScene" uid="uid://c6g5ihaylu20e" path="res://3d models import/packages/package1x1.blend" id="1_5ed4y"]
-[ext_resource type="Texture2D" uid="uid://dbdw8e3tpd2a" path="res://textures/ASE/package_1x1.png" id="2_mnxqk"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fddpj"]
-resource_name = "Material"
-cull_mode = 2
-albedo_texture = ExtResource("2_mnxqk")
-roughness = 0.88620687
-texture_filter = 2
 
 [node name="package1x1" instance=ExtResource("1_5ed4y")]
-
-[node name="Cube" parent="." index="0"]
-material_override = SubResource("StandardMaterial3D_fddpj")

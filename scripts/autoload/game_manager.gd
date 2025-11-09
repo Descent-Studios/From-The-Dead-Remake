@@ -1,11 +1,22 @@
 extends Node
 
-enum Colors {
-	RED = 1,
-	GREEN = 2,
-	BLUE = 3
+const Colors : Dictionary = {
+	RED = Color("ff0000"),
+	GREEN = Color("00ff00"),
+	BLUE = Color("0000ff")
 }
 
 enum PackageType {
-	Small = 1,
+	SMALL = 1,
+	MEDIUM = 2
 }
+
+var small_package_scene : PackedScene = preload("res://scenes/Packages/package_init.tscn")
+
+
+func get_package(type : PackageType) -> PackedScene:
+	match type:
+		PackageType.SMALL:
+			return small_package_scene
+		_:
+			return null

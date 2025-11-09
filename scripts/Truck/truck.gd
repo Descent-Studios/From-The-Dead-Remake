@@ -20,8 +20,10 @@ func _ready():
 
 func unfreeze_packages():
 	for x in packages:
-		x.reparent(get_parent())
-		x.freeze = false
+		if x:
+			x.reparent(get_parent())
+			x.freeze = false
+			
 
 
 
