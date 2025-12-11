@@ -107,6 +107,7 @@ func _physics_process(_delta):
 		elif velocity.x < -0.1:
 			sprite.flip_h = true
 			package_throw_pos.x = -package_throw_pos_x
+		
 	#endregion
 	#region particle controller
 	if is_on_floor():

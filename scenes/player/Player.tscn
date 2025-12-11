@@ -221,7 +221,7 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_npwbq"]
-states/End/position = Vector2(1210, 154.66667)
+states/End/position = Vector2(1152, 114.988556)
 states/dead/node = SubResource("AnimationNodeAnimation_pn6s4")
 states/dead/position = Vector2(357.8889, -26.666662)
 states/default/node = SubResource("AnimationNodeAnimation_gfjak")
@@ -237,7 +237,7 @@ states/throw_walk/position = Vector2(840.99994, 114.88203)
 states/walk/node = SubResource("AnimationNodeAnimation_4kuee")
 states/walk/position = Vector2(601.3334, -53.66667)
 transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_524rm"), "default", "walk", SubResource("AnimationNodeStateMachineTransition_tpg5x"), "walk", "default", SubResource("AnimationNodeStateMachineTransition_c3xxp"), "walk", "throw_walk", SubResource("AnimationNodeStateMachineTransition_npwbq"), "default", "throw_hold", SubResource("AnimationNodeStateMachineTransition_pn6s4"), "throw_walk", "throw_hold", SubResource("AnimationNodeStateMachineTransition_5stf6"), "throw_hold", "throw_walk", SubResource("AnimationNodeStateMachineTransition_180ig"), "throw_hold", "throw_anim", SubResource("AnimationNodeStateMachineTransition_v42im"), "throw_walk", "throw_anim", SubResource("AnimationNodeStateMachineTransition_7oing"), "throw_anim", "walk", SubResource("AnimationNodeStateMachineTransition_20koh"), "throw_anim", "default", SubResource("AnimationNodeStateMachineTransition_ov1oi"), "default", "dead", SubResource("AnimationNodeStateMachineTransition_2xrq6"), "default", "pickup", SubResource("AnimationNodeStateMachineTransition_pi3ps"), "pickup", "default", SubResource("AnimationNodeStateMachineTransition_kswpp")]
-graph_offset = Vector2(-211, -39)
+graph_offset = Vector2(-304, -224)
 
 [sub_resource type="Gradient" id="Gradient_5g0nn"]
 offsets = PackedFloat32Array(0, 0.50127226, 1)
@@ -511,8 +511,8 @@ script = ExtResource("1_spyh3")
 speed = 8.0
 acceleration = 0.5
 deceleration = 0.25
-anim_player = NodePath("Visuals/Sprite3D/AnimationPlayer")
-anim_tree = NodePath("Visuals/Sprite3D/AnimationTree")
+anim_player = NodePath("Visuals/Sprite3D/2DAnimPlayer")
+anim_tree = NodePath("Visuals/Sprite3D/2DAnimTree")
 hurt_anim_tree = NodePath("HurtBox and Timer/Hurt Anim Tree")
 sprite = NodePath("Visuals/Sprite3D")
 aim_ring = NodePath("AimRing")
@@ -548,16 +548,16 @@ texture = ExtResource("3_tpg5x")
 hframes = 12
 vframes = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/Sprite3D"]
+[node name="2DAnimPlayer" type="AnimationPlayer" parent="Visuals/Sprite3D"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_524rm")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="Visuals/Sprite3D"]
+[node name="2DAnimTree" type="AnimationTree" parent="Visuals/Sprite3D"]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_npwbq")
-anim_player = NodePath("../AnimationPlayer")
+anim_player = NodePath("../2DAnimPlayer")
 
 [node name="PackageVisualizer" parent="Visuals" instance=ExtResource("4_c3xxp")]
 transform = Transform3D(0.7651732, -0.11720908, -0.4471397, 0.247064, 0.86834866, 0.26431558, 0.35014012, -0.3565785, 0.79064476, -0.42915928, 0.060406953, -0.091377385)
@@ -565,6 +565,7 @@ visible = false
 
 [node name="Backpack" type="Sprite3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5367787, 0.54138184, -0.10168457)
+visible = false
 layers = 2
 gi_mode = 2
 pixel_size = 0.02
@@ -577,6 +578,7 @@ texture = ExtResource("4_npwbq")
 
 [node name="Backpack Pivot" type="Node3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541, -0.102)
+visible = false
 
 [node name="RigidBody3D" parent="Visuals/Backpack Pivot" instance=ExtResource("2_524rm")]
 transform = Transform3D(0.9328027, -0.060988024, -0.35518962, 0.16297892, 0.950424, 0.2648238, 0.3214297, -0.30491674, 0.8964981, -0.45186853, -0.19024676, -0.24019492)

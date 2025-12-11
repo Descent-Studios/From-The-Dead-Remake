@@ -1,0 +1,114 @@
+[gd_scene load_steps=17 format=3 uid="uid://c8hp3due050ik"]
+
+[ext_resource type="Shader" uid="uid://cvv20gbi8qk4i" path="res://shaders/subpixel.gdshader" id="1_8r7t2"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_tve3b"]
+[ext_resource type="PackedScene" uid="uid://div52utmarvlq" path="res://scenes/player/Player.tscn" id="3_7jinb"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="4_gydmk"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_kn24k"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="6_jfgw1"]
+[ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="7_bbw60"]
+[ext_resource type="PackedScene" uid="uid://dw2brj6cn7y1u" path="res://scenes/LevelGenerator/neighborhood/test_road.tscn" id="8_fpme6"]
+[ext_resource type="PackedScene" uid="uid://7051m57uajg3" path="res://scenes/Truck/truck.tscn" id="9_u2quu"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_wg7ke"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pcxry"]
+render_priority = 0
+shader = ExtResource("1_8r7t2")
+shader_parameter/lightIntensity = 1.25
+shader_parameter/lineAlpha = 4.0
+shader_parameter/useLighting = true
+shader_parameter/lineHighlight = 0.2
+shader_parameter/lineShadow = 0.55
+
+[sub_resource type="Resource" id="Resource_j50ms"]
+script = ExtResource("5_kn24k")
+
+[sub_resource type="Resource" id="Resource_he6u6"]
+script = ExtResource("6_jfgw1")
+projection = 1
+size = 10.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_he6u6"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_hwpe0"]
+sky_material = SubResource("ProceduralSkyMaterial_he6u6")
+
+[sub_resource type="Environment" id="Environment_1vy8g"]
+background_mode = 2
+sky = SubResource("Sky_hwpe0")
+ambient_light_sky_contribution = 0.28
+reflected_light_source = 1
+tonemap_mode = 4
+tonemap_exposure = 2.0
+fog_mode = 1
+fog_density = 0.3
+
+[node name="World" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0.5238724, 14.401389, 14.473171)
+projection = 1
+current = true
+size = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_wg7ke")
+surface_material_override/0 = SubResource("ShaderMaterial_pcxry")
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_tve3b")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Player" parent="." instance=ExtResource("3_7jinb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5238724, 0.25925326, 0.3310356)
+speed = 10.0
+acceleration = 0.15
+deceleration = 0.5
+throw_force = 100.0
+
+[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0.5238724, 14.401389, 14.473171)
+top_level = true
+script = ExtResource("4_gydmk")
+follow_mode = 5
+follow_target = NodePath("../Player")
+tween_resource = SubResource("Resource_j50ms")
+tween_on_load = false
+camera_3d_resource = SubResource("Resource_he6u6")
+follow_damping = true
+follow_distance = 20.0
+spring_length = 20.0
+look_at_offset = Vector3(0, -2, -2)
+_preview_noise = false
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="PackageInit" parent="." instance=ExtResource("7_bbw60")]
+transform = Transform3D(0.4380065, -0.8057526, -0.3986391, 0.5959029, 0.5922523, -0.542344, 0.67309, -5.9604645e-08, 0.7395606, -1.5555879, 1.8289882, 1.4765882)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1vy8g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.66446286, 0.7071067, 0.24184476, -0.34202012, -1.4950174e-08, 0.93969256, 0.664463, -0.7071067, 0.24184476, 0, 12.996275, 0)
+light_color = Color(0.95, 0.88444996, 0.73149997, 1)
+shadow_enabled = true
+shadow_bias = 0.037
+directional_shadow_split_1 = 0.008
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 200.0
+
+[node name="Node3D" parent="." instance=ExtResource("8_fpme6")]
+
+[node name="Truck" parent="." instance=ExtResource("9_u2quu")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.4417477, 0.523, -0.122)
