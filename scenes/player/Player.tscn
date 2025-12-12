@@ -1,11 +1,10 @@
-[gd_scene load_steps=69 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=68 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://blhy7c7dcd4fr" path="res://scenes/player/aim_ring.tscn" id="3_4kuee"]
 [ext_resource type="Texture2D" uid="uid://ikdkxuqtli6n" path="res://textures/Player/spritesheetPickup.png" id="3_tpg5x"]
 [ext_resource type="PackedScene" uid="uid://dqvm8x4fk4mmj" path="res://scenes/player/package_visualizer.tscn" id="4_c3xxp"]
-[ext_resource type="Texture2D" uid="uid://n776h4pxnik5" path="res://textures/Player/Backpack_Sprite.png" id="4_npwbq"]
 [ext_resource type="Texture2D" uid="uid://vhunc8mtgk3w" path="res://textures/swears/fuck.png" id="4_tpg5x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
@@ -562,33 +561,6 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="PackageVisualizer" parent="Visuals" instance=ExtResource("4_c3xxp")]
 transform = Transform3D(0.7651732, -0.11720908, -0.4471397, 0.247064, 0.86834866, 0.26431558, 0.35014012, -0.3565785, 0.79064476, -0.42915928, 0.060406953, -0.091377385)
 visible = false
-
-[node name="Backpack" type="Sprite3D" parent="Visuals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5367787, 0.54138184, -0.10168457)
-layers = 2
-gi_mode = 2
-pixel_size = 0.02
-billboard = 1
-shaded = true
-double_sided = false
-alpha_cut = 1
-texture_filter = 0
-texture = ExtResource("4_npwbq")
-
-[node name="Backpack Pivot" type="Node3D" parent="Visuals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541, -0.102)
-
-[node name="RigidBody3D" parent="Visuals/Backpack Pivot" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.9328027, -0.060988024, -0.35518962, 0.16297892, 0.950424, 0.2648238, 0.3214297, -0.30491674, 0.8964981, -0.45186853, -0.19024676, -0.24019492)
-
-[node name="RigidBody3D2" parent="Visuals/Backpack Pivot" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.7970896, -0.060987987, -0.6007737, 0.23024526, 0.95042443, 0.20899984, 0.55824345, -0.3049169, 0.77161545, -0.4812906, 0.26942885, -0.38768506)
-
-[node name="RigidBody3D3" parent="Visuals/Backpack Pivot" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.9699562, -0.060988, -0.2355115, 0.1285124, 0.9504242, 0.28315783, 0.20656654, -0.30491692, 0.92970747, -0.51092553, 0.731254, -0.5358487)
-
-[node name="RigidBody3D4" parent="Visuals/Backpack Pivot" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.79682714, -0.06098804, -0.6011214, 0.2303364, 0.95042425, 0.20889923, 0.5585799, -0.3049168, 0.77137154, -0.54260963, 1.2250108, -0.6942568)
 
 [node name="Particles" type="Node3D" parent="."]
 
