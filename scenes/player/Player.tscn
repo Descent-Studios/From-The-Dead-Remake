@@ -1,243 +1,13 @@
-[gd_scene load_steps=69 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=37 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://blhy7c7dcd4fr" path="res://scenes/player/aim_ring.tscn" id="3_4kuee"]
-[ext_resource type="Texture2D" uid="uid://ikdkxuqtli6n" path="res://textures/Player/spritesheetPickup.png" id="3_tpg5x"]
+[ext_resource type="PackedScene" uid="uid://d0r4m1wj36022" path="res://scenes/player/BasicSprite.tscn" id="3_c3xxp"]
 [ext_resource type="PackedScene" uid="uid://dqvm8x4fk4mmj" path="res://scenes/player/package_visualizer.tscn" id="4_c3xxp"]
-[ext_resource type="Texture2D" uid="uid://n776h4pxnik5" path="res://textures/Player/Backpack_Sprite.png" id="4_npwbq"]
 [ext_resource type="Texture2D" uid="uid://vhunc8mtgk3w" path="res://textures/swears/fuck.png" id="4_tpg5x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
-
-[sub_resource type="Animation" id="Animation_4kuee"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_5stf6"]
-resource_name = "dead_anim"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [12, 16, 19, 21, 23]
-}
-
-[sub_resource type="Animation" id="Animation_524rm"]
-resource_name = "idle_anim"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [12]
-}
-
-[sub_resource type="Animation" id="Animation_180ig"]
-resource_name = "pickup"
-length = 0.20000334
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.16666667, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [24, 27, 29, 32, 34, 35]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.06666667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"kill_nearest_package"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_npwbq"]
-resource_name = "throw_anim"
-length = 0.26667002
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [37, 36]
-}
-
-[sub_resource type="Animation" id="Animation_tpg5x"]
-resource_name = "throw_hold"
-length = 0.03333667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [37]
-}
-
-[sub_resource type="Animation" id="Animation_c3xxp"]
-resource_name = "throw_walk"
-length = 0.40000334
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.20000002, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [37, 39, 42, 45, 37]
-}
-
-[sub_resource type="Animation" id="Animation_gfjak"]
-resource_name = "walk_anim"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 2, 0, 8, 0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_524rm"]
-_data = {
-&"RESET": SubResource("Animation_4kuee"),
-&"dead_anim": SubResource("Animation_5stf6"),
-&"idle_anim": SubResource("Animation_524rm"),
-&"pickup": SubResource("Animation_180ig"),
-&"throw_anim": SubResource("Animation_npwbq"),
-&"throw_hold": SubResource("Animation_tpg5x"),
-&"throw_walk": SubResource("Animation_c3xxp"),
-&"walk_anim": SubResource("Animation_gfjak")
-}
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pn6s4"]
-animation = &"dead_anim"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gfjak"]
-animation = &"idle_anim"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7oing"]
-animation = &"pickup"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c3xxp"]
-animation = &"throw_anim"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_524rm"]
-animation = &"throw_hold"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tpg5x"]
-animation = &"throw_walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4kuee"]
-animation = &"walk_anim"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_524rm"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tpg5x"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c3xxp"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_npwbq"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pn6s4"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5stf6"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_180ig"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v42im"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7oing"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_20koh"]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ov1oi"]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2xrq6"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pi3ps"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kswpp"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_npwbq"]
-states/End/position = Vector2(1152, 114.988556)
-states/dead/node = SubResource("AnimationNodeAnimation_pn6s4")
-states/dead/position = Vector2(357.8889, -26.666662)
-states/default/node = SubResource("AnimationNodeAnimation_gfjak")
-states/default/position = Vector2(358, 102.33333)
-states/pickup/node = SubResource("AnimationNodeAnimation_7oing")
-states/pickup/position = Vector2(357.03705, 229)
-states/throw_anim/node = SubResource("AnimationNodeAnimation_c3xxp")
-states/throw_anim/position = Vector2(590.6666, 114.93415)
-states/throw_hold/node = SubResource("AnimationNodeAnimation_524rm")
-states/throw_hold/position = Vector2(577.6667, 332.99997)
-states/throw_walk/node = SubResource("AnimationNodeAnimation_tpg5x")
-states/throw_walk/position = Vector2(840.99994, 114.88203)
-states/walk/node = SubResource("AnimationNodeAnimation_4kuee")
-states/walk/position = Vector2(601.3334, -53.66667)
-transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_524rm"), "default", "walk", SubResource("AnimationNodeStateMachineTransition_tpg5x"), "walk", "default", SubResource("AnimationNodeStateMachineTransition_c3xxp"), "walk", "throw_walk", SubResource("AnimationNodeStateMachineTransition_npwbq"), "default", "throw_hold", SubResource("AnimationNodeStateMachineTransition_pn6s4"), "throw_walk", "throw_hold", SubResource("AnimationNodeStateMachineTransition_5stf6"), "throw_hold", "throw_walk", SubResource("AnimationNodeStateMachineTransition_180ig"), "throw_hold", "throw_anim", SubResource("AnimationNodeStateMachineTransition_v42im"), "throw_walk", "throw_anim", SubResource("AnimationNodeStateMachineTransition_7oing"), "throw_anim", "walk", SubResource("AnimationNodeStateMachineTransition_20koh"), "throw_anim", "default", SubResource("AnimationNodeStateMachineTransition_ov1oi"), "default", "dead", SubResource("AnimationNodeStateMachineTransition_2xrq6"), "default", "pickup", SubResource("AnimationNodeStateMachineTransition_pi3ps"), "pickup", "default", SubResource("AnimationNodeStateMachineTransition_kswpp")]
-graph_offset = Vector2(-304, -224)
 
 [sub_resource type="Gradient" id="Gradient_5g0nn"]
 offsets = PackedFloat32Array(0, 0.50127226, 1)
@@ -511,10 +281,10 @@ script = ExtResource("1_spyh3")
 speed = 8.0
 acceleration = 0.5
 deceleration = 0.25
-anim_player = NodePath("Visuals/Sprite3D/2DAnimPlayer")
-anim_tree = NodePath("Visuals/Sprite3D/2DAnimTree")
+anim_player = NodePath("")
+anim_tree = NodePath("")
 hurt_anim_tree = NodePath("HurtBox and Timer/Hurt Anim Tree")
-sprite = NodePath("Visuals/Sprite3D")
+sprite = NodePath("")
 aim_ring = NodePath("AimRing")
 swear_partiles = NodePath("Particles/SwearingParticle")
 walk_particle_controller = NodePath("Particles/ParticlesWalk")
@@ -534,63 +304,13 @@ shape = SubResource("SphereShape3D_spyh3")
 
 [node name="Visuals" type="Node3D" parent="."]
 
-[node name="Sprite3D" type="Sprite3D" parent="Visuals"]
+[node name="Sprite3D" parent="Visuals" instance=ExtResource("3_c3xxp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-layers = 2
-gi_mode = 2
-pixel_size = 0.02
-billboard = 1
-shaded = true
-double_sided = false
-alpha_cut = 1
-texture_filter = 0
-texture = ExtResource("3_tpg5x")
-hframes = 12
-vframes = 4
-
-[node name="2DAnimPlayer" type="AnimationPlayer" parent="Visuals/Sprite3D"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_524rm")
-}
-
-[node name="2DAnimTree" type="AnimationTree" parent="Visuals/Sprite3D"]
-root_node = NodePath("../..")
-tree_root = SubResource("AnimationNodeStateMachine_npwbq")
-anim_player = NodePath("../2DAnimPlayer")
+frame = 0
 
 [node name="PackageVisualizer" parent="Visuals" instance=ExtResource("4_c3xxp")]
 transform = Transform3D(0.7651732, -0.11720908, -0.4471397, 0.247064, 0.86834866, 0.26431558, 0.35014012, -0.3565785, 0.79064476, -0.42915928, 0.060406953, -0.091377385)
 visible = false
-
-[node name="Backpack" type="Sprite3D" parent="Visuals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5367787, 0.54138184, -0.10168457)
-visible = false
-layers = 2
-gi_mode = 2
-pixel_size = 0.02
-billboard = 1
-shaded = true
-double_sided = false
-alpha_cut = 1
-texture_filter = 0
-texture = ExtResource("4_npwbq")
-
-[node name="Backpack Pivot" type="Node3D" parent="Visuals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541, -0.102)
-visible = false
-
-[node name="RigidBody3D" parent="Visuals/Backpack Pivot" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.9328027, -0.060988024, -0.35518962, 0.16297892, 0.950424, 0.2648238, 0.3214297, -0.30491674, 0.8964981, -0.45186853, -0.19024676, -0.24019492)
-
-[node name="RigidBody3D2" parent="Visuals/Backpack Pivot" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.7970896, -0.060987987, -0.6007737, 0.23024526, 0.95042443, 0.20899984, 0.55824345, -0.3049169, 0.77161545, -0.4812906, 0.26942885, -0.38768506)
-
-[node name="RigidBody3D3" parent="Visuals/Backpack Pivot" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.9699562, -0.060988, -0.2355115, 0.1285124, 0.9504242, 0.28315783, 0.20656654, -0.30491692, 0.92970747, -0.51092553, 0.731254, -0.5358487)
-
-[node name="RigidBody3D4" parent="Visuals/Backpack Pivot" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.79682714, -0.06098804, -0.6011214, 0.2303364, 0.95042425, 0.20889923, 0.5585799, -0.3049168, 0.77137154, -0.54260963, 1.2250108, -0.6942568)
 
 [node name="Particles" type="Node3D" parent="."]
 
