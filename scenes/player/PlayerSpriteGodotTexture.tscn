@@ -17,6 +17,22 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_5stf6"]
+resource_name = "dead_anim"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.26666668, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 7, 8, 11]
+}
+
 [sub_resource type="Animation" id="Animation_524rm"]
 resource_name = "idle_anim"
 length = 0.6
@@ -130,22 +146,6 @@ tracks/0/keys = {
 "values": [48, 50, 53, 56, 59]
 }
 
-[sub_resource type="Animation" id="Animation_5stf6"]
-resource_name = "dead_anim"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.26666668, 0.33333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 3, 7, 8, 11]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_524rm"]
 _data = {
 &"RESET": SubResource("Animation_4kuee"),
@@ -229,7 +229,7 @@ states/throw_walk/position = Vector2(840.99994, 114.88203)
 states/walk/node = SubResource("AnimationNodeAnimation_4kuee")
 states/walk/position = Vector2(601.3334, -53.66667)
 transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_524rm"), "default", "walk", SubResource("AnimationNodeStateMachineTransition_tpg5x"), "walk", "default", SubResource("AnimationNodeStateMachineTransition_c3xxp"), "walk", "throw_walk", SubResource("AnimationNodeStateMachineTransition_npwbq"), "default", "throw_hold", SubResource("AnimationNodeStateMachineTransition_pn6s4"), "throw_walk", "throw_hold", SubResource("AnimationNodeStateMachineTransition_5stf6"), "throw_hold", "throw_walk", SubResource("AnimationNodeStateMachineTransition_180ig"), "throw_hold", "throw_anim", SubResource("AnimationNodeStateMachineTransition_v42im"), "throw_walk", "throw_anim", SubResource("AnimationNodeStateMachineTransition_7oing"), "throw_anim", "walk", SubResource("AnimationNodeStateMachineTransition_20koh"), "throw_anim", "default", SubResource("AnimationNodeStateMachineTransition_ov1oi"), "default", "dead", SubResource("AnimationNodeStateMachineTransition_2xrq6"), "default", "pickup", SubResource("AnimationNodeStateMachineTransition_pi3ps"), "pickup", "default", SubResource("AnimationNodeStateMachineTransition_kswpp")]
-graph_offset = Vector2(-211, -39)
+graph_offset = Vector2(-342, -186)
 
 [node name="Sprite3D" type="Sprite3D"]
 layers = 2
@@ -251,7 +251,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_npwbq")
 anim_player = NodePath("../AnimationPlayer")

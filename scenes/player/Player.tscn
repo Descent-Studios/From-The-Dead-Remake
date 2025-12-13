@@ -1,10 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=36 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://blhy7c7dcd4fr" path="res://scenes/player/aim_ring.tscn" id="3_4kuee"]
-[ext_resource type="PackedScene" uid="uid://d0r4m1wj36022" path="res://scenes/player/BasicSprite.tscn" id="3_c3xxp"]
-[ext_resource type="PackedScene" uid="uid://dqvm8x4fk4mmj" path="res://scenes/player/package_visualizer.tscn" id="4_c3xxp"]
+[ext_resource type="PackedScene" uid="uid://c5kyea1dj7ulu" path="res://scenes/player/PlayerSpriteGodotTexture.tscn" id="3_c3xxp"]
 [ext_resource type="Texture2D" uid="uid://vhunc8mtgk3w" path="res://textures/swears/fuck.png" id="4_tpg5x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
@@ -144,25 +143,13 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = false
-tracks/2/path = NodePath("../Particles/SwearingParticle:emitting")
+tracks/2/path = NodePath("..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.099999994),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/path = NodePath("..")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -225,18 +212,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Particles/SwearingParticle:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pn6s4"]
 _data = {
@@ -281,10 +256,10 @@ script = ExtResource("1_spyh3")
 speed = 8.0
 acceleration = 0.5
 deceleration = 0.25
-anim_player = NodePath("")
-anim_tree = NodePath("")
+anim_player = NodePath("Visuals/Sprite3D/AnimationPlayer")
+anim_tree = NodePath("Visuals/Sprite3D/AnimationTree")
 hurt_anim_tree = NodePath("HurtBox and Timer/Hurt Anim Tree")
-sprite = NodePath("")
+sprite = NodePath("Visuals/Sprite3D")
 aim_ring = NodePath("AimRing")
 swear_partiles = NodePath("Particles/SwearingParticle")
 walk_particle_controller = NodePath("Particles/ParticlesWalk")
@@ -306,11 +281,9 @@ shape = SubResource("SphereShape3D_spyh3")
 
 [node name="Sprite3D" parent="Visuals" instance=ExtResource("3_c3xxp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-frame = 0
 
-[node name="PackageVisualizer" parent="Visuals" instance=ExtResource("4_c3xxp")]
-transform = Transform3D(0.7651732, -0.11720908, -0.4471397, 0.247064, 0.86834866, 0.26431558, 0.35014012, -0.3565785, 0.79064476, -0.42915928, 0.060406953, -0.091377385)
-visible = false
+[node name="Node3D" type="Node3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24188423, 0, -0.1763916)
 
 [node name="Particles" type="Node3D" parent="."]
 
@@ -351,6 +324,7 @@ visible = false
 
 [node name="PackageThrower" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5292206, 1.2056346, 0.57055664)
+visible = false
 
 [node name="HurtBox and Timer" type="Node3D" parent="."]
 visible = false
@@ -391,3 +365,5 @@ shape = SubResource("SphereShape3D_tpg5x")
 [connection signal="area_entered" from="HurtBox and Timer/Area3D" to="." method="on_hurtbox_hit"]
 [connection signal="body_entered" from="PackagePickup/Area3D" to="." method="on_package_body_enter"]
 [connection signal="body_exited" from="PackagePickup/Area3D" to="." method="on_package_body_exit"]
+
+[editable path="Visuals/Sprite3D"]
