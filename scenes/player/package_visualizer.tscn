@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqvm8x4fk4mmj"]
-
-[ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="1_uygdr"]
+[gd_scene load_steps=2 format=3 uid="uid://dqvm8x4fk4mmj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r45hf"]
 albedo_color = Color(0.56, 0.3210667, 0.111999996, 1)
@@ -43,18 +41,3 @@ material = SubResource("StandardMaterial3D_r45hf")
 [node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(0.9993162, -0.036975056, 0, 0.036975056, 0.9993162, 0, 0, 0, 1, -0.35328877, 0.73465264, 0.44414794)
 size = Vector3(0.2, 1.555, 0.2)
-
-[node name="RigidBody3D" parent="CSGCombiner3D" instance=ExtResource("1_uygdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053732775, 0.28902376, 0.047658682)
-
-[node name="RigidBody3D2" parent="CSGCombiner3D" instance=ExtResource("1_uygdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02663865, 0.81929564, 0.047658682)
-
-[node name="RigidBody3D3" parent="CSGCombiner3D" instance=ExtResource("1_uygdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02663865, 1.3340852, 0.047658682)
-
-[node name="RigidBody3D4" parent="CSGCombiner3D" instance=ExtResource("1_uygdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02663865, 1.868228, 0.047658682)
-
-[node name="RigidBody3D5" parent="CSGCombiner3D" instance=ExtResource("1_uygdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02663865, 2.4062412, 0.047658682)

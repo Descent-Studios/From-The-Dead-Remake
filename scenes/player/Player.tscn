@@ -280,10 +280,31 @@ shape = SubResource("SphereShape3D_spyh3")
 [node name="Visuals" type="Node3D" parent="."]
 
 [node name="Sprite3D" parent="Visuals" instance=ExtResource("3_c3xxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.5, 0)
+billboard = 0
 
 [node name="Node3D" type="Node3D" parent="Visuals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24188423, 0, -0.1763916)
+transform = Transform3D(0.8801526, 0.030484945, 0.35623294, -0.27218363, 0.67089117, 0.6150782, -0.23183464, -0.67191935, 0.6302991, -0.36767173, 0.06933813, -0.041665774)
+
+[node name="RigidBody3D" parent="Visuals/Node3D" instance=ExtResource("2_524rm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053732775, 0.28902376, 0.047658682)
+collision_layer = 0
+
+[node name="RigidBody3D2" parent="Visuals/Node3D" instance=ExtResource("2_524rm")]
+transform = Transform3D(0.99427474, 0, -0.1068541, 0, 1, 0, 0.1068541, 0, 0.99427474, 0.02663865, 0.7934679, 0.047658682)
+collision_layer = 0
+
+[node name="RigidBody3D3" parent="Visuals/Node3D" instance=ExtResource("2_524rm")]
+transform = Transform3D(0.9744838, 0, 0.22445785, 0, 1, 0, -0.22445785, 0, 0.9744838, 0.02663865, 1.2976183, 0.047658682)
+collision_layer = 0
+
+[node name="RigidBody3D4" parent="Visuals/Node3D" instance=ExtResource("2_524rm")]
+transform = Transform3D(0.98988545, 0, -0.1418688, 0, 1, 0, 0.1418688, 0, 0.98988545, 0.026638648, 1.7850684, 0.04765868)
+collision_layer = 0
+
+[node name="RigidBody3D5" parent="Visuals/Node3D" instance=ExtResource("2_524rm")]
+transform = Transform3D(0.9880676, 0, 0.15402062, 0, 1, 0, -0.15402062, 0, 0.9880676, 0.02663865, 2.2799315, 0.047658674)
+collision_layer = 0
 
 [node name="Particles" type="Node3D" parent="."]
 
