@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lu7msdql2ije"
-path="res://.godot/imported/spritesheet.png-54d2d3d9dececf3f73660828fe62ffa5.ctex"
+uid="uid://n776h4pxnik5"
+path="res://.godot/imported/Backpack_Sprite.png-ac648be93499c4987ecd671e415fb7e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/Player/spritesheet.png"
-dest_files=["res://.godot/imported/spritesheet.png-54d2d3d9dececf3f73660828fe62ffa5.ctex"]
+source_file="res://textures/Player/oldSprites/Backpack_Sprite.png"
+dest_files=["res://.godot/imported/Backpack_Sprite.png-ac648be93499c4987ecd671e415fb7e7.ctex"]
 
 [params]
 
@@ -22,7 +22,7 @@ compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
-compress/channel_pack=1
+compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://d0r4m1wj36022"]
 
-[ext_resource type="Texture2D" uid="uid://ikdkxuqtli6n" path="res://textures/Player/spritesheetPickup.png" id="1_pxobp"]
+[ext_resource type="Texture2D" uid="uid://ikdkxuqtli6n" path="res://textures/Player/oldSprites/spritesheetPickup.png" id="1_pxobp"]
 
 [sub_resource type="Animation" id="Animation_4kuee"]
 length = 0.001

@@ -200,7 +200,7 @@ func prepare_package():
 		
 		var package_type = package_inventory.pop_back()
 		package_instance = GameManager.get_package(package_type.x).instantiate()
-		
+		package_instance.package_color = package_type.y
 		#Change color of package
 		package_instance.position = package_throw_pos
 		package_instance.freeze = true
@@ -274,7 +274,8 @@ func find_closest_package(body_array : Array[RigidBody3D]) -> RigidBody3D:
 
 ## Called by pickup animation 
 func kill_nearest_package():
-	package_inventory.push_front(Vector2i(closest_package.get_package_type(),1))
+	package_inventory.push_back(
+		Vector2i(closest_package.get_package_type(),closest_package.get_package_color()))
 	closest_package.queue_free()
 	
 #endregion
