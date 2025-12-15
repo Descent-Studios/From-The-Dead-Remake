@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://buy1qgroisfwh"]
+
+[ext_resource type="Script" uid="uid://bok83i5aljfn2" path="res://scripts/packages/package_visualizer.gd" id="1_pnbhj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iiy7s"]
+size = Vector3(2, 0.5, 2)
+
+[sub_resource type="Animation" id="Animation_pnbhj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hole/AnimatableBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.09700012, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iiy7s"]
+resource_name = "bob"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hole/AnimatableBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.1, 0), Vector3(0, 0, 0), Vector3(0, 0.08, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pnbhj"]
+_data = {
+&"RESET": SubResource("Animation_pnbhj"),
+&"bob": SubResource("Animation_iiy7s")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iiy7s"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pnbhj"]
+animation = &"bob"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ly1rs"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dk1k0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iiy7s"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ly1rs"]
+states/RESET/node = SubResource("AnimationNodeAnimation_iiy7s")
+states/RESET/position = Vector2(386.66663, 100.666664)
+states/bob/node = SubResource("AnimationNodeAnimation_pnbhj")
+states/bob/position = Vector2(583.99994, 101.333336)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ly1rs"), "RESET", "bob", SubResource("AnimationNodeStateMachineTransition_dk1k0"), "bob", "RESET", SubResource("AnimationNodeStateMachineTransition_iiy7s")]
+graph_offset = Vector2(-360, -66)
+
+[node name="PackageVisualizer" type="SubViewport" node_paths=PackedStringArray("hole", "animation_tree", "package_spawn_pos")]
+transparent_bg = true
+gui_disable_input = true
+size = Vector2i(120, 512)
+render_target_update_mode = 4
+script = ExtResource("1_pnbhj")
+hole = NodePath("Hole")
+animation_tree = NodePath("AnimationTree")
+package_spawn_pos = NodePath("Hole/PackageSpawnPos")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9774122, 0.21134186, 0, -0.21134186, 0.9774122, 0, 52.415222, 1.5545044)
+cull_mask = 4
+projection = 1
+size = 4.754404
+
+[node name="Hole" type="Node3D" parent="."]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 0, 50, 0)
+
+[node name="AnimatableBody" type="AnimatableBody3D" parent="Hole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09700012, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hole/AnimatableBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_iiy7s")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Hole/AnimatableBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1969986, 0)
+visible = false
+layers = 5
+size = Vector3(1, 0.2, 1)
+
+[node name="PackageSpawnPos" type="Node3D" parent="Hole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70000076, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pnbhj")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_ly1rs")
+anim_player = NodePath("../AnimationPlayer")

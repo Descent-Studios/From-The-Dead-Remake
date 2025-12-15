@@ -1,13 +1,58 @@
-[gd_scene load_steps=12 format=3 uid="uid://bnrv1y6r2duuq"]
+[gd_scene load_steps=17 format=4 uid="uid://bnrv1y6r2duuq"]
 
-[ext_resource type="Script" uid="uid://btlepokrgpixr" path="res://scenes/Packages/package_init.gd" id="1_5g0nn"]
-[ext_resource type="PackedScene" uid="uid://c6rulpnx3roas" path="res://scenes/Packages/package_1x_1_inherited.tscn" id="2_5g0nn"]
+[ext_resource type="Script" uid="uid://btlepokrgpixr" path="res://scripts/packages/package_init.gd" id="1_5g0nn"]
+[ext_resource type="Texture2D" uid="uid://dbdw8e3tpd2a" path="res://textures/ASE/package_1x1.png" id="2_5g0nn"]
+[ext_resource type="Shader" uid="uid://dshygr7fvoiti" path="res://shaders/packages/package_color_changer.gdshader" id="2_qx1uw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_77544"]
 bounce = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sncrs"]
 size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4lpkc"]
+render_priority = 0
+shader = ExtResource("2_qx1uw")
+shader_parameter/albedo_texture = ExtResource("2_5g0nn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fddpj"]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("2_5g0nn")
+roughness = 0.88620687
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gwy1l"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD/////AAAAAP//AAD//wAA////////AAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_an8wi"]
+resource_name = "package1x1_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("l6D//2d//3+XoP9/Z3/////f////v/9//9//f/+///+uoP//UH//f66g/39Qf////9////+//3//3/9//7/////f//////9////////f/3//n////7//f/+/////n/9/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_fddpj"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(2, 2, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAP///78AAP//AAD/vwAA//////+/AAAAAAAA/78AAAAAAAD///////8AAP//AAD//wAA/////wAAAAD/////AAAAAP+//////////7//////AAD/v///AAD///+///8AAP//AIAAAP////8AgP///////wCAAAAAAP//AIAAAAAAAAD/v///AAD///+///8AAAAA/78AAAAA////v/////8AAP//AAD///////8AAP//AAD//////////////3////9/////f////3////9/////f////3////9/////fwAA/38AAP9/AAD/fwAA/3////9/////f////3///wAA/38AAP9/AAD/fwAA/3//f/+//3//v/9//7//f/+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_gwy1l")
 
 [sub_resource type="Gradient" id="Gradient_5g0nn"]
 offsets = PackedFloat32Array(0, 0.50127226, 1)
@@ -68,13 +113,23 @@ script = ExtResource("1_5g0nn")
 velocity_threshold = 0.2
 collider_particle = NodePath("Particles/ParticlesFall")
 package_mesh_node = NodePath("package1x1/Cube")
-package_type = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_sncrs")
 
-[node name="package1x1" parent="." instance=ExtResource("2_5g0nn")]
+[node name="package1x1" type="Node3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="package1x1"]
+layers = 5
+material_override = SubResource("ShaderMaterial_4lpkc")
+instance_shader_parameters/percentage = 0.0
+mesh = SubResource("ArrayMesh_an8wi")
+skeleton = NodePath("")
+metadata/extras = {
+"ant_landscape": {},
+"vs": {}
+}
 
 [node name="Particles" type="Node3D" parent="."]
 
@@ -89,5 +144,3 @@ process_material = SubResource("ParticleProcessMaterial_4lpkc")
 draw_pass_1 = SubResource("SphereMesh_bfeal")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-
-[editable path="package1x1"]

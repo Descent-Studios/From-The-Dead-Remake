@@ -1,9 +1,15 @@
 extends Node
 
-const Colors : Dictionary = {
-	RED = Color("ff0000"),
-	GREEN = Color("00ff00"),
-	BLUE = Color("0000ff")
+enum PackageColors {
+	RED = 0,
+	GREEN = 1,
+	BLUE = 2
+}
+
+const ColorDict : Dictionary = {
+	PackageColors.RED : Color("ff0000"),
+	PackageColors.GREEN : Color("00ff00"),
+	PackageColors.BLUE : Color("0000ff"),
 }
 
 enum PackageType {
@@ -12,6 +18,9 @@ enum PackageType {
 }
 
 var small_package_scene : PackedScene = preload("res://scenes/Packages/package_init.tscn")
+
+func get_color(packageColor : PackageColors):
+	return ColorDict[packageColor]
 
 
 func get_package(type : PackageType) -> PackedScene:

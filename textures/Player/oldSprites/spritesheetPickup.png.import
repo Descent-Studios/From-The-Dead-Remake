@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n776h4pxnik5"
-path="res://.godot/imported/Backpack_Sprite.png-2b540bcf02ea697226dca1e8319379b2.ctex"
+uid="uid://ikdkxuqtli6n"
+path="res://.godot/imported/spritesheetPickup.png-7775a61c2766d35ff49e286350195ba2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/Player/Backpack_Sprite.png"
-dest_files=["res://.godot/imported/Backpack_Sprite.png-2b540bcf02ea697226dca1e8319379b2.ctex"]
+source_file="res://textures/Player/oldSprites/spritesheetPickup.png"
+dest_files=["res://.godot/imported/spritesheetPickup.png-7775a61c2766d35ff49e286350195ba2.ctex"]
 
 [params]
 

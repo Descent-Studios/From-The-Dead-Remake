@@ -1,12 +1,16 @@
-[gd_scene load_steps=36 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=38 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://blhy7c7dcd4fr" path="res://scenes/player/aim_ring.tscn" id="3_4kuee"]
 [ext_resource type="PackedScene" uid="uid://c5kyea1dj7ulu" path="res://scenes/player/PlayerSpriteGodotTexture.tscn" id="3_c3xxp"]
+[ext_resource type="PackedScene" uid="uid://buy1qgroisfwh" path="res://scenes/player/PackageInvetoryVisualizer/PackageVisualizer.tscn" id="4_c3xxp"]
 [ext_resource type="Texture2D" uid="uid://vhunc8mtgk3w" path="res://textures/swears/fuck.png" id="4_tpg5x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c3xxp"]
+viewport_path = NodePath("Node3D/PackageVisualizer")
 
 [sub_resource type="Gradient" id="Gradient_5g0nn"]
 offsets = PackedFloat32Array(0, 0.50127226, 1)
@@ -122,7 +126,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Visuals/Sprite3D:modulate")
+tracks/0/path = NodePath("../Visuals/PlayerSprite:modulate")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -164,7 +168,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Visuals/Sprite3D:transparency")
+tracks/0/path = NodePath("../Visuals/PlayerSprite:transparency")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -179,7 +183,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Visuals/Sprite3D:modulate")
+tracks/0/path = NodePath("../Visuals/PlayerSprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -191,7 +195,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Visuals/Sprite3D:transparency")
+tracks/1/path = NodePath("../Visuals/PlayerSprite:transparency")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -249,18 +253,20 @@ graph_offset = Vector2(-18, -7)
 [sub_resource type="SphereShape3D" id="SphereShape3D_tpg5x"]
 radius = 1.5
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "aim_ring", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer")]
 collision_layer = 2
 collision_mask = 785
 script = ExtResource("1_spyh3")
 speed = 8.0
 acceleration = 0.5
 deceleration = 0.25
-anim_player = NodePath("Visuals/Sprite3D/AnimationPlayer")
-anim_tree = NodePath("Visuals/Sprite3D/AnimationTree")
+anim_player = NodePath("Visuals/PlayerSprite/AnimationPlayer")
+anim_tree = NodePath("Visuals/PlayerSprite/AnimationTree")
 hurt_anim_tree = NodePath("HurtBox and Timer/Hurt Anim Tree")
-sprite = NodePath("Visuals/Sprite3D")
+sprite = NodePath("Visuals/PlayerSprite")
+package_sprite = NodePath("Visuals/PackageSprite")
 aim_ring = NodePath("AimRing")
+package_visualizer = NodePath("Node3D/PackageVisualizer")
 swear_partiles = NodePath("Particles/SwearingParticle")
 walk_particle_controller = NodePath("Particles/ParticlesWalk")
 fall_particle_controller = NodePath("Particles/ParticlesFall")
@@ -270,7 +276,6 @@ package_pickup_area = NodePath("PackagePickup/Area3D")
 health_max = 5
 invincibility_timer = NodePath("HurtBox and Timer/Invincibilty Timer")
 invincibility_timer_time = 1.0
-package_inventory = Array[Vector2i]([Vector2i(1, 1), Vector2i(1, 1)])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -279,32 +284,17 @@ shape = SubResource("SphereShape3D_spyh3")
 
 [node name="Visuals" type="Node3D" parent="."]
 
-[node name="Sprite3D" parent="Visuals" instance=ExtResource("3_c3xxp")]
+[node name="PlayerSprite" parent="Visuals" instance=ExtResource("3_c3xxp")]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.5, 0)
 billboard = 0
+double_sided = true
 
-[node name="Node3D" type="Node3D" parent="Visuals"]
-transform = Transform3D(0.8801526, 0.030484945, 0.35623294, -0.27218363, 0.67089117, 0.6150782, -0.23183464, -0.67191935, 0.6302991, -0.36767173, 0.06933813, -0.041665774)
-
-[node name="RigidBody3D" parent="Visuals/Node3D" instance=ExtResource("2_524rm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053732775, 0.28902376, 0.047658682)
-collision_layer = 0
-
-[node name="RigidBody3D2" parent="Visuals/Node3D" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.99427474, 0, -0.1068541, 0, 1, 0, 0.1068541, 0, 0.99427474, 0.02663865, 0.7934679, 0.047658682)
-collision_layer = 0
-
-[node name="RigidBody3D3" parent="Visuals/Node3D" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.9744838, 0, 0.22445785, 0, 1, 0, -0.22445785, 0, 0.9744838, 0.02663865, 1.2976183, 0.047658682)
-collision_layer = 0
-
-[node name="RigidBody3D4" parent="Visuals/Node3D" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.98988545, 0, -0.1418688, 0, 1, 0, 0.1418688, 0, 0.98988545, 0.026638648, 1.7850684, 0.04765868)
-collision_layer = 0
-
-[node name="RigidBody3D5" parent="Visuals/Node3D" instance=ExtResource("2_524rm")]
-transform = Transform3D(0.9880676, 0, 0.15402062, 0, 1, 0, -0.15402062, 0, 0.9880676, 0.02663865, 2.2799315, 0.047658674)
-collision_layer = 0
+[node name="PackageSprite" type="Sprite3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -0.34454715, 1.8663707, -1.4044801)
+layers = 3
+shaded = true
+alpha_cut = 1
+texture = SubResource("ViewportTexture_c3xxp")
 
 [node name="Particles" type="Node3D" parent="."]
 
@@ -374,6 +364,7 @@ anim_player = NodePath("../Hurt Animations")
 
 [node name="PackagePickup" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.21169996)
+visible = false
 
 [node name="Area3D" type="Area3D" parent="PackagePickup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
@@ -383,8 +374,16 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PackagePickup/Area3D"]
 shape = SubResource("SphereShape3D_tpg5x")
 
+[node name="Node3D" type="Node3D" parent="."]
+visible = false
+
+[node name="PackageVisualizer" parent="Node3D" instance=ExtResource("4_c3xxp")]
+handle_input_locally = false
+audio_listener_enable_3d = true
+
 [connection signal="area_entered" from="HurtBox and Timer/Area3D" to="." method="on_hurtbox_hit"]
 [connection signal="body_entered" from="PackagePickup/Area3D" to="." method="on_package_body_enter"]
 [connection signal="body_exited" from="PackagePickup/Area3D" to="." method="on_package_body_exit"]
 
-[editable path="Visuals/Sprite3D"]
+[editable path="Visuals/PlayerSprite"]
+[editable path="Node3D/PackageVisualizer"]

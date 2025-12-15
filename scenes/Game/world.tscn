@@ -68,6 +68,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_pcxry")
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("2_tve3b")
+host_layers = 3
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Player" parent="." instance=ExtResource("3_7jinb")]
@@ -101,6 +102,7 @@ environment = SubResource("Environment_1vy8g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.66446286, 0.7071067, 0.24184476, -0.34202012, -1.4950174e-08, 0.93969256, 0.664463, -0.7071067, 0.24184476, 0, 12.996275, 0)
+layers = 7
 light_color = Color(0.95, 0.88444996, 0.73149997, 1)
 shadow_enabled = true
 shadow_bias = 0.037

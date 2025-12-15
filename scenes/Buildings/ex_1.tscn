@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://da1cg53mv7r2v"]
+[gd_scene load_steps=7 format=3 uid="uid://da1cg53mv7r2v"]
+
+[ext_resource type="Script" uid="uid://buf4obuodrl5g" path="res://scenes/Buildings/ex_1.gd" id="1_1werq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txyr4"]
 albedo_color = Color(0.62, 0.5146, 0.5146, 1)
@@ -13,10 +15,19 @@ distance_fade_min_distance = 19.0
 distance_fade_max_distance = 20.0
 stencil_flags = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw1y4"]
+albedo_color = Color(3.85046e-07, 0.6407756, 0.33007705, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cqnlk"]
+size = Vector3(1.5, 2.3, 1.2)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_txyr4"]
 size = Vector3(7, 4, 4)
 
-[node name="Ex1" type="Node3D"]
+[node name="Ex1" type="Node3D" node_paths=PackedStringArray("packageAcceptorArea", "door")]
+script = ExtResource("1_1werq")
+packageAcceptorArea = NodePath("Door/PackageAcceptor")
+door = NodePath("Door")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -28,6 +39,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 size = Vector3(7, 1, 4)
 material = SubResource("StandardMaterial3D_1werq")
 
+[node name="Door" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.6351086)
+size = Vector3(1, 2, 1)
+material = SubResource("StandardMaterial3D_pw1y4")
+
+[node name="PackageAcceptor" type="Area3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.20000005)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/PackageAcceptor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14999998, -0.100000024)
+shape = SubResource("BoxShape3D_cqnlk")
+debug_color = Color(3.3691526e-07, 0.6368257, 0.403978, 0.41960785)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 256
 collision_mask = 0
@@ -35,3 +61,5 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("BoxShape3D_txyr4")
+
+[connection signal="body_entered" from="Door/PackageAcceptor" to="." method="_on_package_acceptor_body_entered"]
