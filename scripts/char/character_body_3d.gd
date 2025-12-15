@@ -13,7 +13,9 @@ class_name Player
 
 @export_group("Visuals")
 @export var sprite : Sprite3D
+@export var package_sprite : Sprite3D
 @export var aim_ring : Node3D
+@export var package_visualizer : PackageVisualizer
 @export var swear_partiles : GPUParticles3D
 var sprite_flip_override := false
 
@@ -26,8 +28,8 @@ var ride_height : float
 var spring_strength : float
 var spring_dampner : float
 
-@export_group("Package Settings")
-@export var package_list : Array[PackedScene]
+#@export_group("Package Settings")
+#@export var package_list : Array[PackedScene]
 
 @export_group("Package Throwing")
 @export var package_throw_node : Node3D
@@ -95,17 +97,23 @@ func _physics_process(_delta):
 	if velocity.length() > 0.1:
 		if wants_throw : anim_state_machine.travel("throw_walk")
 		else : anim_state_machine.travel("walk")
+		package_visualizer.start_walk()
 	else:
 		if wants_throw : anim_state_machine.travel("throw_hold")
 		else : anim_state_machine.travel("default")
 		walk_particle_controller.set_emitting(false)
+		package_visualizer.stop_walk()
 		
 	if !sprite_flip_override:
 		if velocity.x > 0.1:
 			sprite.flip_h = false
+			package_sprite.flip_h = false
+			package_sprite.position.x = -0.345
 			package_throw_pos.x = package_throw_pos_x
 		elif velocity.x < -0.1:
 			sprite.flip_h = true
+			package_sprite.flip_h = true
+			package_sprite.position.x = 0.345
 			package_throw_pos.x = -package_throw_pos_x
 		
 	#endregion
@@ -172,9 +180,11 @@ func update_player_input():
 	
 	#region Pickup Package
 	if Input.is_action_just_pressed("retrieve_package"):
-		closest_package = find_closest_package(packages_in_radius)
-		if closest_package:
-			anim_state_machine.start("pickup")
+		if package_inventory.size() < 8:
+			closest_package = find_closest_package(packages_in_radius)
+			if closest_package:
+				anim_state_machine.start("pickup")
+		
 			
 			
 
@@ -199,6 +209,8 @@ func prepare_package():
 		package_created = true
 		
 		var package_type = package_inventory.pop_back()
+		package_visualizer.remove_package()
+		
 		package_instance = GameManager.get_package(package_type.x).instantiate()
 		package_instance.package_color = package_type.y
 		#Change color of package
@@ -221,7 +233,7 @@ func throw_package(towards : Vector3):
 func aim_ring_at(vector : Vector3):
 	var target_vector := aim_ring.global_position.direction_to(vector)
 	var target_basis := Basis.looking_at(target_vector)
-	aim_ring.basis = aim_ring.basis.slerp(target_basis, 0.5)
+	aim_ring.basis = aim_ring.basis.slerp(target_basis.orthonormalized(), 0.5)
 
 
 func get_mouse_pos_3D() -> Vector3:
@@ -274,8 +286,9 @@ func find_closest_package(body_array : Array[RigidBody3D]) -> RigidBody3D:
 
 ## Called by pickup animation 
 func kill_nearest_package():
-	package_inventory.push_back(
-		Vector2i(closest_package.get_package_type(),closest_package.get_package_color()))
+	var package_info = Vector2i(closest_package.get_package_type(),closest_package.get_package_color())
+	package_inventory.push_back(package_info)
+	package_visualizer.add_package(package_info)
 	closest_package.queue_free()
 	
 #endregion
