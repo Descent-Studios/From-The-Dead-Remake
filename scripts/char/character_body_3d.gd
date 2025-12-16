@@ -112,7 +112,7 @@ func _physics_process(_delta):
 			package_throw_pos.x = package_throw_pos_x
 		elif velocity.x < -0.1:
 			sprite.flip_h = true
-			package_sprite.flip_h = true
+			#package_sprite.flip_h = true
 			package_sprite.position.x = 0.345
 			package_throw_pos.x = -package_throw_pos_x
 		
@@ -129,10 +129,6 @@ func _physics_process(_delta):
 		should_emit_particles_override = false
 		anim_state_machine.travel("default")
 		walk_particle_controller.set_emitting(false)
-	#endregion
-		
-	#region Package area check
-	
 	#endregion
 	
 	velocity.y -= gravity * _delta
@@ -184,7 +180,7 @@ func update_player_input():
 			closest_package = find_closest_package(packages_in_radius)
 			if closest_package:
 				anim_state_machine.start("pickup")
-		
+	#endregion
 			
 			
 
@@ -231,9 +227,10 @@ func throw_package(towards : Vector3):
 	pass
 
 func aim_ring_at(vector : Vector3):
+	#TODO FIX ORTHONORMALIZATION IG?
 	var target_vector := aim_ring.global_position.direction_to(vector)
-	var target_basis := Basis.looking_at(target_vector)
-	aim_ring.basis = aim_ring.basis.slerp(target_basis.orthonormalized(), 0.5)
+	var target_basis := Basis.looking_at(target_vector).orthonormalized()
+	aim_ring.basis = aim_ring.basis.slerp(target_basis, 0.5)
 
 
 func get_mouse_pos_3D() -> Vector3:

@@ -1,5 +1,8 @@
 extends Node3D
 
+class_name GeneratedHouse
+
+@export var active := true
 @export var packageAcceptorArea : Area3D
 @export var packageAcceptorType : GameManager.PackageColors
 @export var door : CSGBox3D
@@ -11,7 +14,7 @@ func _ready():
 	
 	var col_shape = packageAcceptorArea.get_child(0) as CollisionShape3D
 	col_shape.debug_color = doorColor
-	door.material.albedo_color = doorColor
+	door.set_instance_shader_parameter("albedo", doorColor)
 
 func initialize_delivery_area(deliveryColor : GameManager.PackageColors):
 	packageAcceptorType = deliveryColor
@@ -20,13 +23,17 @@ func initialize_delivery_area(deliveryColor : GameManager.PackageColors):
 	
 	var col_shape = packageAcceptorArea.get_child(0) as CollisionShape3D
 	col_shape.debug_color = doorColor
-	door.material.albedo_color = doorColor
+	door.set_instance_shader_parameter("albedo", doorColor)
 
 func check_package(_body : PackageSmall):
 	if _body.has_method("get_package_color"):
-		print(_body.get_package_color())
-	pass
+		if packageAcceptorType == _body.get_package_color():
+			# tell game manager 
+			_body.queue_free()
+		#else:
+			# play a sound? idk yet
+
 
 func _on_package_acceptor_body_entered(body):
-	check_package(body)
-	pass # Replace with function body.
+	if active:
+		check_package(body)
