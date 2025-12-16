@@ -291,9 +291,11 @@ double_sided = true
 
 [node name="PackageSprite" type="Sprite3D" parent="Visuals"]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -0.34454715, 1.8663707, -1.4044801)
-layers = 3
+layers = 4
+gi_mode = 2
 shaded = true
 alpha_cut = 1
+texture_filter = 0
 texture = SubResource("ViewportTexture_c3xxp")
 
 [node name="Particles" type="Node3D" parent="."]

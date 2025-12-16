@@ -28,20 +28,13 @@ func add_package(package_info : Vector2i):
 	
 	package_spawn_pos.position.y = package_spawn_pos.position.y + 0.5
 	hole.add_child(package_instance)
-	#spawn package
-	pass
 
 func remove_package():
-	print(active_packages)
 	package_inventory.pop_back()
 	if !active_packages.is_empty():
 		var package_instance = active_packages.pop_back()
 		package_instance.queue_free()
-		
 		package_spawn_pos.position.y = maxf(package_spawn_pos.position.y - 0.5, 0.7)
-	
-	
-	pass
 
 func start_walk():
 	anim_state_machine.travel("bob")

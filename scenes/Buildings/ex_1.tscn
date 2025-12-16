@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://da1cg53mv7r2v"]
+[gd_scene load_steps=8 format=3 uid="uid://da1cg53mv7r2v"]
 
-[ext_resource type="Script" uid="uid://buf4obuodrl5g" path="res://scenes/Buildings/ex_1.gd" id="1_1werq"]
+[ext_resource type="Script" uid="uid://buf4obuodrl5g" path="res://scripts/Buildings/ex_1.gd" id="1_1werq"]
+[ext_resource type="Shader" uid="uid://cmg8nmhhkqi0y" path="res://shaders/buildings/door_color_shader.gdshader" id="2_pw1y4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txyr4"]
 albedo_color = Color(0.62, 0.5146, 0.5146, 1)
@@ -15,8 +16,19 @@ distance_fade_min_distance = 19.0
 distance_fade_max_distance = 20.0
 stencil_flags = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw1y4"]
-albedo_color = Color(3.85046e-07, 0.6407756, 0.33007705, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqnlk"]
+render_priority = 0
+shader = ExtResource("2_pw1y4")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cqnlk"]
 size = Vector3(1.5, 2.3, 1.2)
@@ -27,6 +39,7 @@ size = Vector3(7, 4, 4)
 [node name="Ex1" type="Node3D" node_paths=PackedStringArray("packageAcceptorArea", "door")]
 script = ExtResource("1_1werq")
 packageAcceptorArea = NodePath("Door/PackageAcceptor")
+packageAcceptorType = 1
 door = NodePath("Door")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -41,8 +54,9 @@ material = SubResource("StandardMaterial3D_1werq")
 
 [node name="Door" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.6351086)
+instance_shader_parameters/albedo = Color(0, 1, 0, 1)
 size = Vector3(1, 2, 1)
-material = SubResource("StandardMaterial3D_pw1y4")
+material = SubResource("ShaderMaterial_cqnlk")
 
 [node name="PackageAcceptor" type="Area3D" parent="Door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.20000005)
