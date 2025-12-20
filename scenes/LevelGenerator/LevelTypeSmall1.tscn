@@ -1,0 +1,159 @@
+[gd_scene load_steps=17 format=3 uid="uid://c0h106u6pf25k"]
+
+[ext_resource type="Script" uid="uid://bu2ggfuoe3pge" path="res://scripts/levelGenerator/level_generator_main.gd" id="1_oqr3d"]
+[ext_resource type="PackedScene" uid="uid://b1gxdup5pu81y" path="res://scenes/Buildings/ex_2.tscn" id="2_d8f03"]
+[ext_resource type="PackedScene" uid="uid://chvc3t5gv00jk" path="res://scenes/Decorative_Assets/fire_hydrant.tscn" id="4_rt1vj"]
+[ext_resource type="Texture2D" uid="uid://cnh2w7yf5asxt" path="res://textures/Neighborhoods/test_road_1.png" id="4_un68p"]
+[ext_resource type="PackedScene" uid="uid://cdr4fn66n437j" path="res://scenes/Hurt_Things/Hurt EX1.tscn" id="5_rt1vj"]
+[ext_resource type="Material" uid="uid://coss8klxpew1k" path="res://textures/Neighborhoods/CurbMaterial.tres" id="6_d8f03"]
+[ext_resource type="Material" uid="uid://d4d6r7qq4fbi2" path="res://textures/Neighborhoods/SideWalkMaterial.tres" id="7_fsyrm"]
+[ext_resource type="Material" uid="uid://brh8n87wpaq1n" path="res://textures/Neighborhoods/GrassMaterial.tres" id="8_un68p"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7h67l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_47btf"]
+size = Vector3(33, 0, 22.002)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wq2w"]
+albedo_texture = ExtResource("4_un68p")
+uv1_scale = Vector3(3, 1.667, 1)
+uv1_offset = Vector3(0, -0.75, 0)
+texture_filter = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ttdbx"]
+size = Vector3(33, 0.1, 22)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oqr3d"]
+lightmap_size_hint = Vector2i(24, 26)
+size = Vector3(4, 0.1, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_un68p"]
+size = Vector3(40, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rt1vj"]
+size = Vector3(40, 0.1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ixlbf"]
+size = Vector3(40, 0.1, 6)
+
+[node name="LevelGenerator" type="Node3D" node_paths=PackedStringArray("house_generate_tree")]
+script = ExtResource("1_oqr3d")
+house_generate_tree = NodePath("HouseSpawnPoints")
+buildings_to_use = Array[PackedScene]([ExtResource("2_d8f03")])
+
+[node name="HouseSpawnPoints" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="SpawnPoint 1" type="Node3D" parent="HouseSpawnPoints" groups=["house_spawner_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, -7)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="HouseSpawnPoints/SpawnPoint 1"]
+mesh = SubResource("CapsuleMesh_7h67l")
+
+[node name="SpawnPoint 2" type="Node3D" parent="HouseSpawnPoints" groups=["house_spawner_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0, -7)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="HouseSpawnPoints/SpawnPoint 2"]
+mesh = SubResource("CapsuleMesh_7h67l")
+
+[node name="SpawnPoint 3" type="Node3D" parent="HouseSpawnPoints" groups=["house_spawner_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="HouseSpawnPoints/SpawnPoint 3"]
+mesh = SubResource("CapsuleMesh_7h67l")
+
+[node name="SpawnPoint 4" type="Node3D" parent="HouseSpawnPoints" groups=["house_spawner_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="HouseSpawnPoints/SpawnPoint 4"]
+mesh = SubResource("CapsuleMesh_7h67l")
+
+[node name="Decorations" type="Node" parent="."]
+
+[node name="HurtEx1" parent="Decorations" instance=ExtResource("5_rt1vj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="fireHydrant" parent="Decorations" instance=ExtResource("4_rt1vj")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -2, 0, -3.8668532)
+
+[node name="Ground World Node Thing" type="Node" parent="."]
+
+[node name="GroundMesh" type="CSGMesh3D" parent="Ground World Node Thing"]
+mesh = SubResource("BoxMesh_47btf")
+material = SubResource("StandardMaterial3D_0wq2w")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground World Node Thing/GroundMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.046246946, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground World Node Thing/GroundMesh/StaticBody3D"]
+shape = SubResource("BoxShape3D_ttdbx")
+
+[node name="CurbTop" type="CSGCombiner3D" parent="Ground World Node Thing"]
+use_collision = true
+collision_layer = 16
+collision_mask = 0
+
+[node name="Curb" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -3.4)
+mesh = SubResource("BoxMesh_oqr3d")
+material = ExtResource("6_d8f03")
+
+[node name="Curb2" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.05, -3.4)
+mesh = SubResource("BoxMesh_oqr3d")
+material = ExtResource("6_d8f03")
+
+[node name="Curb3" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.05, -3.4)
+mesh = SubResource("BoxMesh_oqr3d")
+material = ExtResource("6_d8f03")
+
+[node name="Curb4" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.05, -3.4)
+mesh = SubResource("BoxMesh_oqr3d")
+material = ExtResource("6_d8f03")
+
+[node name="Curb5" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.05, -3.4)
+mesh = SubResource("BoxMesh_oqr3d")
+material = ExtResource("6_d8f03")
+
+[node name="Curb6" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.05, -3.4)
+mesh = SubResource("BoxMesh_oqr3d")
+material = ExtResource("6_d8f03")
+
+[node name="Curb7" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.05, -3.4)
+mesh = SubResource("BoxMesh_oqr3d")
+material = ExtResource("6_d8f03")
+
+[node name="Curb8" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.05, -3.4)
+mesh = SubResource("BoxMesh_oqr3d")
+material = ExtResource("6_d8f03")
+
+[node name="Curb9" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.05, -3.4)
+mesh = SubResource("BoxMesh_oqr3d")
+material = ExtResource("6_d8f03")
+
+[node name="SideWalk" type="CSGCombiner3D" parent="Ground World Node Thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.680249)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Ground World Node Thing/SideWalk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_un68p")
+material = ExtResource("7_fsyrm")
+
+[node name="GrassLayers" type="CSGCombiner3D" parent="Ground World Node Thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.4)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Ground World Node Thing/GrassLayers"]
+mesh = SubResource("BoxMesh_rt1vj")
+material = ExtResource("8_un68p")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="Ground World Node Thing/GrassLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.9999995)
+mesh = SubResource("BoxMesh_ixlbf")
+material = ExtResource("8_un68p")

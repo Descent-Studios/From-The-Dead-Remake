@@ -1,17 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1gxdup5pu81y"]
+[gd_scene load_steps=9 format=3 uid="uid://b1gxdup5pu81y"]
 
 [ext_resource type="Script" uid="uid://buf4obuodrl5g" path="res://scripts/Buildings/ex_1.gd" id="1_x614y"]
 [ext_resource type="PackedScene" uid="uid://6lqj3env5ful" path="res://3d models import/buildings/gltf/HausFull.glb" id="3_578mq"]
 [ext_resource type="PackedScene" uid="uid://c22fuxkhpgm5a" path="res://3d models import/buildings/haus_door_imported.tscn" id="4_578mq"]
 [ext_resource type="PackedScene" uid="uid://7u13xkwd2jlt" path="res://3d models import/buildings/gltf/HausHalf.glb" id="4_ln5ff"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_txyr4"]
-size = Vector3(7, 4, 4)
+[sub_resource type="BoxShape3D" id="BoxShape3D_578mq"]
+size = Vector3(4.067932, 0.62701416, 0.95880127)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ln5ff"]
+size = Vector3(7.1, 6, 3.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6g63r"]
+size = Vector3(0.41430664, 2.1276855, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cqnlk"]
 size = Vector3(2.6618652, 2.3, 1.8783203)
 
-[node name="Ex1" type="Node3D" node_paths=PackedStringArray("packageAcceptorArea", "door")]
+[node name="Haus1" type="Node3D" node_paths=PackedStringArray("packageAcceptorArea", "door")]
 script = ExtResource("1_x614y")
 packageAcceptorArea = NodePath("HausDoor/PackageAcceptor")
 packageAcceptorType = 1
@@ -22,8 +28,20 @@ collision_layer = 256
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_txyr4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3987732, 0.31350708, 2.3159242)
+shape = SubResource("BoxShape3D_578mq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1.1920929e-07)
+shape = SubResource("BoxShape3D_ln5ff")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2793148, 1.6429232, 2.2105994)
+shape = SubResource("BoxShape3D_6g63r")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0822694, 1.6429232, 2.2105994)
+shape = SubResource("BoxShape3D_6g63r")
 
 [node name="HausFull" parent="." instance=ExtResource("3_578mq")]
 transform = Transform3D(-7.3435134e-09, 0, -0.168, 0, 0.168, 0, 0.168, 0, -7.3435134e-09, 0, 0, 0)

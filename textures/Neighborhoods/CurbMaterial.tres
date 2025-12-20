@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://coss8klxpew1k"]
+
+[ext_resource type="Texture2D" uid="uid://2ba8kj7e8bve" path="res://textures/ASE/Curb.png" id="1_wceud"]
+
+[resource]
+albedo_texture = ExtResource("1_wceud")
+uv1_scale = Vector3(5, 5, 5)
+uv1_triplanar = true
+texture_filter = 2

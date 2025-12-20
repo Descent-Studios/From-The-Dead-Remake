@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://chvc3t5gv00jk"]
+
+[ext_resource type="PackedScene" uid="uid://b7ei6gh78avqs" path="res://3d models import/decorations/fireHydrant.blend" id="1_o3sa8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_imcws"]
+height = 2.2773438
+radius = 0.7841797
+
+[node name="fireHydrant" instance=ExtResource("1_o3sa8")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1386719, 0)
+shape = SubResource("CylinderShape3D_imcws")

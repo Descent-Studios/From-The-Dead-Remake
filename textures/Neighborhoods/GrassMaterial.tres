@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://brh8n87wpaq1n"]
+
+[ext_resource type="Texture2D" uid="uid://bg4p82tu8hys3" path="res://textures/ASE/Grass.png" id="1_gtfm1"]
+
+[resource]
+albedo_texture = ExtResource("1_gtfm1")
+metallic_specular = 0.13
+roughness = 0.51
+subsurf_scatter_strength = 0.09
+uv1_triplanar = true
+texture_filter = 2
+grow_amount = 4.73
