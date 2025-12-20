@@ -159,7 +159,7 @@ func update_input_mkb(_delta) -> void:
 func update_player_input():
 	
 	#region Throw package
-	if Input.is_action_pressed("throw_package") && !package_inventory.is_empty():
+	if Input.is_action_pressed("throw_package") && (!package_inventory.is_empty() or package_created):
 		wants_throw = true
 		_mouse_pos = get_mouse_pos_3D()
 		aim_ring.show()
@@ -229,8 +229,8 @@ func throw_package(towards : Vector3):
 func aim_ring_at(vector : Vector3):
 	#TODO FIX ORTHONORMALIZATION IG?
 	var target_vector := aim_ring.global_position.direction_to(vector)
-	var target_basis := Basis.looking_at(target_vector).orthonormalized()
-	aim_ring.basis = aim_ring.basis.slerp(target_basis, 0.5)
+	var target_basis := Basis.looking_at(target_vector)
+	aim_ring.basis = aim_ring.basis.slerp(target_basis, 0.5).orthonormalized()
 
 
 func get_mouse_pos_3D() -> Vector3:

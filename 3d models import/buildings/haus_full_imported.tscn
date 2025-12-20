@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp8wgvg6ppyj2"]
+
+[ext_resource type="PackedScene" uid="uid://6lqj3env5ful" path="res://3d models import/buildings/gltf/HausFull.glb" id="1_o6o0g"]
+
+[node name="HausFull" instance=ExtResource("1_o6o0g")]

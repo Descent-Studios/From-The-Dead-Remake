@@ -15,9 +15,8 @@ var spawned := false
 
 
 func _ready():
-	colors_to_use = GameManager.return_colors()
+	GameManager.truck = self
 	
-	#distribute_packages()
 
 func unfreeze_packages():
 	for x in packages:
@@ -26,7 +25,9 @@ func unfreeze_packages():
 			x.freeze = false
 			
 
-func distribute_packages():
+func distribute_packages(amt):
+	var spawned_packages = 0
+	
 	if spawned:
 		return
 	for i in range(length):
@@ -38,4 +39,8 @@ func distribute_packages():
 				packages.push_front(package)
 				package.position = summon_start.position + Vector3(summon_spacing * i, summon_spacing * j, summon_spacing * k)
 				add_child.call_deferred(package)
+				spawned_packages += 1
+				if spawned_packages >= amt: 
+					spawned = true
+					return
 	spawned = true

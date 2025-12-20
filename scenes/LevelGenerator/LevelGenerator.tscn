@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddxdn1ak02saj"]
+[gd_scene load_steps=10 format=3 uid="uid://ddxdn1ak02saj"]
 
 [ext_resource type="Texture2D" uid="uid://cnh2w7yf5asxt" path="res://textures/Neighborhoods/test_road_1.png" id="1_7h67l"]
 [ext_resource type="Script" uid="uid://bu2ggfuoe3pge" path="res://scripts/levelGenerator/level_generator_main.gd" id="1_n12v3"]
 [ext_resource type="PackedScene" uid="uid://da1cg53mv7r2v" path="res://scenes/Buildings/ex_1.tscn" id="2_pp82p"]
+[ext_resource type="PackedScene" uid="uid://b1gxdup5pu81y" path="res://scenes/Buildings/ex_2.tscn" id="3_47btf"]
 [ext_resource type="PackedScene" uid="uid://cdr4fn66n437j" path="res://scenes/Hurt_Things/Hurt EX1.tscn" id="3_c8dm0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_47btf"]
@@ -21,7 +22,7 @@ size = Vector3(33, 0.1, 22)
 
 [node name="LevelGenerator" type="Node3D"]
 script = ExtResource("1_n12v3")
-buildings_to_use = Array[PackedScene]([ExtResource("2_pp82p")])
+buildings_to_use = Array[PackedScene]([ExtResource("3_47btf"), ExtResource("2_pp82p")])
 
 [node name="GroundMesh" type="CSGMesh3D" parent="."]
 mesh = SubResource("BoxMesh_47btf")
@@ -37,13 +38,13 @@ shape = SubResource("BoxShape3D_ttdbx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
 [node name="SpawnPoint 1" type="Node3D" parent="." groups=["house_spawner_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, -7)
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="SpawnPoint 1"]
 mesh = SubResource("CapsuleMesh_7h67l")
 
 [node name="SpawnPoint 2" type="Node3D" parent="." groups=["house_spawner_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0, -7)
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="SpawnPoint 2"]
 mesh = SubResource("CapsuleMesh_7h67l")
@@ -55,7 +56,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
 mesh = SubResource("CapsuleMesh_7h67l")
 
 [node name="SpawnPoint 4" type="Node3D" parent="." groups=["house_spawner_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="SpawnPoint 4"]
 mesh = SubResource("CapsuleMesh_7h67l")

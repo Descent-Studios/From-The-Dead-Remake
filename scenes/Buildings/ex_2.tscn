@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1gxdup5pu81y"]
+
+[ext_resource type="Script" uid="uid://buf4obuodrl5g" path="res://scripts/Buildings/ex_1.gd" id="1_x614y"]
+[ext_resource type="PackedScene" uid="uid://6lqj3env5ful" path="res://3d models import/buildings/gltf/HausFull.glb" id="3_578mq"]
+[ext_resource type="PackedScene" uid="uid://c22fuxkhpgm5a" path="res://3d models import/buildings/haus_door_imported.tscn" id="4_578mq"]
+[ext_resource type="PackedScene" uid="uid://7u13xkwd2jlt" path="res://3d models import/buildings/gltf/HausHalf.glb" id="4_ln5ff"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_txyr4"]
+size = Vector3(7, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cqnlk"]
+size = Vector3(2.6618652, 2.3, 1.8783203)
+
+[node name="Ex1" type="Node3D" node_paths=PackedStringArray("packageAcceptorArea", "door")]
+script = ExtResource("1_x614y")
+packageAcceptorArea = NodePath("HausDoor/PackageAcceptor")
+packageAcceptorType = 1
+door = NodePath("HausDoor/Door")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_txyr4")
+
+[node name="HausFull" parent="." instance=ExtResource("3_578mq")]
+transform = Transform3D(-7.3435134e-09, 0, -0.168, 0, 0.168, 0, 0.168, 0, -7.3435134e-09, 0, 0, 0)
+
+[node name="HausHalf" parent="." instance=ExtResource("4_ln5ff")]
+transform = Transform3D(-7.3435134e-09, 0, -0.168, 0, 0.168, 0, 0.168, 0, -7.3435134e-09, 0, 0, 0)
+
+[node name="HausDoor" parent="." instance=ExtResource("4_578mq")]
+transform = Transform3D(-7.430936e-09, 0, -0.17, 0, 0.17, 0, 0.17, 0, -7.430936e-09, 0.57799995, 1.309, 1.7121454)
+
+[node name="Door" parent="HausDoor" index="0"]
+instance_shader_parameters/albedo = Color(0, 0, 0, 1)
+
+[node name="PackageAcceptor" type="Area3D" parent="HausDoor"]
+transform = Transform3D(-2.5712583e-07, 0, 5.882353, 0, 5.882353, 0, -5.882353, 0, -2.5712583e-07, -0.8020601, -0.47976828, 0.9971163)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HausDoor/PackageAcceptor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14999998, 0.23916018)
+shape = SubResource("BoxShape3D_cqnlk")
+debug_color = Color(3.3691526e-07, 0.6368257, 0.403978, 0.41960785)
+
+[connection signal="body_entered" from="HausDoor/PackageAcceptor" to="." method="_on_package_acceptor_body_entered"]
+
+[editable path="HausDoor"]

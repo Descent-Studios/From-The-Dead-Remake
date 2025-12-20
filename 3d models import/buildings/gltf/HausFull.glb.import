@@ -1,0 +1,65 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://6lqj3env5ful"
+path="res://.godot/imported/HausFull.glb-2316f05b8be4f886a2a94db280e0c438.scn"
+
+[deps]
+
+source_file="res://3d models import/buildings/gltf/HausFull.glb"
+dest_files=["res://.godot/imported/HausFull.glb-2316f05b8be4f886a2a94db280e0c438.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Black": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://textures/Buildings/Materials_Dithered/Black.tres",
+"use_external/path": "uid://2erkydvhek8s"
+},
+"Brown": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://textures/Buildings/Materials_Dithered/Brown.tres",
+"use_external/path": "uid://yf4wm8kkoskt"
+},
+"Glass": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://textures/Buildings/Materials_Dithered/Glass.tres",
+"use_external/path": "uid://ssp6fcfxa84q"
+},
+"Material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://textures/Buildings/Materials_Dithered/Material.tres",
+"use_external/path": "uid://bm2jaia4igl3h"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://yf4wm8kkoskt"]
+
+[resource]
+resource_name = "Brown"
+cull_mode = 2
+albedo_color = Color(0.61745393, 0.5050672, 0.45182753, 1)
+roughness = 0.5
+distance_fade_mode = 3
+distance_fade_min_distance = 18.0
+distance_fade_max_distance = 19.0
