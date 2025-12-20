@@ -21,6 +21,7 @@ InputManager="*res://scripts/autoload/input_manager.gd"
 GameManager="*res://scripts/autoload/game_manager.gd"
 LevelManager="*res://scripts/autoload/level_manager.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+SignalBus="*res://scripts/autoload/signal_bus.gd"
 
 [display]
 
@@ -41,6 +42,10 @@ folder_colors={
 "res://shaders/": "green",
 "res://textures/": "blue"
 }
+
+[global_group]
+
+truck=""
 
 [input]
 

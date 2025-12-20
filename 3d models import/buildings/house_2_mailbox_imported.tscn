@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://vvv6c7fh505l"]
+
+[ext_resource type="PackedScene" uid="uid://cy8xpa8uggcto" path="res://3d models import/buildings/House2_Mailbox.blend" id="1_jofte"]
+
+[node name="House2_Mailbox" instance=ExtResource("1_jofte")]
+
+[node name="Cube_003" parent="." index="3"]
+transform = Transform3D(0.19999999, 0, 0, 0, 1, 0, 0, 0, 0.19999999, 0.5373044, 1, -0.5395827)

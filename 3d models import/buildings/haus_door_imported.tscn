@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c22fuxkhpgm5a"]
+
+[ext_resource type="PackedScene" uid="uid://dxyr8fv4kevx0" path="res://3d models import/buildings/gltf/HausDoor.glb" id="1_untwx"]
+[ext_resource type="Shader" uid="uid://cmg8nmhhkqi0y" path="res://shaders/buildings/door_color_shader.gdshader" id="2_vw6cy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sbl13"]
+render_priority = 0
+shader = ExtResource("2_vw6cy")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[node name="HausDoor" instance=ExtResource("1_untwx")]
+
+[node name="Door" parent="." index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_sbl13")
