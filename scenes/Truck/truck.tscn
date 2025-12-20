@@ -242,7 +242,6 @@ collision_layer = 512
 collision_mask = 0
 
 [node name="Truck Body" type="CSGCombiner3D" parent="AnimatableBody3D2"]
-visible = false
 material_override = SubResource("StandardMaterial3D_hygrg")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="AnimatableBody3D2/Truck Body"]

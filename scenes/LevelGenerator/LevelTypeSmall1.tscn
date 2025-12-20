@@ -1,15 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0h106u6pf25k"]
+[gd_scene load_steps=19 format=3 uid="uid://c0h106u6pf25k"]
 
 [ext_resource type="Script" uid="uid://bu2ggfuoe3pge" path="res://scripts/levelGenerator/level_generator_main.gd" id="1_oqr3d"]
 [ext_resource type="PackedScene" uid="uid://b1gxdup5pu81y" path="res://scenes/Buildings/ex_2.tscn" id="2_d8f03"]
 [ext_resource type="PackedScene" uid="uid://chvc3t5gv00jk" path="res://scenes/Decorative_Assets/fire_hydrant.tscn" id="4_rt1vj"]
 [ext_resource type="Texture2D" uid="uid://cnh2w7yf5asxt" path="res://textures/Neighborhoods/test_road_1.png" id="4_un68p"]
+[ext_resource type="PackedScene" uid="uid://bho36u7mdbm7k" path="res://3d models import/decorations/FencePost.blend" id="5_ixlbf"]
 [ext_resource type="PackedScene" uid="uid://cdr4fn66n437j" path="res://scenes/Hurt_Things/Hurt EX1.tscn" id="5_rt1vj"]
 [ext_resource type="Material" uid="uid://coss8klxpew1k" path="res://textures/Neighborhoods/CurbMaterial.tres" id="6_d8f03"]
 [ext_resource type="Material" uid="uid://d4d6r7qq4fbi2" path="res://textures/Neighborhoods/SideWalkMaterial.tres" id="7_fsyrm"]
 [ext_resource type="Material" uid="uid://brh8n87wpaq1n" path="res://textures/Neighborhoods/GrassMaterial.tres" id="8_un68p"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7h67l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rt1vj"]
+size = Vector3(39.93335, 4, 0.27514648)
 
 [sub_resource type="BoxMesh" id="BoxMesh_47btf"]
 size = Vector3(33, 0, 22.002)
@@ -76,6 +80,44 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 [node name="fireHydrant" parent="Decorations" instance=ExtResource("4_rt1vj")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -2, 0, -3.8668532)
 
+[node name="FencePosts" type="Node3D" parent="Decorations"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Decorations/FencePosts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/FencePosts/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.19450569)
+shape = SubResource("BoxShape3D_rt1vj")
+
+[node name="FencePost" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -11.2)
+
+[node name="FencePost2" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.3, 0, -11.2)
+
+[node name="FencePost3" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6.6, 0, -11.2)
+
+[node name="FencePost4" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -9.900001, 0, -11.2)
+
+[node name="FencePost5" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -13.200001, 0, -11.2)
+
+[node name="FencePost6" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -16.5, 0, -11.2)
+
+[node name="FencePost7" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 9.900001, 0, -11.2)
+
+[node name="FencePost8" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6.6000004, 0, -11.2)
+
+[node name="FencePost9" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.3000011, 0, -11.2)
+
 [node name="Ground World Node Thing" type="Node" parent="."]
 
 [node name="GroundMesh" type="CSGMesh3D" parent="Ground World Node Thing"]
@@ -90,7 +132,6 @@ shape = SubResource("BoxShape3D_ttdbx")
 
 [node name="CurbTop" type="CSGCombiner3D" parent="Ground World Node Thing"]
 use_collision = true
-collision_layer = 16
 collision_mask = 0
 
 [node name="Curb" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
@@ -140,6 +181,7 @@ material = ExtResource("6_d8f03")
 
 [node name="SideWalk" type="CSGCombiner3D" parent="Ground World Node Thing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.680249)
+use_collision = true
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Ground World Node Thing/SideWalk"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
@@ -148,6 +190,7 @@ material = ExtResource("7_fsyrm")
 
 [node name="GrassLayers" type="CSGCombiner3D" parent="Ground World Node Thing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.4)
+use_collision = true
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Ground World Node Thing/GrassLayers"]
 mesh = SubResource("BoxMesh_rt1vj")
