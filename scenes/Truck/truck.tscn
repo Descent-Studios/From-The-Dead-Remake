@@ -8,7 +8,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatableBody3D2/Truck Door/CSGBox3D:size")
+tracks/0/path = NodePath("TruckModel/Truck Door/CSGBox3D:size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -20,19 +20,19 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatableBody3D2/Truck Door/CSGBox3D:position")
+tracks/1/path = NodePath("TruckModel/Truck Door/CSGBox3D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.488453, 0.35378554)]
+"values": [Vector3(0, 1.488453, 0.49291852)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatableBody3D2/AnimatableBody3D:position")
+tracks/2/path = NodePath("TruckModel/Truck Door/CSGBox3D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -44,19 +44,19 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatableBody3D2/Truck Door:position")
+tracks/3/path = NodePath("TruckModel/Truck Door/CSGBox3D:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(1, 1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AnimatableBody3D2/Truck Door:rotation")
+tracks/4/path = NodePath("TruckModel:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -68,70 +68,10 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AnimatableBody3D2/Truck Tires:position")
+tracks/5/path = NodePath("TruckModel:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AnimatableBody3D2/Truck Tires:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("AnimatableBody3D2/Truck Body:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("AnimatableBody3D2/Truck Body:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("AnimatableBody3D2:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("AnimatableBody3D2:rotation")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -144,7 +84,7 @@ length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = false
-tracks/0/path = NodePath("AnimatableBody3D2/Truck Door/CSGBox3D:size")
+tracks/0/path = NodePath("TruckModel/Truck Door/CSGBox3D:size")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -156,7 +96,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = false
-tracks/1/path = NodePath("AnimatableBody3D2/Truck Door/CSGBox3D:position")
+tracks/1/path = NodePath("TruckModel/Truck Door/CSGBox3D:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -198,7 +138,7 @@ length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatableBody3D2/Truck Door/CSGBox3D:size")
+tracks/0/path = NodePath("TruckModel/Truck Door/CSGBox3D:size")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -210,7 +150,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatableBody3D2/Truck Door/CSGBox3D:position")
+tracks/1/path = NodePath("TruckModel/Truck Door/CSGBox3D:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -252,99 +192,27 @@ length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("AnimatableBody3D2/Truck Door:position")
+tracks/0/enabled = true
+tracks/0/path = NodePath("TruckModel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.03, 0), Vector3(0, -0.03, 0), Vector3(0, 0.03, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("AnimatableBody3D2/Truck Door:rotation")
+tracks/1/enabled = true
+tracks/1/path = NodePath("TruckModel:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("AnimatableBody3D2/Truck Tires:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/path = NodePath("AnimatableBody3D2/Truck Tires:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = false
-tracks/4/path = NodePath("AnimatableBody3D2/Truck Body:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = false
-tracks/5/path = NodePath("AnimatableBody3D2/Truck Body:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AnimatableBody3D2:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.36666667, 0.5),
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.03, 0), Vector3(0, 0.03, 0), Vector3(0, -0.03, 0), Vector3(0, 0, 0)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("AnimatableBody3D2:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.13333333, 0.33333334, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.008726646, 0, 0), Vector3(-0.008726646, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.0052359877, 0, 0), Vector3(-0.0052359877, 0, 0), Vector3(0.0052359877, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xwbm3"]
@@ -355,6 +223,12 @@ _data = {
 &"open door_2": SubResource("Animation_xwbm3")
 }
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lgx61"]
+data = PackedVector3Array(-1.75, 0, -3, -1.5922852, 0.28476357, -3, -1.75, 3, -3, -1.75, 0, -3, 1.75, 0, -3, -1.5922852, 0.28476357, -3, -1.75, 0, -3, -1.75, 3, -3, -1.75, 0, 0.5, -1.75, 0, 0.5, -1.75, 3, 0.5, -1.5, 0.25, 0.5, -1.75, 0, -3, -1.75, 0, 0.5, 1.75, 0, -3, -1.75, 0, 0.5, -1.5, 0.25, 0.5, 1.75, 0, 0.5, -1.75, 3, -3, -1.5922852, 0.28476357, -3, -1.5922852, 2.4613993, -3, -1.75, 3, -3, -1.5922852, 2.4613993, -3, 1.5922852, 2.4613993, -3, -1.75, 0, 0.5, -1.75, 3, -3, -1.75, 3, 0.5, -1.5, 0.25, 0.5, -1.75, 3, 0.5, -1.5, 2.75, 0.5, -1.75, 3, -3, 1.75, 3, 0.5, -1.75, 3, 0.5, -1.75, 3, 0.5, 1.5, 2.75, 0.5, -1.5, 2.75, 0.5, 1.75, 0, -3, 1.5922852, 0.28476357, -3, -1.5922852, 0.28476357, -3, 1.75, 0, -3, 1.5922852, 2.4613993, -3, 1.5922852, 0.28476357, -3, -1.75, 0, 0.5, 1.75, 0, 0.5, 1.75, 0, -3, -1.5, 0.25, 0.5, 1.5, 0.25, 0.5, 1.75, 0, 0.5, 1.75, 0, -3, 1.75, 0, 0.5, 1.75, 3, 0.5, 1.5, 0.25, 0.5, 1.5, 2.75, 0.5, 1.75, 0, 0.5, -1.75, 3, -3, 1.5922852, 2.4613993, -3, 1.75, 3, -3, 1.75, 0, -3, 1.75, 3, -3, 1.5922852, 2.4613993, -3, -1.75, 3, -3, 1.75, 3, -3, 1.75, 3, 0.5, -1.75, 3, 0.5, 1.75, 3, 0.5, 1.5, 2.75, 0.5, 1.75, 0, -3, 1.75, 3, 0.5, 1.75, 3, -3, 1.75, 0, 0.5, 1.5, 2.75, 0.5, 1.75, 3, 0.5, -1.5, 0.25, -2.1178288, -1.5, 2.75, -2.1178288, 1.5, 0.25, -2.1178288, -1.5, 0.25, -2.1178288, -1.5, 0.25, 0.5, -1.5, 2.75, 0.5, -1.5, 0.25, -2.1178288, 1.5, 0.25, -2.1178288, -1.5, 0.25, 0.5, -1.5, 0.25, -2.1178288, -1.5, 2.75, 0.5, -1.5, 2.75, -2.1178288, -1.5, 2.75, -2.1178288, -1.5, 2.75, 0.5, 1.5, 2.75, 0.5, -1.5, 0.25, 0.5, 1.5, 0.25, -2.1178288, 1.5, 0.25, 0.5, 1.5, 0.25, -2.1178288, 1.5, 2.75, -2.1178288, 1.5, 0.25, 0.5, -1.5, 2.75, -2.1178288, 1.5, 2.75, -2.1178288, 1.5, 0.25, -2.1178288, -1.5, 2.75, -2.1178288, 1.5, 2.75, 0.5, 1.5, 2.75, -2.1178288, 1.5, 0.25, 0.5, 1.5, 2.75, -2.1178288, 1.5, 2.75, 0.5, -1.5922852, 0.28476357, -4.2998047, -1.5922852, 2.4613993, -3, -1.5922852, 0.28476357, -3, -1.5922852, 0.28476357, -4.2998047, -1.5922852, 0.28476357, -3, 1.5922852, 0.28476357, -4.2998047, -1.5922852, 0.28476357, -4.2998047, 1.5922852, 0.28476357, -4.2998047, -1.5922852, 2.4613993, -4.2998047, -1.5922852, 0.28476357, -4.2998047, -1.5922852, 2.4613993, -4.2998047, -1.5922852, 2.4613993, -3, -1.5922852, 2.4613993, -4.2998047, 1.5922852, 2.4613993, -3, -1.5922852, 2.4613993, -3, 1.5922852, 0.28476357, -4.2998047, -1.5922852, 0.28476357, -3, 1.5922852, 0.28476357, -3, 1.5922852, 0.28476357, -4.2998047, 1.5922852, 0.28476357, -3, 1.5922852, 2.4613993, -4.2998047, -1.5922852, 2.4613993, -4.2998047, 1.5922852, 0.28476357, -4.2998047, 1.5922852, 2.4613993, -4.2998047, -1.5922852, 2.4613993, -4.2998047, 1.5922852, 2.4613993, -4.2998047, 1.5922852, 2.4613993, -3, 1.5922852, 2.4613993, -4.2998047, 1.5922852, 0.28476357, -3, 1.5922852, 2.4613993, -3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgx61"]
+size = Vector3(3.6571045, 3.1195679, 0.87927246)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hygrg"]
 albedo_color = Color(0.72, 0.72, 0.72, 1)
 metallic = 0.26
@@ -363,12 +237,6 @@ roughness = 0.15
 distance_fade_mode = 3
 distance_fade_min_distance = 18.5
 distance_fade_max_distance = 19.0
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lgx61"]
-data = PackedVector3Array(-1.75, 0, -3, -1.5922852, 0.28476357, -3, -1.75, 3, -3, -1.75, 0, -3, 1.75, 0, -3, -1.5922852, 0.28476357, -3, -1.75, 0, -3, -1.75, 3, -3, -1.75, 0, 0.5, -1.75, 0, 0.5, -1.75, 3, 0.5, -1.5, 0.25, 0.5, -1.75, 0, -3, -1.75, 0, 0.5, 1.75, 0, -3, -1.75, 0, 0.5, -1.5, 0.25, 0.5, 1.75, 0, 0.5, -1.75, 3, -3, -1.5922852, 0.28476357, -3, -1.5922852, 2.4613993, -3, -1.75, 3, -3, -1.5922852, 2.4613993, -3, 1.5922852, 2.4613993, -3, -1.75, 0, 0.5, -1.75, 3, -3, -1.75, 3, 0.5, -1.5, 0.25, 0.5, -1.75, 3, 0.5, -1.5, 2.75, 0.5, -1.75, 3, -3, 1.75, 3, 0.5, -1.75, 3, 0.5, -1.75, 3, 0.5, 1.5, 2.75, 0.5, -1.5, 2.75, 0.5, 1.75, 0, -3, 1.5922852, 0.28476357, -3, -1.5922852, 0.28476357, -3, 1.75, 0, -3, 1.5922852, 2.4613993, -3, 1.5922852, 0.28476357, -3, -1.75, 0, 0.5, 1.75, 0, 0.5, 1.75, 0, -3, -1.5, 0.25, 0.5, 1.5, 0.25, 0.5, 1.75, 0, 0.5, 1.75, 0, -3, 1.75, 0, 0.5, 1.75, 3, 0.5, 1.5, 0.25, 0.5, 1.5, 2.75, 0.5, 1.75, 0, 0.5, -1.75, 3, -3, 1.5922852, 2.4613993, -3, 1.75, 3, -3, 1.75, 0, -3, 1.75, 3, -3, 1.5922852, 2.4613993, -3, -1.75, 3, -3, 1.75, 3, -3, 1.75, 3, 0.5, -1.75, 3, 0.5, 1.75, 3, 0.5, 1.5, 2.75, 0.5, 1.75, 0, -3, 1.75, 3, 0.5, 1.75, 3, -3, 1.75, 0, 0.5, 1.5, 2.75, 0.5, 1.75, 3, 0.5, -1.5, 0.25, -2.1178288, -1.5, 2.75, -2.1178288, 1.5, 0.25, -2.1178288, -1.5, 0.25, -2.1178288, -1.5, 0.25, 0.5, -1.5, 2.75, 0.5, -1.5, 0.25, -2.1178288, 1.5, 0.25, -2.1178288, -1.5, 0.25, 0.5, -1.5, 0.25, -2.1178288, -1.5, 2.75, 0.5, -1.5, 2.75, -2.1178288, -1.5, 2.75, -2.1178288, -1.5, 2.75, 0.5, 1.5, 2.75, 0.5, -1.5, 0.25, 0.5, 1.5, 0.25, -2.1178288, 1.5, 0.25, 0.5, 1.5, 0.25, -2.1178288, 1.5, 2.75, -2.1178288, 1.5, 0.25, 0.5, -1.5, 2.75, -2.1178288, 1.5, 2.75, -2.1178288, 1.5, 0.25, -2.1178288, -1.5, 2.75, -2.1178288, 1.5, 2.75, 0.5, 1.5, 2.75, -2.1178288, 1.5, 0.25, 0.5, 1.5, 2.75, -2.1178288, 1.5, 2.75, 0.5, -1.5922852, 0.28476357, -4.2998047, -1.5922852, 2.4613993, -3, -1.5922852, 0.28476357, -3, -1.5922852, 0.28476357, -4.2998047, -1.5922852, 0.28476357, -3, 1.5922852, 0.28476357, -4.2998047, -1.5922852, 0.28476357, -4.2998047, 1.5922852, 0.28476357, -4.2998047, -1.5922852, 2.4613993, -4.2998047, -1.5922852, 0.28476357, -4.2998047, -1.5922852, 2.4613993, -4.2998047, -1.5922852, 2.4613993, -3, -1.5922852, 2.4613993, -4.2998047, 1.5922852, 2.4613993, -3, -1.5922852, 2.4613993, -3, 1.5922852, 0.28476357, -4.2998047, -1.5922852, 0.28476357, -3, 1.5922852, 0.28476357, -3, 1.5922852, 0.28476357, -4.2998047, 1.5922852, 0.28476357, -3, 1.5922852, 2.4613993, -4.2998047, -1.5922852, 2.4613993, -4.2998047, 1.5922852, 0.28476357, -4.2998047, 1.5922852, 2.4613993, -4.2998047, -1.5922852, 2.4613993, -4.2998047, 1.5922852, 2.4613993, -4.2998047, 1.5922852, 2.4613993, -3, 1.5922852, 2.4613993, -4.2998047, 1.5922852, 0.28476357, -3, 1.5922852, 2.4613993, -3)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lgx61"]
-size = Vector3(3.6571045, 3.1195679, 0.87927246)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_heyq3"]
 albedo_color = Color(0.62, 0.62, 0.62, 1)
@@ -396,57 +264,61 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.5, -1.2)
 [node name="AnimatableBody3D2" type="AnimatableBody3D" parent="."]
 collision_layer = 512
 collision_mask = 0
-
-[node name="Truck Body" type="CSGCombiner3D" parent="AnimatableBody3D2"]
-material_override = SubResource("StandardMaterial3D_hygrg")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="AnimatableBody3D2/Truck Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.25)
-size = Vector3(3.5, 3, 3.5)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="AnimatableBody3D2/Truck Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.61782885)
-operation = 2
-size = Vector3(3, 2.5, 3)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="AnimatableBody3D2/Truck Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3730814, -3.3999023)
-size = Vector3(3.1845703, 2.1766357, 1.7998047)
+sync_to_physics = false
 
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_lgx61")
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="AnimatableBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 0.9493213, -0.31430727, 0, 0.31430727, 0.9493213, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9493213, -0.31430727, 0, 0.31430727, 0.9493213, 0, -0.429, 2.047)
 collision_layer = 512
 collision_mask = 0
+sync_to_physics = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D2/AnimatableBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2)
 shape = SubResource("BoxShape3D_lgx61")
 debug_color = Color(0.14933333, 0.56, 0, 1)
 
-[node name="Truck Door" type="CSGCombiner3D" parent="AnimatableBody3D2"]
+[node name="TruckModel" type="Node3D" parent="."]
+
+[node name="Truck Body" type="CSGCombiner3D" parent="TruckModel"]
+material_override = SubResource("StandardMaterial3D_hygrg")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="TruckModel/Truck Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.25)
+size = Vector3(3.5, 3, 3.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="TruckModel/Truck Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.61782885)
+operation = 2
+size = Vector3(3, 2.5, 3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="TruckModel/Truck Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3730814, -3.3999023)
+size = Vector3(3.1845703, 2.1766357, 1.7998047)
+
+[node name="Truck Door" type="CSGCombiner3D" parent="TruckModel"]
 material_override = SubResource("StandardMaterial3D_heyq3")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="AnimatableBody3D2/Truck Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.488453, 0.35378554)
+[node name="CSGBox3D" type="CSGBox3D" parent="TruckModel/Truck Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.488453, 0.49291852)
 size = Vector3(3.107, 2.6479492, 0.182)
 
-[node name="Truck Tires" type="CSGCombiner3D" parent="AnimatableBody3D2"]
+[node name="Truck Tires" type="CSGCombiner3D" parent="TruckModel"]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="AnimatableBody3D2/Truck Tires"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="TruckModel/Truck Tires"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1.6689463, -0.16339189, -0.15381965)
 height = 0.53808594
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="AnimatableBody3D2/Truck Tires"]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="TruckModel/Truck Tires"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1.6689463, -0.16339189, -2.2842243)
 height = 0.53808594
 
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="AnimatableBody3D2/Truck Tires"]
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="TruckModel/Truck Tires"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -1.7689266, -0.16339189, -2.2842243)
 height = 0.53808594
 
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="AnimatableBody3D2/Truck Tires"]
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="TruckModel/Truck Tires"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -1.7689266, -0.16339189, -0.13843775)
 height = 0.53808594

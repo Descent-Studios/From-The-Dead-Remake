@@ -5,7 +5,7 @@ class_name destroyable
 @export var anim_player : AnimationPlayer
 @export var health := 10
 
-func _on_col_checker_body_entered(body):
+func _on_col_checker_body_entered(_body):
 	if health > 1 : 
 		health -= 1
 		return

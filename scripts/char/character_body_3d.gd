@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 
+
 @export var speed : = 2.0
 @export var acceleration : = 2.0
 @export var deceleration : = 2.0
@@ -44,7 +45,13 @@ var wants_throw := false
 
 @export_group("Package Pickup")
 @export var package_pickup_area : Area3D
-@export var package_pickup_radius : float = 0.5
+@export var package_pickup_radius : float = 1.5 :
+	get:
+		return package_pickup_radius
+	set(value):
+		package_pickup_radius = value
+		if package_pickup_area:
+			package_pickup_area.get_child(0).shape.radius = value
 var should_check_packages := false
 var packages_in_radius : Array[RigidBody3D]
 var closest_package : PackageSmall
@@ -81,7 +88,16 @@ func _ready():
 	package_throw_pos = package_throw_node.position
 	package_throw_pos_x = package_throw_pos.x
 	cur_health = health_max
+	
+	visible = false
+	
+	SignalBus.initiate_player.connect(initiate)
 	pass
+
+func initiate(spawnPos : Vector3 = Vector3.ZERO):
+	self.global_position = spawnPos
+	self.visible = true
+	can_move = true
 
 func _process(_delta):
 	if can_move :
@@ -181,22 +197,6 @@ func update_player_input():
 			if closest_package:
 				anim_state_machine.start("pickup")
 	#endregion
-			
-			
-
-func raycast_player_height(ray_hit_distance):
-	var vel = velocity 
-	var rayDir = Vector3.DOWN
-	
-	var rayDirVel = rayDir.dot(vel)
-	var x = ray_hit_distance - ride_height
-	
-	var spring_force = (x * spring_strength) - (rayDirVel * spring_dampner)
-	
-	var force = rayDir * spring_force
-	
-	velocity += force
-	pass
 
 #region Package Throwing
 

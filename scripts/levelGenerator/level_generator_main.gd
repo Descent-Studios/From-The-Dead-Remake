@@ -2,9 +2,17 @@ extends Node3D
 class_name LevelGenerator
 
 
+@export_group("Level Info")
+@export var colors_to_generate : int = 1
+@export var packages_to_deliver : int = 1
+@export var player_start_pos : Node3D
+
+
+@export_group("Level Generation config")
 @export var house_generate_tree : Node3D
 ## DO NOT MODIFY - THIS WILL BE GENERATED AT RUNTIME
 @export var house_generate_points : Array[Node3D]
+## DO NOT MODIFY - THIS WILL BE GENERATED AT RUNTIME
 @export var colors_to_use : Array[GameManager.PackageColors]
 
 @export var buildings_to_use : Array[PackedScene]
@@ -12,11 +20,13 @@ var decorations : Array[PackedScene]
 var colorsUsed : Array[GameManager.PackageColors]
 
 
+
 func _ready():
 	house_generate_points = find_houses("house_spawner_point")
 	if buildings_to_use.is_empty():
 		buildings_to_use = GameManager.return_all_buildings()
 	decorations = GameManager.return_all_decorations()
+	GameManager.initialize(colors_to_generate)
 	GameManager.assign_level_generator(self)
 	colors_to_use = GameManager.return_colors()
 	generate_level(colors_to_use)
@@ -50,4 +60,7 @@ func generate_level(colors : Array[GameManager.PackageColors]):
 		add_child(building)
 		#point.queue_free()
 		
-	SignalBus.level_generated.emit(colorsUsed)
+	SignalBus.level_generated.emit(colorsUsed, packages_to_deliver)
+
+func call_player_drop():
+	SignalBus.initiate_player.emit(player_start_pos.global_position)
