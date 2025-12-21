@@ -1,12 +1,131 @@
-[gd_scene load_steps=3 format=3 uid="uid://chvc3t5gv00jk"]
+[gd_scene load_steps=13 format=3 uid="uid://chvc3t5gv00jk"]
 
 [ext_resource type="PackedScene" uid="uid://b7ei6gh78avqs" path="res://3d models import/decorations/fireHydrant.blend" id="1_o3sa8"]
+[ext_resource type="Script" uid="uid://d374qvelkride" path="res://scripts/Decorations/fire_hydrant.gd" id="2_yj5na"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_imcws"]
 height = 2.2773438
 radius = 0.7841797
 
-[node name="fireHydrant" instance=ExtResource("1_o3sa8")]
+[sub_resource type="Animation" id="Animation_yj5na"]
+resource_name = "hydrant explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cone:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.4, 0.56666666, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2, 0), Vector3(0.11065915, 6.6173306, 0.12497876), Vector3(0.11065915, 6.6173306, 0.12497876), Vector3(0.64266187, 5.0082426, 0.24995752), Vector3(1.4131808, 0.18098009, 0.6248937)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cone:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.8220501), Vector3(0, -0.4607669, -9.150762)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.20000002),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_vmfgf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cone:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vmfgf"]
+_data = {
+&"RESET": SubResource("Animation_vmfgf"),
+&"hydrant explode": SubResource("Animation_yj5na")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yj5na"]
+height = 2.5107422
+radius = 1.0546875
+
+[sub_resource type="Curve" id="Curve_yj5na"]
+_data = [Vector2(0, 0.28176802), 0.0, 0.0, 0, 0, Vector2(0.5198556, 0.67679566), 0.0, 0.0, 0, 0, Vector2(1, 0.43093932), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vmfgf"]
+curve = SubResource("Curve_yj5na")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_grbsy"]
+direction = Vector3(0, 1, 0)
+spread = 6.622
+initial_velocity_min = 52.879997
+initial_velocity_max = 72.88
+gravity = Vector3(0, -20, 0)
+scale_curve = SubResource("CurveTexture_vmfgf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qev4s"]
+albedo_color = Color(0.62, 0.99366677, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_h1msp"]
+material = SubResource("StandardMaterial3D_qev4s")
+radius = 0.25
+height = 0.5
+radial_segments = 4
+rings = 1
+
+[node name="fireHydrant" node_paths=PackedStringArray("anim_player") instance=ExtResource("1_o3sa8")]
+script = ExtResource("2_yj5na")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="Cone" parent="." index="1"]
+transform = Transform3D(0.8634009, 0, 0, 0, 0.33586293, 0, 0, 0, 0.863401, 0, 2, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
 collision_layer = 16
@@ -15,3 +134,35 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1386719, 0)
 shape = SubResource("CylinderShape3D_imcws")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_vmfgf")
+}
+
+[node name="ColChecker" type="Area3D" parent="." index="5"]
+collision_layer = 0
+collision_mask = 12
+input_ray_pickable = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ColChecker" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2553711, 0)
+shape = SubResource("CylinderShape3D_yj5na")
+debug_color = Color(0.9581757, 2.117753e-06, 0.53120816, 0.41960785)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="6"]
+transform = Transform3D(0.8634009, 0, 0, 0, 0.33586293, 0, 0, 0, 0.863401, 0, 2, 0)
+emitting = false
+amount = 20
+lifetime = 0.9400000000000001
+speed_scale = 1.79
+randomness = 0.08
+trail_lifetime = 0.86
+process_material = SubResource("ParticleProcessMaterial_grbsy")
+draw_pass_1 = SubResource("SphereMesh_h1msp")
+
+[node name="Timer" type="Timer" parent="." index="7"]
+wait_time = 30.0
+
+[connection signal="body_entered" from="ColChecker" to="." method="_on_col_checker_body_entered"]

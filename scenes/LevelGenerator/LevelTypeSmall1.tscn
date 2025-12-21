@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0h106u6pf25k"]
+[gd_scene load_steps=21 format=3 uid="uid://c0h106u6pf25k"]
 
 [ext_resource type="Script" uid="uid://bu2ggfuoe3pge" path="res://scripts/levelGenerator/level_generator_main.gd" id="1_oqr3d"]
 [ext_resource type="PackedScene" uid="uid://b1gxdup5pu81y" path="res://scenes/Buildings/ex_2.tscn" id="2_d8f03"]
@@ -7,16 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://bho36u7mdbm7k" path="res://3d models import/decorations/FencePost.blend" id="5_ixlbf"]
 [ext_resource type="PackedScene" uid="uid://cdr4fn66n437j" path="res://scenes/Hurt_Things/Hurt EX1.tscn" id="5_rt1vj"]
 [ext_resource type="Material" uid="uid://coss8klxpew1k" path="res://textures/Neighborhoods/CurbMaterial.tres" id="6_d8f03"]
+[ext_resource type="PackedScene" uid="uid://dfxwoeusbeh5s" path="res://scenes/Decorative_Assets/Car.tscn" id="6_ixlbf"]
 [ext_resource type="Material" uid="uid://d4d6r7qq4fbi2" path="res://textures/Neighborhoods/SideWalkMaterial.tres" id="7_fsyrm"]
+[ext_resource type="PackedScene" uid="uid://crcc4pdh086rx" path="res://scenes/Decorative Buildings/Decorative Haus.tscn" id="7_r70oo"]
 [ext_resource type="Material" uid="uid://brh8n87wpaq1n" path="res://textures/Neighborhoods/GrassMaterial.tres" id="8_un68p"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7h67l"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_rt1vj"]
-size = Vector3(39.93335, 4, 0.27514648)
-
 [sub_resource type="BoxMesh" id="BoxMesh_47btf"]
-size = Vector3(33, 0, 22.002)
+size = Vector3(40, 0, 22.002)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wq2w"]
 albedo_texture = ExtResource("4_un68p")
@@ -24,12 +23,11 @@ uv1_scale = Vector3(3, 1.667, 1)
 uv1_offset = Vector3(0, -0.75, 0)
 texture_filter = 2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ttdbx"]
-size = Vector3(33, 0.1, 22)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_r70oo"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_oqr3d"]
 lightmap_size_hint = Vector2i(24, 26)
-size = Vector3(4, 0.1, 0.2)
+size = Vector3(40, 0.1, 0.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_un68p"]
 size = Vector3(40, 0.1, 1)
@@ -39,6 +37,9 @@ size = Vector3(40, 0.1, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ixlbf"]
 size = Vector3(40, 0.1, 6)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ixlbf"]
+plane = Plane(-1, 0, 0, 0)
 
 [node name="LevelGenerator" type="Node3D" node_paths=PackedStringArray("house_generate_tree")]
 script = ExtResource("1_oqr3d")
@@ -79,44 +80,65 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
 [node name="fireHydrant" parent="Decorations" instance=ExtResource("4_rt1vj")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -2, 0, -3.8668532)
+health = 2
 
 [node name="FencePosts" type="Node3D" parent="Decorations"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Decorations/FencePosts"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/FencePosts/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.19450569)
-shape = SubResource("BoxShape3D_rt1vj")
-
 [node name="FencePost" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -11.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -18.3, 0, -11.2)
 
 [node name="FencePost2" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.3, 0, -11.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14.947235, 0, -11.2)
 
 [node name="FencePost3" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6.6, 0, -11.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -11.599998, 0, -11.2)
 
 [node name="FencePost4" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -9.900001, 0, -11.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.247234, 0, -11.2)
 
 [node name="FencePost5" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -13.200001, 0, -11.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.899999, 0, -11.2)
 
 [node name="FencePost6" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -16.5, 0, -11.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.5472351, 0, -11.2)
 
 [node name="FencePost7" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 9.900001, 0, -11.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.8000015, 0, -11.2)
 
 [node name="FencePost8" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6.6000004, 0, -11.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.1527658, 0, -11.2)
 
 [node name="FencePost9" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.3000011, 0, -11.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.500002, 0, -11.2)
+
+[node name="FencePost10" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 11.852766, 0, -11.2)
+
+[node name="FencePost11" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.200003, 0, -11.2)
+
+[node name="FencePost12" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.552767, 0, -11.2)
+
+[node name="Cars" type="Node3D" parent="Decorations"]
+
+[node name="Car" parent="Decorations/Cars" instance=ExtResource("6_ixlbf")]
+transform = Transform3D(-0.20876522, 0.94464236, 0.2531162, 4.222196e-08, 0.25881907, -0.9659258, -0.9779658, -0.2016517, -0.05403246, -19.21228, 0.7, -1.045068)
+
+[node name="Car2" parent="Decorations/Cars" instance=ExtResource("6_ixlbf")]
+transform = Transform3D(0.80821604, 0.5688203, 0.152415, 4.5332804e-08, 0.25881907, -0.9659258, -0.58888614, 0.7806767, 0.2091817, -18.460476, 0.7, 1.785254)
+
+[node name="Car3" parent="Decorations/Cars" instance=ExtResource("6_ixlbf")]
+transform = Transform3D(0.984944, 0, -0.17287467, 0, 1, 0, 0.17287467, 0, 0.984944, 17.534725, 0, -3.0514414)
+
+[node name="Car4" parent="Decorations/Cars" instance=ExtResource("6_ixlbf")]
+transform = Transform3D(0.96693474, 0, -0.2550239, 0, 1, 0, 0.2550239, 0, 0.96693474, 16.937714, 0, 3.3610084)
+
+[node name="Decorative Houses" type="Node3D" parent="Decorations"]
+
+[node name="Haus1" parent="Decorations/Decorative Houses" instance=ExtResource("7_r70oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
+packageAcceptorType = -1
 
 [node name="Ground World Node Thing" type="Node" parent="."]
 
@@ -128,7 +150,7 @@ material = SubResource("StandardMaterial3D_0wq2w")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.046246946, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground World Node Thing/GroundMesh/StaticBody3D"]
-shape = SubResource("BoxShape3D_ttdbx")
+shape = SubResource("WorldBoundaryShape3D_r70oo")
 
 [node name="CurbTop" type="CSGCombiner3D" parent="Ground World Node Thing"]
 use_collision = true
@@ -139,43 +161,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -3.4)
 mesh = SubResource("BoxMesh_oqr3d")
 material = ExtResource("6_d8f03")
 
-[node name="Curb2" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.05, -3.4)
-mesh = SubResource("BoxMesh_oqr3d")
-material = ExtResource("6_d8f03")
+[node name="CurbBottom" type="CSGCombiner3D" parent="Ground World Node Thing"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+use_collision = true
+collision_mask = 0
 
-[node name="Curb3" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.05, -3.4)
-mesh = SubResource("BoxMesh_oqr3d")
-material = ExtResource("6_d8f03")
-
-[node name="Curb4" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.05, -3.4)
-mesh = SubResource("BoxMesh_oqr3d")
-material = ExtResource("6_d8f03")
-
-[node name="Curb5" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.05, -3.4)
-mesh = SubResource("BoxMesh_oqr3d")
-material = ExtResource("6_d8f03")
-
-[node name="Curb6" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.05, -3.4)
-mesh = SubResource("BoxMesh_oqr3d")
-material = ExtResource("6_d8f03")
-
-[node name="Curb7" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.05, -3.4)
-mesh = SubResource("BoxMesh_oqr3d")
-material = ExtResource("6_d8f03")
-
-[node name="Curb8" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.05, -3.4)
-mesh = SubResource("BoxMesh_oqr3d")
-material = ExtResource("6_d8f03")
-
-[node name="Curb9" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.05, -3.4)
+[node name="Curb" type="CSGMesh3D" parent="Ground World Node Thing/CurbBottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -3.4)
 mesh = SubResource("BoxMesh_oqr3d")
 material = ExtResource("6_d8f03")
 
@@ -184,6 +176,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.680249)
 use_collision = true
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Ground World Node Thing/SideWalk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_un68p")
+material = ExtResource("7_fsyrm")
+
+[node name="SideWalk2" type="CSGCombiner3D" parent="Ground World Node Thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.68)
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Ground World Node Thing/SideWalk2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 mesh = SubResource("BoxMesh_un68p")
 material = ExtResource("7_fsyrm")
@@ -200,3 +201,35 @@ material = ExtResource("8_un68p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.9999995)
 mesh = SubResource("BoxMesh_ixlbf")
 material = ExtResource("8_un68p")
+
+[node name="GrassLayers2" type="CSGCombiner3D" parent="Ground World Node Thing"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 4.4)
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Ground World Node Thing/GrassLayers2"]
+mesh = SubResource("BoxMesh_rt1vj")
+material = ExtResource("8_un68p")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="Ground World Node Thing/GrassLayers2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.9999995)
+mesh = SubResource("BoxMesh_ixlbf")
+material = ExtResource("8_un68p")
+
+[node name="World Border" type="StaticBody3D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World Border"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_ixlbf")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="World Border"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 11)
+shape = SubResource("WorldBoundaryShape3D_ixlbf")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="World Border"]
+transform = Transform3D(-4.371139e-08, -3.821371e-15, 1, -8.742278e-08, 1, 0, -1, -8.742278e-08, -4.371139e-08, 0, 0, -11)
+shape = SubResource("WorldBoundaryShape3D_ixlbf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="World Border"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -20, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_ixlbf")

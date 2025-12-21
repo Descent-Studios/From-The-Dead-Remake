@@ -102,7 +102,6 @@ func assign_truck(_truck) -> void:
 	truck.colors_to_use = selectedColors
 
 func distribute_packages(amt) -> void:
-	print_debug("test")
 	truck.distribute_packages(amt)
 
 func return_colors() -> Array[PackageColors]:
