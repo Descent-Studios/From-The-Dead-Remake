@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c8hp3due050ik"]
+[gd_scene load_steps=24 format=3 uid="uid://c8hp3due050ik"]
 
 [ext_resource type="Shader" uid="uid://cvv20gbi8qk4i" path="res://shaders/subpixel.gdshader" id="1_8r7t2"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_tve3b"]
@@ -33,6 +33,33 @@ shader_parameter/normal_threshold = 0.2000000095
 shader_parameter/edge_color = Color(0, 0, 0, 1)
 shader_parameter/scale = 1.0
 
+[sub_resource type="Animation" id="Animation_tve3b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Outline:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_8r7t2"]
 resource_name = "hitEffect"
 length = 2.0
@@ -59,33 +86,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_tve3b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Outline:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tve3b"]
@@ -117,6 +117,25 @@ ambient_light_sky_contribution = 0.28
 reflected_light_source = 1
 tonemap_mode = 4
 tonemap_exposure = 2.0
+
+[sub_resource type="Animation" id="Animation_7jinb"]
+resource_name = "level_start"
+length = 5.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Truck/TrcukAnimator")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("Drive_anim", "[stop]"),
+"times": PackedFloat32Array(0.06666667, 1.5333333)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gydmk"]
+_data = {
+&"level_start": SubResource("Animation_7jinb")
+}
 
 [node name="World" type="Node3D"]
 
@@ -197,3 +216,10 @@ directional_shadow_max_distance = 200.0
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.4417477, 0.523, -0.122)
 
 [node name="LevelGenerator" parent="." instance=ExtResource("9_8r7t2")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gydmk")
+}
+
+[editable path="Truck"]
