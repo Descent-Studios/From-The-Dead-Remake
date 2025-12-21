@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c0h106u6pf25k"]
+[gd_scene load_steps=34 format=3 uid="uid://c0h106u6pf25k"]
 
 [ext_resource type="Script" uid="uid://bu2ggfuoe3pge" path="res://scripts/levelGenerator/level_generator_main.gd" id="1_oqr3d"]
 [ext_resource type="PackedScene" uid="uid://b1gxdup5pu81y" path="res://scenes/Buildings/ex_2.tscn" id="2_d8f03"]
@@ -11,6 +11,10 @@
 [ext_resource type="Material" uid="uid://d4d6r7qq4fbi2" path="res://textures/Neighborhoods/SideWalkMaterial.tres" id="7_fsyrm"]
 [ext_resource type="PackedScene" uid="uid://crcc4pdh086rx" path="res://scenes/Decorative Buildings/Decorative Haus.tscn" id="7_r70oo"]
 [ext_resource type="Material" uid="uid://brh8n87wpaq1n" path="res://textures/Neighborhoods/GrassMaterial.tres" id="8_un68p"]
+[ext_resource type="PackedScene" uid="uid://7051m57uajg3" path="res://scenes/Truck/truck.tscn" id="12_62ule"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="13_rj41f"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="14_wahjq"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="15_dyebd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7h67l"]
 
@@ -41,8 +45,244 @@ size = Vector3(40, 0.1, 6)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ixlbf"]
 plane = Plane(-1, 0, 0, 0)
 
-[node name="LevelGenerator" type="Node3D" node_paths=PackedStringArray("house_generate_tree")]
+[sub_resource type="Animation" id="Animation_7jinb"]
+resource_name = "level_start"
+length = 5.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Truck/TrcukAnimator")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("Drive_anim", "[stop]", "open door_2"),
+"times": PackedFloat32Array(0.06666667, 4.3, 5)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Truck:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5249321, 1.5333333, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-36.55825, 0.523, -0.12200175), Vector3(-36.55825, 0.523, -0.12200175), Vector3(-36.55825, 0.523, -0.12200175), Vector3(3.4417477, 0.523, -0.122)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Truck:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5707964, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Decorations/Cars/Car:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.7666667, 2.2333333, 2.6666667, 3.2583332, 3.4, 3.5333335, 3.7333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-29.418053, 1.0095868, 1.1335466), Vector3(-25.098852, 5.233035, 0.21171695), Vector3(-21.07834, 6.272599, -0.6565859), Vector3(-19.21228, 0.7, -1.045068), Vector3(-19.081497, 0.69034165, -1.0562973), Vector3(-18.900532, 0.7397817, -1.0349417), Vector3(-18.662964, 0.7, -1.045068)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Decorations/Cars/Car2:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.7666668, 2.2333333, 2.6666667, 2.9333334, 3.0333335, 3.1333334, 3.3666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-28.942545, 0.7, 1.785254), Vector3(-23.674623, 6.647473, 1.1003861), Vector3(-22.795042, 6.283356, 1.1191517), Vector3(-18.460476, 0.7, 1.785254), Vector3(-18.387627, 0.72756326, 1.8852358), Vector3(-18.157612, 0.7461203, 1.8206897), Vector3(-18.034264, 0.78910226, 1.9694984)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Decorations/Cars/Car:rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.9666667, 3.2583334, 3.4, 3.5333335, 3.7333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-10.850712, 1.7819811, 0), Vector3(1.3089969, 1.7811087, 1.631331e-07), Vector3(1.3647426, 1.7811087, 2.0483779e-07), Vector3(1.1817973, 1.7811086, 1.0313581e-07), Vector3(1.3089969, 1.7811087, 1.631331e-07)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Decorations/Cars/Car2:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.9666667, 2.9333334, 3.0333335, 3.1333334, 3.3666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-11.257374, 0.63006383, 0), Vector3(1.3089972, 0.62968016, 1.7515248e-07), Vector3(1.3515658, 0.6296803, 2.055534e-07), Vector3(1.3515658, 0.6296802, -0.06094669), Vector3(1.3515658, 0.6296803, -0.18004796)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(4.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"call_player_drop"
+}]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PhantomCamera3D:priority")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 4.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_62ule"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Truck:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.442, 0.523, -0.122)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Truck:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5707964, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Decorations/Cars/Car:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-19.21228, 0.7, -1.045068)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Decorations/Cars/Car2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-18.460476, 0.7, 1.785254)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Decorations/Cars/Car:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.3089969, 1.7811087, 1.631331e-07)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Decorations/Cars/Car2:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.3089972, 0.62968016, 1.7515248e-07)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PhantomCamera3D:priority")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gydmk"]
+_data = {
+&"RESET": SubResource("Animation_62ule"),
+&"level_start": SubResource("Animation_7jinb")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_62ule"]
+animation = &"level_start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rh5ra"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_e1teq"]
+states/level_start/node = SubResource("AnimationNodeAnimation_62ule")
+states/level_start/position = Vector2(418.33334, 100.111115)
+transitions = ["Start", "level_start", SubResource("AnimationNodeStateMachineTransition_rh5ra")]
+graph_offset = Vector2(-353, -17)
+
+[sub_resource type="Curve3D" id="Curve3D_dyebd"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15.570862, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_2tlty"]
+script = ExtResource("14_wahjq")
+
+[sub_resource type="Resource" id="Resource_tdnsv"]
+script = ExtResource("15_dyebd")
+projection = 1
+size = 10.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[node name="LevelGenerator" type="Node3D" node_paths=PackedStringArray("player_start_pos", "house_generate_tree")]
 script = ExtResource("1_oqr3d")
+colors_to_generate = 4
+packages_to_deliver = 15
+player_start_pos = NodePath("PlayerSpawn")
 house_generate_tree = NodePath("HouseSpawnPoints")
 buildings_to_use = Array[PackedScene]([ExtResource("2_d8f03")])
 
@@ -123,10 +363,10 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.552767, 0, -11.2)
 [node name="Cars" type="Node3D" parent="Decorations"]
 
 [node name="Car" parent="Decorations/Cars" instance=ExtResource("6_ixlbf")]
-transform = Transform3D(-0.20876522, 0.94464236, 0.2531162, 4.222196e-08, 0.25881907, -0.9659258, -0.9779658, -0.2016517, -0.05403246, -19.21228, 0.7, -1.045068)
+transform = Transform3D(-0.20876527, 0.94464165, 0.25311598, 4.2221952e-08, 0.25881886, -0.96592504, -0.9779657, -0.2016516, -0.054032434, -19.21228, 0.7, -1.045068)
 
 [node name="Car2" parent="Decorations/Cars" instance=ExtResource("6_ixlbf")]
-transform = Transform3D(0.80821604, 0.5688203, 0.152415, 4.5332804e-08, 0.25881907, -0.9659258, -0.58888614, 0.7806767, 0.2091817, -18.460476, 0.7, 1.785254)
+transform = Transform3D(0.808216, 0.56882024, 0.1524148, 4.5332758e-08, 0.25881878, -0.9659255, -0.5888861, 0.78067666, 0.20918143, -18.460476, 0.7, 1.785254)
 
 [node name="Car3" parent="Decorations/Cars" instance=ExtResource("6_ixlbf")]
 transform = Transform3D(0.984944, 0, -0.17287467, 0, 1, 0, 0.17287467, 0, 0.984944, 17.534725, 0, -3.0514414)
@@ -233,3 +473,42 @@ shape = SubResource("WorldBoundaryShape3D_ixlbf")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="World Border"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -20, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_ixlbf")
+
+[node name="Truck" parent="." instance=ExtResource("12_62ule")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.442, 0.523, -0.122)
+
+[node name="PlayerSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0126715, 0, 2.2707698)
+
+[node name="LevelAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gydmk")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_e1teq")
+anim_player = NodePath("../LevelAnimator")
+
+[node name="CameraPath" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -10.558252, 14.665135, 14.020136)
+curve = SubResource("Curve3D_dyebd")
+
+[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "follow_path")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 3.4417477, 14.665135, 14.020136)
+top_level = true
+script = ExtResource("13_rj41f")
+priority = 1
+follow_mode = 4
+follow_target = NodePath("../Truck")
+follow_path = NodePath("../CameraPath")
+tween_resource = SubResource("Resource_2tlty")
+tween_on_load = false
+camera_3d_resource = SubResource("Resource_tdnsv")
+follow_damping = true
+follow_distance = 20.0
+spring_length = 20.0
+look_at_offset = Vector3(0, -2, -2)
+_preview_noise = false
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[editable path="Truck"]

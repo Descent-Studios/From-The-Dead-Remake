@@ -22,7 +22,7 @@ enum PackageType {
 
 
 var level_generator : LevelGenerator
-@export var truck : Truck
+var truck : Truck
 var building_path = "res://scenes/Buildings/"
 var decoration_path = "res://scenes/Decorations/"
 
@@ -32,8 +32,6 @@ var selectedColors : Array[PackageColors]
 
 func _ready():
 	SignalBus.level_generated.connect(level_generated)
-	#truck = get_tree().get_nodes_in_group("truck")[0]
-	initialize(3)
 	
 
 
@@ -91,10 +89,10 @@ func assign_level_generator(levelGenerator) -> void:
 	level_generator = levelGenerator
 
 ## Maximum of 45
-func level_generated(colorsUsed):
+func level_generated(colorsUsed, amtPackages := 5):
 	selectedColors = colorsUsed
 	truck.colors_to_use = selectedColors
-	distribute_packages(12)
+	distribute_packages(amtPackages)
 	pass
 
 func assign_truck(_truck) -> void:
