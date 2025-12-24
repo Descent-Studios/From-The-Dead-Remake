@@ -36,7 +36,6 @@ enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 folder_colors={
 "res://3d models import/": "yellow",
-"res://GridMap/": "orange",
 "res://scenes/": "purple",
 "res://scripts/": "red",
 "res://shaders/": "green",

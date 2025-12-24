@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cnh2w7yf5asxt" path="res://textures/Neighborhoods/test_road_1.png" id="1_7h67l"]
 [ext_resource type="Script" uid="uid://bu2ggfuoe3pge" path="res://scripts/levelGenerator/level_generator_main.gd" id="1_n12v3"]
-[ext_resource type="PackedScene" uid="uid://da1cg53mv7r2v" path="res://scenes/Buildings/ex_1.tscn" id="2_pp82p"]
-[ext_resource type="PackedScene" uid="uid://b1gxdup5pu81y" path="res://scenes/Buildings/ex_2.tscn" id="3_47btf"]
+[ext_resource type="PackedScene" uid="uid://da1cg53mv7r2v" path="res://scenes/Buildings/ex_house.tscn" id="2_pp82p"]
+[ext_resource type="PackedScene" uid="uid://b1gxdup5pu81y" path="res://scenes/Buildings/Haus.tscn" id="3_47btf"]
 [ext_resource type="PackedScene" uid="uid://cdr4fn66n437j" path="res://scenes/Hurt_Things/Hurt EX1.tscn" id="3_c8dm0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_47btf"]

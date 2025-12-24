@@ -24,7 +24,7 @@ enum PackageType {
 var level_generator : LevelGenerator
 var truck : Truck
 var building_path = "res://scenes/Buildings/"
-var decoration_path = "res://scenes/Decorations/"
+var decoration_path = "res://scenes/Decorations - Spawnable/"
 
 var small_package_scene : PackedScene = preload("res://scenes/Packages/package_init.tscn")
 
