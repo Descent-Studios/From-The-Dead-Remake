@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://csflpc7kwylcs"
-path="res://.godot/imported/test_godot_char.blend-dc772f04d7dca82f837b8b2d9b451e3d.scn"
+uid="uid://b2nesxjd3luei"
+path="res://.godot/imported/char_template.blend-72a575495da99fc096c1b7bbb09ebb93.scn"
 
 [deps]
 
-source_file="res://3d models import/packages/test_godot_char.blend"
-dest_files=["res://.godot/imported/test_godot_char.blend-dc772f04d7dca82f837b8b2d9b451e3d.scn"]
+source_file="res://3d models import/player character blend files/char_template.blend"
+dest_files=["res://.godot/imported/char_template.blend-72a575495da99fc096c1b7bbb09ebb93.scn"]
 
 [params]
 
