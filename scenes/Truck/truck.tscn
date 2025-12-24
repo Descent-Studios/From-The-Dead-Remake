@@ -3,6 +3,35 @@
 [ext_resource type="Script" uid="uid://brhx7gb7r0rj6" path="res://scripts/Truck/truck.gd" id="1_lgx61"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_qkx6d"]
 
+[sub_resource type="Animation" id="Animation_csl30"]
+resource_name = "Drive_anim"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TruckModel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.03, 0), Vector3(0, -0.03, 0), Vector3(0, 0.03, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TruckModel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0052359877, 0, 0), Vector3(-0.0052359877, 0, 0), Vector3(0.0052359877, 0, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_qkx6d"]
 length = 0.001
 tracks/0/type = "value"
@@ -184,35 +213,6 @@ tracks/3/keys = {
 "args": [],
 "method": &"unfreeze_packages"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_csl30"]
-resource_name = "Drive_anim"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TruckModel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.03, 0), Vector3(0, -0.03, 0), Vector3(0, 0.03, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TruckModel:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.0052359877, 0, 0), Vector3(-0.0052359877, 0, 0), Vector3(0.0052359877, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xwbm3"]

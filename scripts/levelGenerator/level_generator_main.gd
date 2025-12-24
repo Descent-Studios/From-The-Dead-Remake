@@ -6,7 +6,8 @@ class_name LevelGenerator
 @export var colors_to_generate : int = 1
 @export var packages_to_deliver : int = 1
 @export var player_start_pos : Node3D
-
+@export var anim_tree : AnimationTree
+var anim_state : AnimationNodeStateMachinePlayback
 
 @export_group("Level Generation config")
 @export var house_generate_tree : Node3D
@@ -30,6 +31,7 @@ func _ready():
 	GameManager.assign_level_generator(self)
 	colors_to_use = GameManager.return_colors()
 	generate_level(colors_to_use)
+	anim_state = anim_tree["parameters/playback"]
 
 func find_houses(type : String):
 	var arr : Array[Node3D]
@@ -43,23 +45,24 @@ func find_houses(type : String):
 func generate_level(colors : Array[GameManager.PackageColors]):
 	print_debug("Generating Level with Colors : ", colors)
 	print_debug("Using points : ", house_generate_points)
-	for point in house_generate_points:
-		if randi_range(0,20) >= 15:
-			var decoration : Node3D = decorations.pick_random().instantiate()
-			decoration.global_position = point.global_position
-			add_child(decoration)
-			continue
-		
-		var building : GeneratedHouse = buildings_to_use.pick_random().instantiate()
-		var colorPicked = colors.pick_random()
-		building.packageAcceptorType = colorPicked
-		building.global_position = point.global_position
-		
-		if !colorsUsed.has(colorPicked): colorsUsed.append(colorPicked)
-		
-		add_child(building)
-		#point.queue_free()
-		
+	while(colorsUsed.is_empty()):
+		for point in house_generate_points:
+			if randi_range(1,20) >= 16:
+				var decoration : Node3D = decorations.pick_random().instantiate()
+				decoration.global_position = point.global_position
+				add_child(decoration)
+				continue
+			
+			var building : GeneratedHouse = buildings_to_use.pick_random().instantiate()
+			var colorPicked = colors.pick_random()
+			building.packageAcceptorType = colorPicked
+			building.global_position = point.global_position
+			
+			if !colorsUsed.has(colorPicked): colorsUsed.append(colorPicked)
+			
+			add_child(building)
+			#point.queue_free()
+			
 	SignalBus.level_generated.emit(colorsUsed, packages_to_deliver)
 
 func call_player_drop():
