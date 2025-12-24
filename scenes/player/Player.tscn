@@ -1,6 +1,6 @@
 [gd_scene load_steps=38 format=3 uid="uid://div52utmarvlq"]
 
-[ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/char/character_body_3d.gd" id="1_spyh3"]
+[ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/PlayerCharacter/Player.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://blhy7c7dcd4fr" path="res://scenes/player/aim_ring.tscn" id="3_4kuee"]
 [ext_resource type="PackedScene" uid="uid://c5kyea1dj7ulu" path="res://scenes/player/PlayerSpriteGodotTexture.tscn" id="3_c3xxp"]
