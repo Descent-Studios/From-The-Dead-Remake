@@ -93,6 +93,8 @@ func level_generated(colorsUsed, amtPackages := 5):
 	selectedColors = colorsUsed
 	truck.colors_to_use = selectedColors
 	distribute_packages(amtPackages)
+	# update navmesh ?
+	# spawn zombies  
 	pass
 
 func assign_truck(_truck) -> void:

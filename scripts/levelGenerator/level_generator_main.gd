@@ -20,6 +20,7 @@ var anim_state : AnimationNodeStateMachinePlayback
 var decorations : Array[PackedScene]
 var colorsUsed : Array[GameManager.PackageColors]
 
+@export var nagivation_layer : NavigationRegion3D
 
 
 func _ready():
@@ -50,7 +51,8 @@ func generate_level(colors : Array[GameManager.PackageColors]):
 			if randi_range(1,20) >= 16:
 				var decoration : Node3D = decorations.pick_random().instantiate()
 				decoration.global_position = point.global_position
-				add_child(decoration)
+				# Add deco to navigation layer
+				nagivation_layer.add_child(decoration)
 				continue
 			
 			var building : GeneratedHouse = buildings_to_use.pick_random().instantiate()
@@ -59,11 +61,20 @@ func generate_level(colors : Array[GameManager.PackageColors]):
 			building.global_position = point.global_position
 			
 			if !colorsUsed.has(colorPicked): colorsUsed.append(colorPicked)
-			
-			add_child(building)
-			#point.queue_free()
+			# Add building to navigation layer
+			nagivation_layer.add_child(building)
 			
 	SignalBus.level_generated.emit(colorsUsed, packages_to_deliver)
+	
+	self.call_deferred("generate_nav")
 
 func call_player_drop():
 	SignalBus.initiate_player.emit(player_start_pos.global_position)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_end"):
+		generate_nav()
+
+func generate_nav():
+	await get_tree().physics_frame
+	nagivation_layer.bake_navigation_mesh(true)

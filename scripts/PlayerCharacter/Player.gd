@@ -63,6 +63,7 @@ var closest_package : PackageSmall
 @export var invincibility_timer : Timer
 @export var invincibility_timer_time : float
 var cur_health : int
+var is_invulnerable := true
 
 
 # Priv Inventory 
@@ -98,6 +99,7 @@ func initiate(spawnPos : Vector3 = Vector3.ZERO):
 	self.global_position = spawnPos
 	self.visible = true
 	can_move = true
+	is_invulnerable = false
 
 func _process(_delta):
 	if can_move :
@@ -313,7 +315,7 @@ func emit_swear():
 	swear_partiles.emitting = true
 
 func on_hurtbox_hit(_area : Area3D):
-	if invincibility_timer.is_stopped():
+	if invincibility_timer.is_stopped() and !is_invulnerable:
 		hurt(1)
 		var area_global_pos = _area.global_position if _area else self.global_position
 		invincibility_timer.start(invincibility_timer_time)

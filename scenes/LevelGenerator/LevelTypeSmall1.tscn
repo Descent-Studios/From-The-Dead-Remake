@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c0h106u6pf25k"]
+[gd_scene load_steps=39 format=3 uid="uid://c0h106u6pf25k"]
 
 [ext_resource type="Script" uid="uid://bu2ggfuoe3pge" path="res://scripts/levelGenerator/level_generator_main.gd" id="1_oqr3d"]
 [ext_resource type="PackedScene" uid="uid://b1gxdup5pu81y" path="res://scenes/Buildings/Haus.tscn" id="2_d8f03"]
@@ -16,41 +16,12 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="14_wahjq"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="15_dyebd"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7h67l"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_47btf"]
-size = Vector3(40, 0, 22.002)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wq2w"]
-albedo_texture = ExtResource("4_un68p")
-uv1_scale = Vector3(3, 1.667, 1)
-uv1_offset = Vector3(0, -0.75, 0)
-texture_filter = 2
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_r70oo"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_oqr3d"]
-lightmap_size_hint = Vector2i(24, 26)
-size = Vector3(40, 0.1, 0.2)
-
-[sub_resource type="BoxMesh" id="BoxMesh_un68p"]
-size = Vector3(40, 0.1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_rt1vj"]
-size = Vector3(40, 0.1, 2)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ixlbf"]
-size = Vector3(40, 0.1, 6)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ixlbf"]
-plane = Plane(-1, 0, 0, 0)
-
 [sub_resource type="Animation" id="Animation_62ule"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Truck:position")
+tracks/0/path = NodePath("LevelNavigator/Truck:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -62,7 +33,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Truck:rotation")
+tracks/1/path = NodePath("LevelNavigator/Truck:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -74,7 +45,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Decorations/Cars/Car:position")
+tracks/2/path = NodePath("LevelNavigator/Decorations/Cars/Car:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -86,7 +57,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Decorations/Cars/Car2:position")
+tracks/3/path = NodePath("LevelNavigator/Decorations/Cars/Car2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -98,7 +69,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Decorations/Cars/Car:rotation")
+tracks/4/path = NodePath("LevelNavigator/Decorations/Cars/Car:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -110,7 +81,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Decorations/Cars/Car2:rotation")
+tracks/5/path = NodePath("LevelNavigator/Decorations/Cars/Car2:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -134,7 +105,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Decorations/Cars/Car4:position")
+tracks/7/path = NodePath("LevelNavigator/Decorations/Cars/Car4:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -146,7 +117,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Decorations/Cars/Car4:rotation")
+tracks/8/path = NodePath("LevelNavigator/Decorations/Cars/Car4:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -158,7 +129,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Decorations/Cars/Car3:position")
+tracks/9/path = NodePath("LevelNavigator/Decorations/Cars/Car3:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -170,7 +141,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Decorations/Cars/Car3:rotation")
+tracks/10/path = NodePath("LevelNavigator/Decorations/Cars/Car3:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -186,7 +157,7 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Truck:position")
+tracks/0/path = NodePath("LevelNavigator/Truck:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -198,7 +169,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Truck:rotation")
+tracks/1/path = NodePath("LevelNavigator/Truck:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -210,7 +181,7 @@ tracks/1/keys = {
 tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Truck/TrcukAnimator")
+tracks/2/path = NodePath("LevelNavigator/Truck/TrcukAnimator")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -220,7 +191,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Decorations/Cars/Car4:position")
+tracks/3/path = NodePath("LevelNavigator/Decorations/Cars/Car4:position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -232,7 +203,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Decorations/Cars/Car4:rotation")
+tracks/4/path = NodePath("LevelNavigator/Decorations/Cars/Car4:rotation")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -244,7 +215,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Decorations/Cars/Car3:position")
+tracks/5/path = NodePath("LevelNavigator/Decorations/Cars/Car3:position")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -256,7 +227,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Decorations/Cars/Car3:rotation")
+tracks/6/path = NodePath("LevelNavigator/Decorations/Cars/Car3:rotation")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -272,7 +243,7 @@ length = 5.0
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Truck/TrcukAnimator")
+tracks/0/path = NodePath("LevelNavigator/Truck/TrcukAnimator")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -282,7 +253,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Truck:position")
+tracks/1/path = NodePath("LevelNavigator/Truck:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -294,7 +265,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Truck:rotation")
+tracks/2/path = NodePath("LevelNavigator/Truck:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -306,7 +277,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Decorations/Cars/Car:position")
+tracks/3/path = NodePath("LevelNavigator/Decorations/Cars/Car:position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -318,7 +289,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Decorations/Cars/Car2:position")
+tracks/4/path = NodePath("LevelNavigator/Decorations/Cars/Car2:position")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -330,7 +301,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Decorations/Cars/Car:rotation")
+tracks/5/path = NodePath("LevelNavigator/Decorations/Cars/Car:rotation")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -342,7 +313,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Decorations/Cars/Car2:rotation")
+tracks/6/path = NodePath("LevelNavigator/Decorations/Cars/Car2:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -425,208 +396,50 @@ projection = 1
 size = 10.0
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
-[node name="LevelGenerator" type="Node3D" node_paths=PackedStringArray("player_start_pos", "anim_tree", "house_generate_tree")]
+[sub_resource type="NavigationMesh" id="NavigationMesh_rj41f"]
+vertices = PackedVector3Array(6.5, 0.5, -2.8999996, 6.75, 0.5, -2.3999996, 8, 0.5, -2.3999996, 6, 0.5, -8.15, 19.5, 0.5, 2.3500004, 19.5, 0.5, -1.6499996, 19, 0.5, -1.1499996, 16.5, 0.5, 1.3500004, 17.25, 0.5, -1.1499996, 14.25, 0.5, -10.15, 14.5, 0.5, -8.15, 19.5, 0.5, -10.65, 14.75, 0.5, 1.3500004, 14.5, 0.5, -1.6499996, 14.75, 0.5, -4.8999996, 19.5, 0.5, -4.3999996, -1, 0.5, -3.3999996, 1.75, 0.5, -2.3999996, 2.75, 0.5, -2.8999996, -1.5, 0.5, -4.8999996, -3, 0.5, -4.3999996, -4, 0.5, -8.15, -5.75, 0.5, -7.8999996, -2.5, 0.5, -2.8999996, 2, 0.5, 2.3500004, -6.75, 0.5, 0.8500004, -4, 0.5, 6.6000004, 4, 0.5, 6.6000004, -7, 0.5, -1.1499996, 6.75, 0.5, 2.3500004, -16.5, 0.5, -3.3999996, -16, 0.5, 0.10000038, -14.75, 0.5, 1.1000004, 14, 0.5, 3.3500004, 14.25, 0.5, -4.1499996, 8.25, 0.5, 1.8500004, 4.25, 0.5, -7.8999996, 4, 0.5, -9.9, -4.25, 0.5, -10.15, -8.75, 0.5, 1.1000004, -14.75, 0.5, 2.3500004, 19.5, 0.5, 11.1, 19.5, 0.5, 4.6000004, 19, 0.5, 5.3500004, -18.5, 0.5, 5.3500004, -19.5, 0.5, 4.3500004, -19.5, 0.5, 11.1, -14.25, 0.5, -7.8999996, -14.5, 0.5, -9.9, -19.5, 0.5, -10.65, -19.5, 0.5, -3.6499996, -17, 0.5, -3.8999996, -12.75, 0.5, -10.15, -6, 0.5, -9.9, -9, 0.5, -0.8999996, -17.75, 0.5, 5.3500004, 14.5, 0.5, 4.6000004, 12.75, 0.5, -7.8999996, 17.25, 0.5, 5.3500004, -12.5, 0.5, -8.15, 5.75, 0.5, -10.15, 4.25, 0.5, 11.1, 12.5, 0.5, -9.9, -4.25, 0.5, 11.1, 16.25, 2, -3.8999996, 15.25, 2, -3.6499996, 15.25, 2, -2.6499996, 18.5, 2, -2.1499996, 18.5, 2, -3.3999996, -18.25, 2.25, 0.6000004, -17.25, 2.5, 0.35000038, -17.75, 2.5, -2.6499996, -18.75, 2.25, -2.6499996, 2.25, 4, 1.3500004, 6, 4, 1.3500004, 6, 4, -1.3999996, 2.25, 4, -1.6499996, 4.25, 1.25, -0.8999996, 4.25, 1.25, 0.8500004, 5, 1.25, 0.8500004, 5, 1.25, -0.8999996, -19.5, 0.5, 0.10000038, -19.5, 0.5, 2.1000004, -19, 0.5, 1.8500004, -16, 2.5, 1.6000004, -17, 2.5, 0.8500004, -17, 2.25, 1.3500004, -18, 2.5, 3.8500004, -19, 2.25, 3.1000004, 16, 2, 2.3500004, 15.5, 2, 2.3500004, 15.25, 2, 3.1000004, 17.75, 2, 4.3500004, 18.25, 2, 4.3500004, 18.75, 2, 3.3500004, 15.25, 2, 3.6000004, -3.25, 6.5, 7.6000004, -3.25, 6.5, 10.6, 3.25, 6.5, 10.6, 3.25, 6.5, 7.6000004, -2.75, 2.25, 7.8500004, -2.75, 3.25, 9.35, 2.75, 3.25, 9.35, 2.75, 2.25, 7.8500004, -2.75, 0.5, 9.85, 2.75, 0.5, 10.1, 2.75, 0.5, 8.35, -2.75, 0.5, 8.35)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(8, 6, 7), PackedInt32Array(7, 6, 4), PackedInt32Array(11, 10, 9), PackedInt32Array(7, 12, 8), PackedInt32Array(8, 12, 13), PackedInt32Array(14, 10, 15), PackedInt32Array(15, 10, 11), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(19, 20, 21), PackedInt32Array(21, 20, 22), PackedInt32Array(16, 17, 23), PackedInt32Array(23, 17, 24), PackedInt32Array(28, 23, 25), PackedInt32Array(25, 23, 24), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(27, 24, 29), PackedInt32Array(32, 31, 30), PackedInt32Array(12, 33, 13), PackedInt32Array(13, 33, 34), PackedInt32Array(34, 33, 35), PackedInt32Array(21, 38, 19), PackedInt32Array(19, 38, 18), PackedInt32Array(18, 38, 36), PackedInt32Array(36, 38, 37), PackedInt32Array(3, 0, 36), PackedInt32Array(36, 0, 18), PackedInt32Array(25, 40, 39), PackedInt32Array(43, 42, 41), PackedInt32Array(46, 45, 44), PackedInt32Array(48, 47, 49), PackedInt32Array(49, 47, 51), PackedInt32Array(49, 51, 50), PackedInt32Array(53, 52, 38), PackedInt32Array(38, 52, 49), PackedInt32Array(23, 28, 20), PackedInt32Array(20, 28, 54), PackedInt32Array(20, 54, 22), PackedInt32Array(40, 32, 39), PackedInt32Array(39, 32, 54), PackedInt32Array(46, 44, 55), PackedInt32Array(29, 35, 27), PackedInt32Array(27, 35, 33), PackedInt32Array(27, 33, 56), PackedInt32Array(14, 34, 10), PackedInt32Array(10, 34, 57), PackedInt32Array(57, 34, 2), PackedInt32Array(2, 34, 35), PackedInt32Array(58, 43, 41), PackedInt32Array(53, 22, 59), PackedInt32Array(59, 22, 54), PackedInt32Array(59, 54, 30), PackedInt32Array(30, 54, 32), PackedInt32Array(60, 38, 11), PackedInt32Array(11, 38, 49), PackedInt32Array(11, 9, 60), PackedInt32Array(51, 47, 30), PackedInt32Array(30, 47, 59), PackedInt32Array(58, 41, 56), PackedInt32Array(56, 41, 27), PackedInt32Array(27, 41, 61), PackedInt32Array(53, 59, 52), PackedInt32Array(60, 62, 3), PackedInt32Array(3, 62, 57), PackedInt32Array(3, 57, 2), PackedInt32Array(55, 40, 46), PackedInt32Array(46, 40, 25), PackedInt32Array(46, 25, 26), PackedInt32Array(46, 26, 63), PackedInt32Array(52, 48, 49), PackedInt32Array(9, 62, 60), PackedInt32Array(60, 37, 38), PackedInt32Array(65, 64, 66), PackedInt32Array(66, 64, 68), PackedInt32Array(66, 68, 67), PackedInt32Array(70, 69, 71), PackedInt32Array(71, 69, 72), PackedInt32Array(74, 73, 75), PackedInt32Array(75, 73, 76), PackedInt32Array(80, 79, 77), PackedInt32Array(77, 79, 78), PackedInt32Array(83, 82, 81), PackedInt32Array(86, 85, 84), PackedInt32Array(88, 86, 87), PackedInt32Array(87, 86, 84), PackedInt32Array(91, 90, 89), PackedInt32Array(91, 89, 95), PackedInt32Array(95, 89, 92), PackedInt32Array(92, 89, 93), PackedInt32Array(93, 89, 94), PackedInt32Array(99, 98, 96), PackedInt32Array(96, 98, 97), PackedInt32Array(103, 102, 100), PackedInt32Array(100, 102, 101), PackedInt32Array(107, 106, 104), PackedInt32Array(104, 106, 105)]
+sample_partition_type = 2
+geometry_collision_mask = 4294967121
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7h67l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_47btf"]
+size = Vector3(40, 0, 22.002)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wq2w"]
+albedo_texture = ExtResource("4_un68p")
+uv1_scale = Vector3(3, 1.667, 1)
+uv1_offset = Vector3(0, -0.75, 0)
+texture_filter = 2
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_r70oo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_oqr3d"]
+lightmap_size_hint = Vector2i(24, 26)
+size = Vector3(40, 0.1, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_un68p"]
+size = Vector3(40, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rt1vj"]
+size = Vector3(40, 0.1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ixlbf"]
+size = Vector3(40, 0.1, 6)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ixlbf"]
+plane = Plane(-1, 0, 0, 0)
+
+[node name="LevelGenerator" type="Node3D" node_paths=PackedStringArray("player_start_pos", "anim_tree", "house_generate_tree", "nagivation_layer")]
 script = ExtResource("1_oqr3d")
 colors_to_generate = 4
 packages_to_deliver = 15
 player_start_pos = NodePath("PlayerSpawn")
 anim_tree = NodePath("AnimationTree")
-house_generate_tree = NodePath("HouseSpawnPoints")
+house_generate_tree = NodePath("LevelNavigator/HouseSpawnPoints")
 buildings_to_use = Array[PackedScene]([ExtResource("2_d8f03")])
-
-[node name="HouseSpawnPoints" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
-
-[node name="SpawnPoint 1" type="Node3D" parent="HouseSpawnPoints" groups=["house_spawner_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, -7)
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="HouseSpawnPoints/SpawnPoint 1"]
-mesh = SubResource("CapsuleMesh_7h67l")
-
-[node name="SpawnPoint 2" type="Node3D" parent="HouseSpawnPoints" groups=["house_spawner_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0, -7)
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="HouseSpawnPoints/SpawnPoint 2"]
-mesh = SubResource("CapsuleMesh_7h67l")
-
-[node name="SpawnPoint 3" type="Node3D" parent="HouseSpawnPoints" groups=["house_spawner_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="HouseSpawnPoints/SpawnPoint 3"]
-mesh = SubResource("CapsuleMesh_7h67l")
-
-[node name="SpawnPoint 4" type="Node3D" parent="HouseSpawnPoints" groups=["house_spawner_point"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="HouseSpawnPoints/SpawnPoint 4"]
-mesh = SubResource("CapsuleMesh_7h67l")
-
-[node name="Decorations" type="Node" parent="."]
-
-[node name="HurtEx1" parent="Decorations" instance=ExtResource("5_rt1vj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
-
-[node name="fireHydrant" parent="Decorations" instance=ExtResource("4_rt1vj")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -2, 0, -3.8668532)
-health = 2
-
-[node name="FencePosts" type="Node3D" parent="Decorations"]
-
-[node name="FencePost" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -18.3, 0, -11.2)
-
-[node name="FencePost2" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14.947235, 0, -11.2)
-
-[node name="FencePost3" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -11.599998, 0, -11.2)
-
-[node name="FencePost4" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.247234, 0, -11.2)
-
-[node name="FencePost5" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.899999, 0, -11.2)
-
-[node name="FencePost6" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.5472351, 0, -11.2)
-
-[node name="FencePost7" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.8000015, 0, -11.2)
-
-[node name="FencePost8" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.1527658, 0, -11.2)
-
-[node name="FencePost9" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.500002, 0, -11.2)
-
-[node name="FencePost10" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 11.852766, 0, -11.2)
-
-[node name="FencePost11" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.200003, 0, -11.2)
-
-[node name="FencePost12" parent="Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.552767, 0, -11.2)
-
-[node name="Cars" type="Node3D" parent="Decorations"]
-
-[node name="Car" parent="Decorations/Cars" instance=ExtResource("6_ixlbf")]
-transform = Transform3D(-0.20876527, 0.94464165, 0.25311595, 4.2221952e-08, 0.25881886, -0.965925, -0.9779657, -0.2016516, -0.054032426, -19.21228, 0.7, -1.045068)
-
-[node name="Car2" parent="Decorations/Cars" instance=ExtResource("6_ixlbf")]
-transform = Transform3D(0.808216, 0.56882024, 0.15241477, 4.5332758e-08, 0.25881878, -0.9659253, -0.5888861, 0.78067666, 0.20918138, -18.460476, 0.7, 1.785254)
-
-[node name="Car3" parent="Decorations/Cars" instance=ExtResource("6_ixlbf")]
-transform = Transform3D(0.9849435, 0, -0.17287461, 0, 0.99999976, 0, 0.17287464, 0, 0.9849434, 16.914558, 0, -3.0514414)
-
-[node name="Car4" parent="Decorations/Cars" instance=ExtResource("6_ixlbf")]
-transform = Transform3D(0.9669345, 0, -0.2550239, 0, 1, 0, 0.25502387, 0, 0.9669346, 16.938, 0, 3.361)
-
-[node name="Decorative Houses" type="Node3D" parent="Decorations"]
-
-[node name="Haus1" parent="Decorations/Decorative Houses" instance=ExtResource("7_r70oo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
-packageAcceptorType = -1
-
-[node name="Ground World Node Thing" type="Node" parent="."]
-
-[node name="GroundMesh" type="CSGMesh3D" parent="Ground World Node Thing"]
-mesh = SubResource("BoxMesh_47btf")
-material = SubResource("StandardMaterial3D_0wq2w")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground World Node Thing/GroundMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.046246946, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground World Node Thing/GroundMesh/StaticBody3D"]
-shape = SubResource("WorldBoundaryShape3D_r70oo")
-
-[node name="CurbTop" type="CSGCombiner3D" parent="Ground World Node Thing"]
-use_collision = true
-collision_mask = 0
-
-[node name="Curb" type="CSGMesh3D" parent="Ground World Node Thing/CurbTop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -3.4)
-mesh = SubResource("BoxMesh_oqr3d")
-material = ExtResource("6_d8f03")
-
-[node name="CurbBottom" type="CSGCombiner3D" parent="Ground World Node Thing"]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
-use_collision = true
-collision_mask = 0
-
-[node name="Curb" type="CSGMesh3D" parent="Ground World Node Thing/CurbBottom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -3.4)
-mesh = SubResource("BoxMesh_oqr3d")
-material = ExtResource("6_d8f03")
-
-[node name="SideWalk" type="CSGCombiner3D" parent="Ground World Node Thing"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.680249)
-use_collision = true
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Ground World Node Thing/SideWalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
-mesh = SubResource("BoxMesh_un68p")
-material = ExtResource("7_fsyrm")
-
-[node name="SideWalk2" type="CSGCombiner3D" parent="Ground World Node Thing"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.68)
-use_collision = true
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Ground World Node Thing/SideWalk2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
-mesh = SubResource("BoxMesh_un68p")
-material = ExtResource("7_fsyrm")
-
-[node name="GrassLayers" type="CSGCombiner3D" parent="Ground World Node Thing"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.4)
-use_collision = true
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Ground World Node Thing/GrassLayers"]
-mesh = SubResource("BoxMesh_rt1vj")
-material = ExtResource("8_un68p")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="Ground World Node Thing/GrassLayers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.9999995)
-mesh = SubResource("BoxMesh_ixlbf")
-material = ExtResource("8_un68p")
-
-[node name="GrassLayers2" type="CSGCombiner3D" parent="Ground World Node Thing"]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 4.4)
-use_collision = true
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Ground World Node Thing/GrassLayers2"]
-mesh = SubResource("BoxMesh_rt1vj")
-material = ExtResource("8_un68p")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="Ground World Node Thing/GrassLayers2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.9999995)
-mesh = SubResource("BoxMesh_ixlbf")
-material = ExtResource("8_un68p")
-
-[node name="World Border" type="StaticBody3D" parent="."]
-collision_layer = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World Border"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_ixlbf")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="World Border"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 11)
-shape = SubResource("WorldBoundaryShape3D_ixlbf")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="World Border"]
-transform = Transform3D(-4.371139e-08, -3.821371e-15, 1, -8.742278e-08, 1, 0, -1, -8.742278e-08, -4.371139e-08, 0, 0, -11)
-shape = SubResource("WorldBoundaryShape3D_ixlbf")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="World Border"]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -20, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_ixlbf")
-
-[node name="Truck" parent="." instance=ExtResource("12_62ule")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.442, 0.523, -0.122)
-
-[node name="TruckModel" parent="Truck" index="3"]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+nagivation_layer = NodePath("LevelNavigator")
 
 [node name="PlayerSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0126715, 0, 2.2707698)
@@ -651,7 +464,7 @@ top_level = true
 script = ExtResource("13_rj41f")
 priority = 1
 follow_mode = 4
-follow_target = NodePath("../Truck")
+follow_target = NodePath("../LevelNavigator/Truck")
 follow_path = NodePath("../CameraPath")
 tween_resource = SubResource("Resource_2tlty")
 tween_on_load = false
@@ -663,4 +476,203 @@ look_at_offset = Vector3(0, -2, -2)
 _preview_noise = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[editable path="Truck"]
+[node name="LevelNavigator" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_rj41f")
+use_edge_connections = false
+
+[node name="HouseSpawnPoints" type="Node3D" parent="LevelNavigator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="SpawnPoint 1" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" groups=["house_spawner_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, -7)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 1"]
+mesh = SubResource("CapsuleMesh_7h67l")
+
+[node name="SpawnPoint 2" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" groups=["house_spawner_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0, -7)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 2"]
+mesh = SubResource("CapsuleMesh_7h67l")
+
+[node name="SpawnPoint 3" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" groups=["house_spawner_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 3"]
+mesh = SubResource("CapsuleMesh_7h67l")
+
+[node name="SpawnPoint 4" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" groups=["house_spawner_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 4"]
+mesh = SubResource("CapsuleMesh_7h67l")
+
+[node name="Decorations" type="Node3D" parent="LevelNavigator"]
+
+[node name="HurtEx1" parent="LevelNavigator/Decorations" instance=ExtResource("5_rt1vj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="fireHydrant" parent="LevelNavigator/Decorations" instance=ExtResource("4_rt1vj")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -2, 0, -3.8668532)
+health = 2
+
+[node name="FencePosts" type="Node3D" parent="LevelNavigator/Decorations"]
+
+[node name="FencePost" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -18.3, 0, -11.2)
+
+[node name="FencePost2" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14.947235, 0, -11.2)
+
+[node name="FencePost3" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -11.599998, 0, -11.2)
+
+[node name="FencePost4" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.247234, 0, -11.2)
+
+[node name="FencePost5" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.899999, 0, -11.2)
+
+[node name="FencePost6" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.5472351, 0, -11.2)
+
+[node name="FencePost7" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.8000015, 0, -11.2)
+
+[node name="FencePost8" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.1527658, 0, -11.2)
+
+[node name="FencePost9" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.500002, 0, -11.2)
+
+[node name="FencePost10" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 11.852766, 0, -11.2)
+
+[node name="FencePost11" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.200003, 0, -11.2)
+
+[node name="FencePost12" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.552767, 0, -11.2)
+
+[node name="Cars" type="Node3D" parent="LevelNavigator/Decorations"]
+
+[node name="Car" parent="LevelNavigator/Decorations/Cars" instance=ExtResource("6_ixlbf")]
+transform = Transform3D(-0.20876527, 0.94464165, 0.25311595, 4.2221952e-08, 0.25881886, -0.965925, -0.9779657, -0.2016516, -0.054032426, -19.21228, 0.7, -1.045068)
+
+[node name="Car2" parent="LevelNavigator/Decorations/Cars" instance=ExtResource("6_ixlbf")]
+transform = Transform3D(0.808216, 0.56882024, 0.15241475, 4.5332758e-08, 0.25881878, -0.96592516, -0.5888861, 0.78067666, 0.20918135, -18.460476, 0.7, 1.785254)
+
+[node name="Car3" parent="LevelNavigator/Decorations/Cars" instance=ExtResource("6_ixlbf")]
+transform = Transform3D(0.9849434, 0, -0.1728746, 0, 0.99999976, 0, 0.17287461, 0, 0.9849433, 16.914558, 0, -3.0514414)
+
+[node name="Car4" parent="LevelNavigator/Decorations/Cars" instance=ExtResource("6_ixlbf")]
+transform = Transform3D(0.9669345, 0, -0.2550239, 0, 1, 0, 0.25502387, 0, 0.9669346, 16.938, 0, 3.361)
+
+[node name="Decorative Houses" type="Node3D" parent="LevelNavigator/Decorations"]
+
+[node name="Haus1" parent="LevelNavigator/Decorations/Decorative Houses" instance=ExtResource("7_r70oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
+packageAcceptorType = -1
+
+[node name="Ground World Node Thing" type="Node3D" parent="LevelNavigator"]
+
+[node name="GroundMesh" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing"]
+mesh = SubResource("BoxMesh_47btf")
+material = SubResource("StandardMaterial3D_0wq2w")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelNavigator/Ground World Node Thing/GroundMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.046246946, 0)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelNavigator/Ground World Node Thing/GroundMesh/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_r70oo")
+
+[node name="CurbTop" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+use_collision = true
+collision_mask = 0
+
+[node name="Curb" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/CurbTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -3.4)
+mesh = SubResource("BoxMesh_oqr3d")
+material = ExtResource("6_d8f03")
+
+[node name="CurbBottom" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+use_collision = true
+collision_mask = 0
+
+[node name="Curb" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/CurbBottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -3.4)
+mesh = SubResource("BoxMesh_oqr3d")
+material = ExtResource("6_d8f03")
+
+[node name="SideWalk" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.680249)
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/SideWalk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_un68p")
+material = ExtResource("7_fsyrm")
+
+[node name="SideWalk2" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.68)
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/SideWalk2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_un68p")
+material = ExtResource("7_fsyrm")
+
+[node name="GrassLayers" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.4)
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers"]
+mesh = SubResource("BoxMesh_rt1vj")
+material = ExtResource("8_un68p")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.9999995)
+mesh = SubResource("BoxMesh_ixlbf")
+material = ExtResource("8_un68p")
+
+[node name="GrassLayers2" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 4.4)
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers2"]
+mesh = SubResource("BoxMesh_rt1vj")
+material = ExtResource("8_un68p")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.9999995)
+mesh = SubResource("BoxMesh_ixlbf")
+material = ExtResource("8_un68p")
+
+[node name="World Border" type="StaticBody3D" parent="LevelNavigator"]
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelNavigator/World Border"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_ixlbf")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelNavigator/World Border"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 11)
+shape = SubResource("WorldBoundaryShape3D_ixlbf")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="LevelNavigator/World Border"]
+transform = Transform3D(-4.371139e-08, -3.821371e-15, 1, -8.742278e-08, 1, 0, -1, -8.742278e-08, -4.371139e-08, 0, 0, -11)
+shape = SubResource("WorldBoundaryShape3D_ixlbf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="LevelNavigator/World Border"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -20, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_ixlbf")
+
+[node name="Truck" parent="LevelNavigator" instance=ExtResource("12_62ule")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.442, 0.523, -0.122)
+
+[node name="TruckModel" parent="LevelNavigator/Truck" index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[editable path="LevelNavigator/Truck"]
