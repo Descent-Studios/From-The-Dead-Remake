@@ -1,16 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://7b5jh66jixxv"]
+[gd_scene load_steps=6 format=3 uid="uid://7b5jh66jixxv"]
 
 [ext_resource type="Script" uid="uid://c7b1v2g6s8tg8" path="res://scripts/NPCs/zombie.gd" id="1_ty677"]
+[ext_resource type="PackedScene" uid="uid://uek272jsf4i4" path="res://scenes/NPCs/Zombies/progress_bar.tscn" id="2_lmj1j"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_2j887"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ty677"]
 
-[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent")]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mtld5"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "wander_timer", "timer_progress_bar")]
 collision_layer = 8
 collision_mask = 4881
 script = ExtResource("1_ty677")
 nav_agent = NodePath("NavigationAgent3D")
+wander_timer = NodePath("WanderTimer")
+speed = 1.75
+accerlation = 0.15
+deceleration = 0.2
+timer_progress_bar = NodePath("SubViewport/ProgressBar")
+wander_range_low = -6.0
+wander_range_high = 6.0
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -22,8 +33,23 @@ shape = SubResource("CapsuleShape3D_ty677")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.75
-avoidance_enabled = true
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 debug_path_custom_point_size = 7.15
+
+[node name="WanderTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1093, 82)
+
+[node name="ProgressBar" parent="SubViewport" instance=ExtResource("2_lmj1j")]
+step = 0.1
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.204, 0, 0, 0, 0.339, 0, 0, 0, 0.339, 0, 2.164285, 0)
+texture = SubResource("ViewportTexture_mtld5")
+
+[connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]

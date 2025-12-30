@@ -1,18 +1,62 @@
 extends CharacterBody3D
 
 @export var nav_agent : NavigationAgent3D
+@export var wander_timer : Timer
+
+var has_target := false
+var target_pos : Vector3
+@export var speed := 5.0
+@export var accerlation := 1.0
+@export var deceleration := 1.0
+
+@export var timer_progress_bar : ProgressBar
+
+@export_category("Wander Time Range")
+@export var wanderTimerRangeLow := 1.0
+@export var wanderTimerRangeHigh := 10.0
+@export_category("Wander Distance Range")
+@export var wander_range_low := -1.0
+@export var wander_range_high := 1.0
+
+
+var wait_time = 0.0
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
-		var ran_pos := self.global_position
-		ran_pos.x += randf_range(-5,5)
-		ran_pos.z += randf_range(-5,5)
-		nav_agent.set_target_position(ran_pos)
+		start_wander_timer()
 
 func _physics_process(_delta):
-	var destination = nav_agent.get_next_path_position()
-	var local_destination = destination - global_position
-	var direction = local_destination.normalized()
+	if has_target:
+		var next_path_pos := nav_agent.get_next_path_position()
+		var dir := global_position.direction_to(next_path_pos)
+		if dir:
+			velocity.x = lerp(velocity.x, dir.x * speed, accerlation)
+			velocity.z = lerp(velocity.z, dir.z * speed, accerlation)
+		if nav_agent.is_navigation_finished():
+			has_target = false
+			start_wander_timer()
+	else:
+		velocity.x = move_toward(velocity.x, 0.0, deceleration)
+		velocity.z = move_toward(velocity.z, 0.0, deceleration)
+		# rotate sprite to face correct direction
 	
-	velocity = direction * 5
-	move_and_slide()
+	if wander_timer:
+		var time_div = (wait_time - wander_timer.time_left) / wait_time * 100
+		timer_progress_bar.value = time_div
+	
+	move_and_slide()	
+		
+
+func start_wander_timer():
+	var time = randf_range(wanderTimerRangeLow, wanderTimerRangeHigh)
+	wander_timer.start(time)
+	wait_time = time
+
+
+
+func _on_wander_timer_timeout():
+	var ran_pos := self.global_position
+	ran_pos.x += randf_range(wander_range_low, wander_range_high)
+	ran_pos.z += randf_range(wander_range_low, wander_range_high)
+	nav_agent.set_target_position(ran_pos)
+	has_target = true
