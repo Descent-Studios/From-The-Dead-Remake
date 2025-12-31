@@ -13,6 +13,8 @@ var previous_velocity : float
 
 @export var package_color : GameManager.PackageColors = GameManager.PackageColors.RED
 
+@export var in_air := false
+
 var deactivated := false
 func _ready():
 	change_mesh_color(GameManager.get_color(package_color))
@@ -29,6 +31,7 @@ func _on_body_entered(_body):
 		collider_particle.rotation = state.get_contact_local_normal(0) * 180 / PI
 		collider_particle.set_emitting(true)
 		set_collision_mask_value(2, true)
+		in_air = false
 	#endregion
 
 func change_mesh_color(color : Color = Color("#000000")):

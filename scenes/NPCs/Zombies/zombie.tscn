@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://7b5jh66jixxv"]
+[gd_scene load_steps=7 format=3 uid="uid://7b5jh66jixxv"]
 
 [ext_resource type="Script" uid="uid://c7b1v2g6s8tg8" path="res://scripts/NPCs/zombie.gd" id="1_ty677"]
 [ext_resource type="PackedScene" uid="uid://uek272jsf4i4" path="res://scenes/NPCs/Zombies/progress_bar.tscn" id="2_lmj1j"]
@@ -10,16 +10,20 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_mtld5"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "wander_timer", "timer_progress_bar")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_lmj1j"]
+radius = 4.0
+
+[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "wander_timer", "timer_progress_bar", "awareness_radius")]
 collision_layer = 8
-collision_mask = 4881
+collision_mask = 4889
 script = ExtResource("1_ty677")
 nav_agent = NodePath("NavigationAgent3D")
 wander_timer = NodePath("WanderTimer")
+timer_progress_bar = NodePath("SubViewport/ProgressBar")
+awareness_radius = NodePath("AwarenessRadius")
 speed = 1.75
 accerlation = 0.15
 deceleration = 0.2
-timer_progress_bar = NodePath("SubViewport/ProgressBar")
 wander_range_low = -6.0
 wander_range_high = 6.0
 
@@ -52,4 +56,13 @@ step = 0.1
 transform = Transform3D(0.204, 0, 0, 0, 0.339, 0, 0, 0, 0.339, 0, 2.164285, 0)
 texture = SubResource("ViewportTexture_mtld5")
 
+[node name="AwarenessRadius" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AwarenessRadius"]
+shape = SubResource("SphereShape3D_lmj1j")
+
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
+[connection signal="body_entered" from="AwarenessRadius" to="." method="_on_awareness_radius_body_entered"]
+[connection signal="body_exited" from="AwarenessRadius" to="." method="_on_awareness_radius_body_exited"]

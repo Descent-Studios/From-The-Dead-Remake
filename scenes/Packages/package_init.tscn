@@ -101,9 +101,9 @@ height = 0.253
 radial_segments = 12
 rings = 12
 
-[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("collider_particle", "package_mesh_node")]
+[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("collider_particle", "package_mesh_node") groups=["Packages"]]
 collision_layer = 4
-collision_mask = 799
+collision_mask = 797
 mass = 8.0
 physics_material_override = SubResource("PhysicsMaterial_77544")
 freeze = true

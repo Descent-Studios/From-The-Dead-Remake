@@ -223,6 +223,7 @@ func prepare_package():
 func throw_package(towards : Vector3):
 	package_instance.reparent(get_parent())
 	package_instance.freeze = false
+	package_instance.in_air = true
 	package_instance.linear_velocity = velocity
 	package_instance.apply_impulse(towards * throw_force)
 	package_created = false

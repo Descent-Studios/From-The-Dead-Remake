@@ -1,15 +1,24 @@
 extends CharacterBody3D
 
+@export_group("External Nodes")
 @export var nav_agent : NavigationAgent3D
 @export var wander_timer : Timer
+@export var timer_progress_bar : ProgressBar
+@export var awareness_radius : Area3D
 
 var has_target := false
-var target_pos : Vector3
+enum track_type {
+	PACKAGE,
+	PLAYER
+}
+var constant_track = false
+var target_node : Node3D
+
+@export_category("Movement Settings")
 @export var speed := 5.0
 @export var accerlation := 1.0
 @export var deceleration := 1.0
 
-@export var timer_progress_bar : ProgressBar
 
 @export_category("Wander Time Range")
 @export var wanderTimerRangeLow := 1.0
@@ -20,10 +29,10 @@ var target_pos : Vector3
 
 
 var wait_time = 0.0
-
-func _unhandled_input(event):
-	if event.is_action_pressed("ui_accept"):
-		start_wander_timer()
+#
+#func _unhandled_input(event):
+	#if event.is_action_pressed("ui_accept"):
+		#start_wander_timer()
 
 func _physics_process(_delta):
 	if has_target:
@@ -44,6 +53,14 @@ func _physics_process(_delta):
 		var time_div = (wait_time - wander_timer.time_left) / wait_time * 100
 		timer_progress_bar.value = time_div
 	
+	if constant_track and target_node:
+		if constant_track == track_type.PACKAGE:
+			if !target_node.in_air:
+				constant_track = false
+				target_node = null
+		nav_agent.target_position = target_node.global_position
+		has_target = true
+	
 	move_and_slide()	
 		
 
@@ -60,3 +77,26 @@ func _on_wander_timer_timeout():
 	ran_pos.z += randf_range(wander_range_low, wander_range_high)
 	nav_agent.set_target_position(ran_pos)
 	has_target = true
+
+
+func _on_awareness_radius_body_entered(body : Node3D):
+	if constant_track: return
+	
+	match body.get_groups()[0]:
+		"Player": 
+				wander_timer.stop()
+				constant_track = track_type.PLAYER
+				target_node = body
+		"Packages": 
+			if body.in_air:
+				wander_timer.stop()
+				constant_track = track_type.PACKAGE
+				target_node = body
+	
+
+
+func _on_awareness_radius_body_exited(body : Node3D):
+	if body.is_in_group("Player") or body.is_in_group("Packages"):
+		if body == target_node:
+			constant_track = false
+			target_node = null

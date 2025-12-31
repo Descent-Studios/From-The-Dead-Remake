@@ -253,7 +253,7 @@ graph_offset = Vector2(-18, -7)
 [sub_resource type="SphereShape3D" id="SphereShape3D_tpg5x"]
 radius = 1.5
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer") groups=["Player"]]
 collision_layer = 2
 collision_mask = 785
 script = ExtResource("1_spyh3")

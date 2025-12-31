@@ -112,4 +112,7 @@ directional_shadow_max_distance = 200.0
 [node name="Zombies" type="Node" parent="NPCS"]
 
 [node name="Zombie" parent="NPCS/Zombies" instance=ExtResource("9_tve3b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.88, 0, 2.65)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.88, 0, 6.847118)
+
+[node name="Zombie2" parent="NPCS/Zombies" instance=ExtResource("9_tve3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.966899, 0, 6.621476)
