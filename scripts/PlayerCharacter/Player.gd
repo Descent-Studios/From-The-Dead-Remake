@@ -315,14 +315,11 @@ func hurt(dmg):
 func emit_swear():
 	swear_partiles.emitting = true
 
-func on_hurtbox_hit(_area : GenericHitBox):
+func on_hurtbox_hit(dmg : int = 1, hit_pos : Vector3 = self.global_position):
 	if invincibility_timer.is_stopped() and !is_invulnerable:
-		var damage = _area.Damage if _area.Damage else 1
-		print_debug(damage)
-		hurt(damage)
-		var area_global_pos = _area.global_position if _area else self.global_position
+		hurt(dmg)
 		invincibility_timer.start(invincibility_timer_time)
 		hurt_anim_state_machine.travel("Hit")
-		knockback(area_global_pos,10.0)
+		knockback(hit_pos,10.0)
 	pass # Replace with function body.
 #endregion

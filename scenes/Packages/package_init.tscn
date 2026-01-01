@@ -148,8 +148,8 @@ draw_pass_1 = SubResource("SphereMesh_bfeal")
 
 [node name="PackageHitBox" type="Area3D" parent="."]
 collision_layer = 64
-collision_mask = 0
-monitoring = false
+collision_mask = 2176
+monitorable = false
 script = ExtResource("4_4lpkc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PackageHitBox"]

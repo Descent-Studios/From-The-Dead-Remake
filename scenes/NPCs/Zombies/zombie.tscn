@@ -70,6 +70,7 @@ shape = SubResource("SphereShape3D_lmj1j")
 [node name="HurtRadius" type="Area3D" parent="."]
 collision_layer = 128
 collision_mask = 6208
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtRadius"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0488281, 0)

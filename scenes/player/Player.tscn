@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=39 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/PlayerCharacter/Player.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5kyea1dj7ulu" path="res://scenes/player/PlayerSpriteGodotTexture.tscn" id="3_c3xxp"]
 [ext_resource type="PackedScene" uid="uid://buy1qgroisfwh" path="res://scenes/player/PackageInvetoryVisualizer/PackageVisualizer.tscn" id="4_c3xxp"]
 [ext_resource type="Texture2D" uid="uid://vhunc8mtgk3w" path="res://textures/swears/fuck.png" id="4_tpg5x"]
+[ext_resource type="Script" uid="uid://dk0bppg8ocnk" path="res://scripts/Hit/generic_hurt.gd" id="6_npwbq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
 
@@ -349,6 +350,8 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.20898438)
 collision_layer = 32
 collision_mask = 36864
+monitoring = false
+script = ExtResource("6_npwbq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox and Timer/HurtBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3010254, 0)
@@ -383,7 +386,7 @@ visible = false
 handle_input_locally = false
 audio_listener_enable_3d = true
 
-[connection signal="area_entered" from="HurtBox and Timer/HurtBox" to="." method="on_hurtbox_hit"]
+[connection signal="self_hurt" from="HurtBox and Timer/HurtBox" to="." method="on_hurtbox_hit"]
 [connection signal="body_entered" from="PackagePickup/Area3D" to="." method="on_package_body_enter"]
 [connection signal="body_exited" from="PackagePickup/Area3D" to="." method="on_package_body_exit"]
 

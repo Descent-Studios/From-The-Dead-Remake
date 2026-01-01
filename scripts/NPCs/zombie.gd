@@ -30,10 +30,6 @@ var target_node : Node3D
 
 
 var wait_time = 0.0
-#
-#func _unhandled_input(event):
-	#if event.is_action_pressed("ui_accept"):
-		#start_wander_timer()
 
 func _physics_process(_delta):
 	if has_target:
@@ -106,7 +102,6 @@ func assign_body_as_target(body: Node3D, type = true):
 
 func _on_awareness_radius_body_entered(body : Node3D):
 	if constant_track is track_type and constant_track == track_type.PACKAGE: 
-		print_debug("Im already distracted!")
 		return
 	match body.get_groups()[0]:
 		"Player": 
@@ -117,7 +112,6 @@ func _on_awareness_radius_body_entered(body : Node3D):
 	
 func _on_awareness_radius_body_exited(body : Node3D):
 	if body.is_in_group("Player") or body.is_in_group("Packages"):
-		print_debug("Getting rid of node, " , body )
 		if body == target_node:
 			constant_track = false
 			target_node = null
