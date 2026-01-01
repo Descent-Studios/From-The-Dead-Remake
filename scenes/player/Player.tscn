@@ -10,7 +10,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_c3xxp"]
-viewport_path = NodePath("Node3D/PackageVisualizer")
+viewport_path = NodePath("PackageVisualizer/PackageVisualizer")
 
 [sub_resource type="Gradient" id="Gradient_5g0nn"]
 offsets = PackedFloat32Array(0, 0.50127226, 1)
@@ -266,7 +266,7 @@ hurt_anim_tree = NodePath("HurtBox and Timer/Hurt Anim Tree")
 sprite = NodePath("Visuals/PlayerSprite")
 package_sprite = NodePath("Visuals/PackageSprite")
 aim_ring = NodePath("AimRing")
-package_visualizer = NodePath("Node3D/PackageVisualizer")
+package_visualizer = NodePath("PackageVisualizer/PackageVisualizer")
 swear_partiles = NodePath("Particles/SwearingParticle")
 walk_particle_controller = NodePath("Particles/ParticlesWalk")
 fall_particle_controller = NodePath("Particles/ParticlesFall")
@@ -345,12 +345,12 @@ visible = false
 [node name="Invincibilty Timer" type="Timer" parent="HurtBox and Timer"]
 one_shot = true
 
-[node name="Area3D" type="Area3D" parent="HurtBox and Timer"]
+[node name="HurtBox" type="Area3D" parent="HurtBox and Timer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.20898438)
 collision_layer = 32
-collision_mask = 4096
+collision_mask = 36864
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox and Timer/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox and Timer/HurtBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3010254, 0)
 shape = SubResource("CapsuleShape3D_524rm")
 debug_color = Color(0.99, 0, 0.23099978, 0.8)
@@ -376,16 +376,16 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PackagePickup/Area3D"]
 shape = SubResource("SphereShape3D_tpg5x")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="PackageVisualizer" type="Node3D" parent="."]
 visible = false
 
-[node name="PackageVisualizer" parent="Node3D" instance=ExtResource("4_c3xxp")]
+[node name="PackageVisualizer" parent="PackageVisualizer" instance=ExtResource("4_c3xxp")]
 handle_input_locally = false
 audio_listener_enable_3d = true
 
-[connection signal="area_entered" from="HurtBox and Timer/Area3D" to="." method="on_hurtbox_hit"]
+[connection signal="area_entered" from="HurtBox and Timer/HurtBox" to="." method="on_hurtbox_hit"]
 [connection signal="body_entered" from="PackagePickup/Area3D" to="." method="on_package_body_enter"]
 [connection signal="body_exited" from="PackagePickup/Area3D" to="." method="on_package_body_exit"]
 
 [editable path="Visuals/PlayerSprite"]
-[editable path="Node3D/PackageVisualizer"]
+[editable path="PackageVisualizer/PackageVisualizer"]

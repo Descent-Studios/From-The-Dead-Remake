@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://7b5jh66jixxv"]
+[gd_scene load_steps=8 format=3 uid="uid://7b5jh66jixxv"]
 
 [ext_resource type="Script" uid="uid://c7b1v2g6s8tg8" path="res://scripts/NPCs/zombie.gd" id="1_ty677"]
 [ext_resource type="PackedScene" uid="uid://uek272jsf4i4" path="res://scenes/NPCs/Zombies/progress_bar.tscn" id="2_lmj1j"]
@@ -12,6 +12,10 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lmj1j"]
 radius = 4.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lmj1j"]
+radius = 0.65722656
+height = 2.0976563
 
 [node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "wander_timer", "timer_progress_bar", "awareness_radius")]
 collision_layer = 8
@@ -62,6 +66,15 @@ collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AwarenessRadius"]
 shape = SubResource("SphereShape3D_lmj1j")
+
+[node name="HurtRadius" type="Area3D" parent="."]
+collision_layer = 128
+collision_mask = 6208
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtRadius"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0488281, 0)
+shape = SubResource("CapsuleShape3D_lmj1j")
+debug_color = Color(0.9981521, 0, 0.1313523, 0.41960785)
 
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
 [connection signal="body_entered" from="AwarenessRadius" to="." method="_on_awareness_radius_body_entered"]

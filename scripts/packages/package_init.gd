@@ -15,6 +15,9 @@ var previous_velocity : float
 
 @export var in_air := false
 
+@export_category("Damage")
+@export var damage := 1
+
 var deactivated := false
 func _ready():
 	change_mesh_color(GameManager.get_color(package_color))
@@ -30,7 +33,10 @@ func _on_body_entered(_body):
 		collider_particle.global_position = state.get_contact_collider_position(0)
 		collider_particle.rotation = state.get_contact_local_normal(0) * 180 / PI
 		collider_particle.set_emitting(true)
+		# Set player collision mask to true
 		set_collision_mask_value(2, true)
+		# Set NPC Damage collision to false
+		set_collision_layer_value(12, false)
 		in_air = false
 	#endregion
 

@@ -8,8 +8,9 @@ extends CharacterBody3D
 
 var has_target := false
 enum track_type {
-	PACKAGE,
-	PLAYER
+	DEFAULT,
+	PLAYER,
+	PACKAGE
 }
 var constant_track = false
 var target_node : Node3D
@@ -43,7 +44,7 @@ func _physics_process(_delta):
 			velocity.z = lerp(velocity.z, dir.z * speed, accerlation)
 		if nav_agent.is_navigation_finished():
 			has_target = false
-			start_wander_timer()
+			check_wander()
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, deceleration)
 		velocity.z = move_toward(velocity.z, 0.0, deceleration)
@@ -54,22 +55,38 @@ func _physics_process(_delta):
 		timer_progress_bar.value = time_div
 	
 	if constant_track and target_node:
-		if constant_track == track_type.PACKAGE:
-			if !target_node.in_air:
-				constant_track = false
-				target_node = null
+		match constant_track:
+			track_type.PACKAGE: 
+				if !target_node.in_air:
+					constant_track = false
+				has_target = true
+			
+			track_type.PLAYER: 
+				has_target = true
+			
+			_: 
+				has_target = true
+			
 		nav_agent.target_position = target_node.global_position
-		has_target = true
 	
 	move_and_slide()	
 		
 
+#region Wandering
+func check_wander():
+	#check to see if player is in radius
+	var bodies = awareness_radius.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("Player"):
+			assign_body_as_target(body,track_type.PLAYER)
+			return
+	
+	start_wander_timer()
+	
 func start_wander_timer():
 	var time = randf_range(wanderTimerRangeLow, wanderTimerRangeHigh)
 	wander_timer.start(time)
 	wait_time = time
-
-
 
 func _on_wander_timer_timeout():
 	var ran_pos := self.global_position
@@ -77,26 +94,35 @@ func _on_wander_timer_timeout():
 	ran_pos.z += randf_range(wander_range_low, wander_range_high)
 	nav_agent.set_target_position(ran_pos)
 	has_target = true
+#endregion
+
+#region Awareness
+
+func assign_body_as_target(body: Node3D, type = true):
+	wander_timer.stop()
+	constant_track = type
+	target_node = body
 
 
 func _on_awareness_radius_body_entered(body : Node3D):
-	if constant_track: return
-	
+	if constant_track is track_type and constant_track == track_type.PACKAGE: 
+		print_debug("Im already distracted!")
+		return
 	match body.get_groups()[0]:
 		"Player": 
-				wander_timer.stop()
-				constant_track = track_type.PLAYER
-				target_node = body
+				assign_body_as_target(body,track_type.PLAYER)
 		"Packages": 
 			if body.in_air:
-				wander_timer.stop()
-				constant_track = track_type.PACKAGE
-				target_node = body
+				assign_body_as_target(body,track_type.PACKAGE)
 	
-
-
 func _on_awareness_radius_body_exited(body : Node3D):
 	if body.is_in_group("Player") or body.is_in_group("Packages"):
+		print_debug("Getting rid of node, " , body )
 		if body == target_node:
 			constant_track = false
 			target_node = null
+#endregion
+
+#region Hurt
+
+#endregion

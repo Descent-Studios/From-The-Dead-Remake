@@ -89,10 +89,13 @@ retrieve_package={
 3d_physics/layer_4="Zombies"
 3d_physics/layer_5="Terrain Decor"
 3d_physics/layer_6="PlayerHurt"
-3d_physics/layer_8="Zombie Hit"
+3d_physics/layer_7="PackageHit"
+3d_physics/layer_8="Zombie Hurt"
 3d_physics/layer_9="Buildings"
 3d_physics/layer_10="Truck"
+3d_physics/layer_12="NPC Damage"
 3d_physics/layer_13="Evil Objects"
+3d_physics/layer_16="Player Damage"
 
 [physics]
 
