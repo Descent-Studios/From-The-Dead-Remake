@@ -16,10 +16,14 @@ var previous_velocity : float
 @export var in_air := false
 
 @export_category("Damage")
+@export var hitBox : GenericHitBox
 @export var damage := 1
+@export var knockback_multiplyer := 0.0
 
 var deactivated := false
 func _ready():
+	hitBox.damage = damage
+	hitBox.knockback_mult = knockback_multiplyer
 	change_mesh_color(GameManager.get_color(package_color))
 
 func _physics_process(_delta):
@@ -37,7 +41,7 @@ func _on_body_entered(_body):
 		set_collision_mask_value(2, true)
 		# Set NPC Damage collision to false
 		set_collision_layer_value(12, false)
-		in_air = false
+		set_in_air(false)
 	#endregion
 
 func change_mesh_color(color : Color = Color("#000000")):
@@ -61,3 +65,7 @@ func get_package_type() -> GameManager.PackageType:
 
 func toggle_activation():
 	self.freeze = !self.freeze
+
+func set_in_air(cond : bool):
+	in_air = cond
+	hitBox.can_damage = cond

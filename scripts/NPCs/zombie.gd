@@ -14,6 +14,10 @@ enum track_type {
 }
 var constant_track = false
 var target_node : Node3D
+@export_category("Zombie Health")
+@export var health := 10
+@export var knockback_amt := 10.0
+
 
 @export_category("Movement Settings")
 @export var speed := 5.0
@@ -118,5 +122,21 @@ func _on_awareness_radius_body_exited(body : Node3D):
 #endregion
 
 #region Hurt
+
+func knockback(from : Vector3, multiplier : float):
+	var dir = -global_position.direction_to(from).normalized()
+	dir.y = 0
+	print(dir)
+	var force = dir * multiplier
+	print(force)
+	velocity = force
+	pass
+
+
+func _on_hurtbox_hurt(_dmg := 1, _hit_pos : Vector3 = self.global_position, knockback_mult : float = 0.0):
+	var knockback_force = knockback_amt + (knockback_amt * knockback_mult)
+	knockback(_hit_pos, knockback_force)
+	
+	pass # Replace with function body.
 
 #endregion

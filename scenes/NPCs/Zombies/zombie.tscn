@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://7b5jh66jixxv"]
+[gd_scene load_steps=9 format=3 uid="uid://7b5jh66jixxv"]
 
 [ext_resource type="Script" uid="uid://c7b1v2g6s8tg8" path="res://scripts/NPCs/zombie.gd" id="1_ty677"]
 [ext_resource type="PackedScene" uid="uid://uek272jsf4i4" path="res://scenes/NPCs/Zombies/progress_bar.tscn" id="2_lmj1j"]
+[ext_resource type="Script" uid="uid://thi56svcyii0" path="res://scenes/NPCs/Zombies/hurt_radius.gd" id="3_mtld5"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_2j887"]
 
@@ -69,8 +70,9 @@ shape = SubResource("SphereShape3D_lmj1j")
 
 [node name="HurtRadius" type="Area3D" parent="."]
 collision_layer = 128
-collision_mask = 6208
+collision_mask = 0
 monitoring = false
+script = ExtResource("3_mtld5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtRadius"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0488281, 0)
@@ -80,3 +82,4 @@ debug_color = Color(0.9981521, 0, 0.1313523, 0.41960785)
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
 [connection signal="body_entered" from="AwarenessRadius" to="." method="_on_awareness_radius_body_entered"]
 [connection signal="body_exited" from="AwarenessRadius" to="." method="_on_awareness_radius_body_exited"]
+[connection signal="self_hurt" from="HurtRadius" to="." method="_on_hurtbox_hurt"]

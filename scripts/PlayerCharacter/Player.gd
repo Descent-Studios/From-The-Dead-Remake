@@ -62,6 +62,7 @@ var closest_package : PackageSmall
 @export var health_max : int
 @export var invincibility_timer : Timer
 @export var invincibility_timer_time : float
+@export var knockback_amt : float = 10.0
 var cur_health : int
 var is_invulnerable := true
 
@@ -223,7 +224,7 @@ func prepare_package():
 func throw_package(towards : Vector3):
 	package_instance.reparent(get_parent())
 	package_instance.freeze = false
-	package_instance.in_air = true
+	package_instance.set_in_air(true)
 	package_instance.linear_velocity = velocity
 	package_instance.apply_impulse(towards * throw_force)
 	package_created = false
@@ -315,11 +316,12 @@ func hurt(dmg):
 func emit_swear():
 	swear_partiles.emitting = true
 
-func on_hurtbox_hit(dmg : int = 1, hit_pos : Vector3 = self.global_position):
+func on_hurtbox_hit(dmg : int = 1, hit_pos : Vector3 = self.global_position, knockback_mult : float = 0.0):
 	if invincibility_timer.is_stopped() and !is_invulnerable:
 		hurt(dmg)
 		invincibility_timer.start(invincibility_timer_time)
 		hurt_anim_state_machine.travel("Hit")
-		knockback(hit_pos,10.0)
+		var knockback_force = knockback_amt + (knockback_mult * knockback_amt)
+		knockback(hit_pos, knockback_force)
 	pass # Replace with function body.
 #endregion
