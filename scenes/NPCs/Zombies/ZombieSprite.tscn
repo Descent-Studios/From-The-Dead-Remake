@@ -1,0 +1,129 @@
+[gd_scene load_steps=15 format=3 uid="uid://ts5bxa6fmyw7"]
+
+[ext_resource type="Texture2D" uid="uid://do4afahsj6ifc" path="res://textures/Zombie/sprite_sheet.png" id="1_o2ybb"]
+
+[sub_resource type="Animation" id="Animation_4kuee"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zombie Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5stf6"]
+resource_name = "dead_anim"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zombie Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.26666668, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 7, 8, 11]
+}
+
+[sub_resource type="Animation" id="Animation_gfjak"]
+resource_name = "walk_anim"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zombie Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 15, 18, 21, 22]
+}
+
+[sub_resource type="Animation" id="Animation_524rm"]
+resource_name = "idle_anim"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zombie Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_524rm"]
+_data = {
+&"RESET": SubResource("Animation_4kuee"),
+&"dead_anim": SubResource("Animation_5stf6"),
+&"idle_anim": SubResource("Animation_524rm"),
+&"walk_anim": SubResource("Animation_gfjak")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pn6s4"]
+animation = &"dead_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gfjak"]
+animation = &"idle_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4kuee"]
+animation = &"walk_anim"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_524rm"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tpg5x"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c3xxp"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2xrq6"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_npwbq"]
+states/End/position = Vector2(1210, 154.66667)
+states/dead/node = SubResource("AnimationNodeAnimation_pn6s4")
+states/dead/position = Vector2(357.8889, -26.666662)
+states/default/node = SubResource("AnimationNodeAnimation_gfjak")
+states/default/position = Vector2(358, 102.33333)
+states/walk/node = SubResource("AnimationNodeAnimation_4kuee")
+states/walk/position = Vector2(584.00006, 100.33333)
+transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_524rm"), "default", "walk", SubResource("AnimationNodeStateMachineTransition_tpg5x"), "walk", "default", SubResource("AnimationNodeStateMachineTransition_c3xxp"), "default", "dead", SubResource("AnimationNodeStateMachineTransition_2xrq6")]
+graph_offset = Vector2(-574, -251)
+
+[node name="Zombie Sprite" type="Sprite3D"]
+layers = 2
+gi_mode = 2
+pixel_size = 0.02
+billboard = 1
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_o2ybb")
+hframes = 12
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_524rm")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_npwbq")
+anim_player = NodePath("../AnimationPlayer")

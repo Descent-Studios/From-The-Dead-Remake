@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c7b1v2g6s8tg8" path="res://scripts/NPCs/zombie.gd" id="1_ty677"]
 [ext_resource type="PackedScene" uid="uid://uek272jsf4i4" path="res://scenes/NPCs/Zombies/progress_bar.tscn" id="2_lmj1j"]
-[ext_resource type="Script" uid="uid://thi56svcyii0" path="res://scenes/NPCs/Zombies/hurt_radius.gd" id="3_mtld5"]
+[ext_resource type="Script" uid="uid://dk0bppg8ocnk" path="res://scripts/Hit/generic_hurt.gd" id="3_mtld5"]
+[ext_resource type="PackedScene" uid="uid://ts5bxa6fmyw7" path="res://scenes/NPCs/Zombies/ZombieSprite.tscn" id="4_x88eh"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_2j887"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ty677"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_x88eh"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mtld5"]
 viewport_path = NodePath("SubViewport")
@@ -15,10 +14,10 @@ viewport_path = NodePath("SubViewport")
 radius = 4.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lmj1j"]
-radius = 0.625
-height = 2.0976563
+radius = 0.5527344
+height = 1.3380127
 
-[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "wander_timer", "dazedTimer", "timer_progress_bar", "awareness_radius")]
+[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "wander_timer", "dazedTimer", "timer_progress_bar", "awareness_radius", "zombie_sprite", "anim_tree")]
 collision_layer = 8
 collision_mask = 4889
 script = ExtResource("1_ty677")
@@ -30,16 +29,18 @@ awareness_radius = NodePath("AwarenessRadius")
 speed = 1.75
 accerlation = 0.15
 deceleration = 0.2
+zombie_sprite = NodePath("Zombie Sprite")
+anim_tree = NodePath("Zombie Sprite/AnimationTree")
 wander_range_low = -6.0
 wander_range_high = 6.0
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("SphereMesh_2j887")
+[node name="Zombie Sprite" parent="." instance=ExtResource("4_x88eh")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.5, 0)
+billboard = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_ty677")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_x88eh")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.75
@@ -80,7 +81,7 @@ monitoring = false
 script = ExtResource("3_mtld5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtRadius"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0488281, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4866333, 0)
 shape = SubResource("CapsuleShape3D_lmj1j")
 debug_color = Color(0.9981521, 0, 0.1313523, 0.41960785)
 
@@ -89,3 +90,5 @@ debug_color = Color(0.9981521, 0, 0.1313523, 0.41960785)
 [connection signal="body_entered" from="AwarenessRadius" to="." method="_on_awareness_radius_body_entered"]
 [connection signal="body_exited" from="AwarenessRadius" to="." method="_on_awareness_radius_body_exited"]
 [connection signal="self_hurt" from="HurtRadius" to="." method="_on_hurtbox_hurt"]
+
+[editable path="Zombie Sprite"]
