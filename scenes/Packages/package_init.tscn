@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=4 uid="uid://bnrv1y6r2duuq"]
+[gd_scene load_steps=19 format=4 uid="uid://bnrv1y6r2duuq"]
 
 [ext_resource type="Script" uid="uid://btlepokrgpixr" path="res://scripts/packages/package_init.gd" id="1_5g0nn"]
 [ext_resource type="Texture2D" uid="uid://dbdw8e3tpd2a" path="res://textures/ASE/package_1x1.png" id="2_5g0nn"]
 [ext_resource type="Shader" uid="uid://dshygr7fvoiti" path="res://shaders/packages/package_color_changer.gdshader" id="2_qx1uw"]
+[ext_resource type="Script" uid="uid://exaia1kf308i" path="res://scripts/Hit/generic_hit.gd" id="4_4lpkc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_77544"]
 bounce = 0.5
@@ -101,9 +102,12 @@ height = 0.253
 radial_segments = 12
 rings = 12
 
-[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("collider_particle", "package_mesh_node")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_4lpkc"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("collider_particle", "package_mesh_node", "hitBox") groups=["Packages"]]
 collision_layer = 4
-collision_mask = 789
+collision_mask = 797
 mass = 8.0
 physics_material_override = SubResource("PhysicsMaterial_77544")
 freeze = true
@@ -113,6 +117,8 @@ script = ExtResource("1_5g0nn")
 velocity_threshold = 0.2
 collider_particle = NodePath("Particles/ParticlesFall")
 package_mesh_node = NodePath("package1x1/Cube")
+hitBox = NodePath("PackageHitBox")
+knockback_multiplyer = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_sncrs")
@@ -142,5 +148,15 @@ explosiveness = 1.0
 randomness = 0.28
 process_material = SubResource("ParticleProcessMaterial_4lpkc")
 draw_pass_1 = SubResource("SphereMesh_bfeal")
+
+[node name="PackageHitBox" type="Area3D" parent="."]
+collision_layer = 64
+collision_mask = 3200
+monitorable = false
+script = ExtResource("4_4lpkc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PackageHitBox"]
+shape = SubResource("BoxShape3D_4lpkc")
+debug_color = Color(0.22684571, 0.6385488, 3.85046e-07, 0.41960785)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

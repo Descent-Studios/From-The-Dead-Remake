@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://chvc3t5gv00jk"]
+[gd_scene load_steps=14 format=3 uid="uid://chvc3t5gv00jk"]
 
 [ext_resource type="PackedScene" uid="uid://b7ei6gh78avqs" path="res://3d models import/decorations/fireHydrant.blend" id="1_o3sa8"]
 [ext_resource type="Script" uid="uid://d374qvelkride" path="res://scripts/Decorations/fire_hydrant.gd" id="2_yj5na"]
+[ext_resource type="Script" uid="uid://dk0bppg8ocnk" path="res://scripts/Hit/generic_hurt.gd" id="3_vmfgf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_imcws"]
 height = 2.2773438
@@ -123,6 +124,7 @@ rings = 1
 [node name="fireHydrant" node_paths=PackedStringArray("anim_player") instance=ExtResource("1_o3sa8")]
 script = ExtResource("2_yj5na")
 anim_player = NodePath("AnimationPlayer")
+health = 2
 
 [node name="Cone" parent="." index="1"]
 transform = Transform3D(0.8634009, 0, 0, 0, 0.33586293, 0, 0, 0, 0.863401, 0, 2, 0)
@@ -142,9 +144,11 @@ libraries = {
 }
 
 [node name="ColChecker" type="Area3D" parent="." index="5"]
-collision_layer = 0
+collision_layer = 1024
 collision_mask = 12
 input_ray_pickable = false
+monitoring = false
+script = ExtResource("3_vmfgf")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="ColChecker" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2553711, 0)
@@ -165,4 +169,4 @@ draw_pass_1 = SubResource("SphereMesh_h1msp")
 [node name="Timer" type="Timer" parent="." index="7"]
 wait_time = 30.0
 
-[connection signal="body_entered" from="ColChecker" to="." method="_on_col_checker_body_entered"]
+[connection signal="self_hurt" from="ColChecker" to="." method="_on_col_checker_self_hurt"]

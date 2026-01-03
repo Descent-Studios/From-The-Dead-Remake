@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://div52utmarvlq"]
+[gd_scene load_steps=39 format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/PlayerCharacter/Player.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
@@ -6,11 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://c5kyea1dj7ulu" path="res://scenes/player/PlayerSpriteGodotTexture.tscn" id="3_c3xxp"]
 [ext_resource type="PackedScene" uid="uid://buy1qgroisfwh" path="res://scenes/player/PackageInvetoryVisualizer/PackageVisualizer.tscn" id="4_c3xxp"]
 [ext_resource type="Texture2D" uid="uid://vhunc8mtgk3w" path="res://textures/swears/fuck.png" id="4_tpg5x"]
+[ext_resource type="Script" uid="uid://dk0bppg8ocnk" path="res://scripts/Hit/generic_hurt.gd" id="6_npwbq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_c3xxp"]
-viewport_path = NodePath("Node3D/PackageVisualizer")
+viewport_path = NodePath("PackageVisualizer/PackageVisualizer")
 
 [sub_resource type="Gradient" id="Gradient_5g0nn"]
 offsets = PackedFloat32Array(0, 0.50127226, 1)
@@ -253,7 +254,7 @@ graph_offset = Vector2(-18, -7)
 [sub_resource type="SphereShape3D" id="SphereShape3D_tpg5x"]
 radius = 1.5
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer") groups=["Player"]]
 collision_layer = 2
 collision_mask = 785
 script = ExtResource("1_spyh3")
@@ -266,7 +267,7 @@ hurt_anim_tree = NodePath("HurtBox and Timer/Hurt Anim Tree")
 sprite = NodePath("Visuals/PlayerSprite")
 package_sprite = NodePath("Visuals/PackageSprite")
 aim_ring = NodePath("AimRing")
-package_visualizer = NodePath("Node3D/PackageVisualizer")
+package_visualizer = NodePath("PackageVisualizer/PackageVisualizer")
 swear_partiles = NodePath("Particles/SwearingParticle")
 walk_particle_controller = NodePath("Particles/ParticlesWalk")
 fall_particle_controller = NodePath("Particles/ParticlesFall")
@@ -345,12 +346,14 @@ visible = false
 [node name="Invincibilty Timer" type="Timer" parent="HurtBox and Timer"]
 one_shot = true
 
-[node name="Area3D" type="Area3D" parent="HurtBox and Timer"]
+[node name="HurtBox" type="Area3D" parent="HurtBox and Timer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.20898438)
 collision_layer = 32
-collision_mask = 4096
+collision_mask = 36864
+monitoring = false
+script = ExtResource("6_npwbq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox and Timer/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox and Timer/HurtBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3010254, 0)
 shape = SubResource("CapsuleShape3D_524rm")
 debug_color = Color(0.99, 0, 0.23099978, 0.8)
@@ -376,16 +379,16 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PackagePickup/Area3D"]
 shape = SubResource("SphereShape3D_tpg5x")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="PackageVisualizer" type="Node3D" parent="."]
 visible = false
 
-[node name="PackageVisualizer" parent="Node3D" instance=ExtResource("4_c3xxp")]
+[node name="PackageVisualizer" parent="PackageVisualizer" instance=ExtResource("4_c3xxp")]
 handle_input_locally = false
 audio_listener_enable_3d = true
 
-[connection signal="area_entered" from="HurtBox and Timer/Area3D" to="." method="on_hurtbox_hit"]
+[connection signal="self_hurt" from="HurtBox and Timer/HurtBox" to="." method="on_hurtbox_hit"]
 [connection signal="body_entered" from="PackagePickup/Area3D" to="." method="on_package_body_enter"]
 [connection signal="body_exited" from="PackagePickup/Area3D" to="." method="on_package_body_exit"]
 
 [editable path="Visuals/PlayerSprite"]
-[editable path="Node3D/PackageVisualizer"]
+[editable path="PackageVisualizer/PackageVisualizer"]
