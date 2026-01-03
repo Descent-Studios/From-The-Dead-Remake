@@ -15,15 +15,16 @@ viewport_path = NodePath("SubViewport")
 radius = 4.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lmj1j"]
-radius = 0.65722656
+radius = 0.625
 height = 2.0976563
 
-[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "wander_timer", "timer_progress_bar", "awareness_radius")]
+[node name="Zombie" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "wander_timer", "dazedTimer", "timer_progress_bar", "awareness_radius")]
 collision_layer = 8
 collision_mask = 4889
 script = ExtResource("1_ty677")
 nav_agent = NodePath("NavigationAgent3D")
 wander_timer = NodePath("WanderTimer")
+dazedTimer = NodePath("DazedTimer")
 timer_progress_bar = NodePath("SubViewport/ProgressBar")
 awareness_radius = NodePath("AwarenessRadius")
 speed = 1.75
@@ -48,6 +49,10 @@ debug_path_custom_color = Color(1, 0, 0, 1)
 debug_path_custom_point_size = 7.15
 
 [node name="WanderTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DazedTimer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="SubViewport" type="SubViewport" parent="."]
@@ -80,6 +85,7 @@ shape = SubResource("CapsuleShape3D_lmj1j")
 debug_color = Color(0.9981521, 0, 0.1313523, 0.41960785)
 
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
+[connection signal="timeout" from="DazedTimer" to="." method="_on_dazed_timer_timeout"]
 [connection signal="body_entered" from="AwarenessRadius" to="." method="_on_awareness_radius_body_entered"]
 [connection signal="body_exited" from="AwarenessRadius" to="." method="_on_awareness_radius_body_exited"]
 [connection signal="self_hurt" from="HurtRadius" to="." method="_on_hurtbox_hurt"]

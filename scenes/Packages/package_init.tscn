@@ -102,7 +102,8 @@ height = 0.253
 radial_segments = 12
 rings = 12
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_qx1uw"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_4lpkc"]
+size = Vector3(0.8, 0.8, 0.8)
 
 [node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("collider_particle", "package_mesh_node", "hitBox") groups=["Packages"]]
 collision_layer = 4
@@ -117,7 +118,7 @@ velocity_threshold = 0.2
 collider_particle = NodePath("Particles/ParticlesFall")
 package_mesh_node = NodePath("package1x1/Cube")
 hitBox = NodePath("PackageHitBox")
-knockback_multiplyer = 1.0
+knockback_multiplyer = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_sncrs")
@@ -150,12 +151,12 @@ draw_pass_1 = SubResource("SphereMesh_bfeal")
 
 [node name="PackageHitBox" type="Area3D" parent="."]
 collision_layer = 64
-collision_mask = 2176
+collision_mask = 3200
 monitorable = false
 script = ExtResource("4_4lpkc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PackageHitBox"]
-shape = SubResource("SphereShape3D_qx1uw")
+shape = SubResource("BoxShape3D_4lpkc")
 debug_color = Color(0.22684571, 0.6385488, 3.85046e-07, 0.41960785)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
