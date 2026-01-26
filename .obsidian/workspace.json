@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "7cf03a071579f905",
+            "id": "a230f1950da5199c",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,6 +19,18 @@
               },
               "icon": "lucide-file",
               "title": "Notes"
+            }
+          },
+          {
+            "id": "37677d7febfa9ac9",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.11.5"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.11.5"
             }
           }
         ]
@@ -169,9 +181,12 @@
       "bases:Create new base": false
     }
   },
-  "active": "7cf03a071579f905",
+  "active": "a230f1950da5199c",
   "lastOpenFiles": [
     "icon.svg",
-    "Notes.md"
+    "Notes.md",
+    "shaders/sketchSahder.gdshader663373850.tmp",
+    "shaders/seethrough.gdshader663355880.tmp",
+    "shaders/packages/package_color_changer.gdshader663283943.tmp"
   ]
 }

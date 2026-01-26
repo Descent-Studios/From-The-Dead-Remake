@@ -24,6 +24,11 @@ var target_node : Node3D
 @export var accerlation := 1.0
 @export var deceleration := 1.0
 
+@export_category("Visuals")
+@export var zombie_sprite : Sprite3D
+@export var anim_tree : AnimationTree
+var anim_state_machine : AnimationNodeStateMachinePlayback
+
 
 @export_category("Wander Time Range")
 @export var wanderTimerRangeLow := 1.0
@@ -35,10 +40,18 @@ var target_node : Node3D
 
 var wait_time = 0.0
 var dazed := false
+func _ready():
+	anim_state_machine = anim_tree["parameters/playback"]
+
 
 func _physics_process(_delta):
 	
+	update_movement(_delta)
+	
+	update_visuals()
+	
 
+func update_movement(_delta):
 	if has_target and !dazed:
 		var next_path_pos := nav_agent.get_next_path_position()
 		var dir := global_position.direction_to(next_path_pos)
@@ -73,7 +86,19 @@ func _physics_process(_delta):
 	
 	
 	move_and_slide()	
-		
+
+func update_visuals():
+	if velocity.length() > 0.1:
+		anim_state_machine.travel("walk")
+	else:
+		anim_state_machine.travel("default")
+	
+	if velocity.x > 0.1:
+		zombie_sprite.flip_h = false
+	elif velocity.x < 0.1:
+		zombie_sprite.flip_h = true
+	pass
+
 
 #region Wandering
 func check_wander():
@@ -148,7 +173,7 @@ func knockback(from : Vector3, multiplier : float):
 	velocity = force
 
 func _on_hurtbox_hurt(_dmg := 1, _hit_pos : Vector3 = self.global_position, knockback_mult : float = 0.0):
-	print_debug("Hit")
+	print_debug("Hit for " , _dmg , " points")
 	var knockback_force = knockback_amt + (knockback_amt * knockback_mult)
 	knockback(_hit_pos, knockback_force)
 	daze()
