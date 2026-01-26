@@ -173,7 +173,7 @@ func knockback(from : Vector3, multiplier : float):
 	velocity = force
 
 func _on_hurtbox_hurt(_dmg := 1, _hit_pos : Vector3 = self.global_position, knockback_mult : float = 0.0):
-	print_debug("Hit for" , _dmg , " points")
+	print_debug("Hit for " , _dmg , " points")
 	var knockback_force = knockback_amt + (knockback_amt * knockback_mult)
 	knockback(_hit_pos, knockback_force)
 	daze()

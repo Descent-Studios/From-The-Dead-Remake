@@ -78,3 +78,8 @@ func _unhandled_input(event):
 func generate_nav():
 	await get_tree().physics_frame
 	nagivation_layer.bake_navigation_mesh(true)
+	self.call_deferred("start_level")
+
+func start_level():
+	# Start level animation after everything has been loaded properly
+	anim_state.travel("level_start")
