@@ -458,7 +458,7 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70
 curve = SubResource("Curve3D_dyebd")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "follow_path")]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 3.4417477, 14.665135, 14.020136)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 3.4419994, 14.665135, 14.020136)
 top_level = true
 script = ExtResource("13_rj41f")
 priority = 1
@@ -558,10 +558,10 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.552767, 0, -11.2)
 transform = Transform3D(-0.20876527, 0.94464165, 0.25311595, 4.2221952e-08, 0.25881886, -0.965925, -0.9779657, -0.2016516, -0.054032426, -19.21228, 0.7, -1.045068)
 
 [node name="Car2" parent="LevelNavigator/Decorations/Cars" instance=ExtResource("6_ixlbf")]
-transform = Transform3D(0.808216, 0.56882024, 0.15241474, 4.5332758e-08, 0.25881878, -0.9659251, -0.5888861, 0.78067666, 0.20918134, -18.460476, 0.7, 1.785254)
+transform = Transform3D(0.808216, 0.56882024, 0.15241472, 4.5332758e-08, 0.25881878, -0.96592504, -0.5888861, 0.78067666, 0.20918132, -18.460476, 0.7, 1.785254)
 
 [node name="Car3" parent="LevelNavigator/Decorations/Cars" instance=ExtResource("6_ixlbf")]
-transform = Transform3D(0.98494333, 0, -0.17287458, 0, 0.99999976, 0, 0.1728746, 0, 0.9849432, 16.914558, 0, -3.0514414)
+transform = Transform3D(0.9849433, 0, -0.17287458, 0, 0.99999976, 0, 0.1728746, 0, 0.9849432, 16.914558, 0, -3.0514414)
 
 [node name="Car4" parent="LevelNavigator/Decorations/Cars" instance=ExtResource("6_ixlbf")]
 transform = Transform3D(0.9669345, 0, -0.2550239, 0, 1, 0, 0.25502387, 0, 0.9669346, 16.938, 0, 3.361)

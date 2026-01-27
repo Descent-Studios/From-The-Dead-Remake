@@ -13,110 +13,6 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_c3xxp"]
 viewport_path = NodePath("PackageVisualizer/PackageVisualizer")
 
-[sub_resource type="Gradient" id="Gradient_5g0nn"]
-offsets = PackedFloat32Array(0, 0.50127226, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.58431375, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_4kuee"]
-gradient = SubResource("Gradient_5g0nn")
-
-[sub_resource type="Curve" id="Curve_qx1uw"]
-_data = [Vector2(0, 0.25229234), 0.0, 6.0662346, 0, 0, Vector2(0.1113689, 0.89886075), -0.017298238, -0.017298238, 0, 0, Vector2(1, 0), -0.07339892, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_4kuee"]
-curve = SubResource("Curve_qx1uw")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gfjak"]
-lifetime_randomness = 0.67
-particle_flag_rotate_y = true
-emission_shape_offset = Vector3(0, 0.095, 0)
-emission_shape = 1
-emission_sphere_radius = 0.2
-angle_min = -39.79999
-angle_max = 81.90001
-gravity = Vector3(0, 0.98, 0)
-scale_min = 0.79999995
-scale_max = 1.1999999
-scale_curve = SubResource("CurveTexture_4kuee")
-color_ramp = SubResource("GradientTexture1D_4kuee")
-turbulence_enabled = true
-turbulence_noise_strength = 1.32
-turbulence_noise_scale = 1.874
-turbulence_noise_speed_random = 1.59
-turbulence_influence_max = 0.18400002
-turbulence_initial_displacement_min = 1.490116e-06
-turbulence_initial_displacement_max = 1.490116e-06
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_524rm"]
-vertex_color_use_as_albedo = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_gfjak"]
-material = SubResource("StandardMaterial3D_524rm")
-radius = 0.313
-height = 0.253
-radial_segments = 12
-rings = 12
-
-[sub_resource type="Gradient" id="Gradient_gfjak"]
-offsets = PackedFloat32Array(0, 0.50127226, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.58431375, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_tpg5x"]
-gradient = SubResource("Gradient_gfjak")
-
-[sub_resource type="Curve" id="Curve_gfjak"]
-_data = [Vector2(0, 0.25229234), 0.0, 6.0662346, 0, 0, Vector2(0.1113689, 0.89886075), -0.017298238, -0.017298238, 0, 0, Vector2(1, 0), -0.07339892, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_c3xxp"]
-curve = SubResource("Curve_gfjak")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4kuee"]
-lifetime_randomness = 0.67
-particle_flag_rotate_y = true
-emission_shape = 3
-emission_box_extents = Vector3(0.5, 0.05, 0.5)
-angle_min = -39.79999
-angle_max = 81.90001
-direction = Vector3(0, 0, 0)
-spread = 180.0
-initial_velocity_max = 2.6
-gravity = Vector3(0, 0.98, 0)
-scale_min = 0.79999995
-scale_max = 1.1999999
-scale_curve = SubResource("CurveTexture_c3xxp")
-color_ramp = SubResource("GradientTexture1D_tpg5x")
-turbulence_enabled = true
-turbulence_noise_strength = 1.32
-turbulence_noise_scale = 1.874
-turbulence_noise_speed_random = 1.59
-turbulence_influence_max = 0.18400002
-turbulence_initial_displacement_min = 1.490116e-06
-turbulence_initial_displacement_max = 1.490116e-06
-
-[sub_resource type="Curve" id="Curve_524rm"]
-_data = [Vector2(0, 0), 0.0, 2.0053604, 0, 0, Vector2(0.28074247, 0.8029779), 0.08980836, 0.08980836, 0, 0, Vector2(0.8515081, 0), -2.3614001, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_tpg5x"]
-curve = SubResource("Curve_524rm")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c3xxp"]
-lifetime_randomness = 0.18
-emission_shape_scale = Vector3(1, 0.388, 1)
-emission_shape = 1
-emission_sphere_radius = 1.0
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_tpg5x")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpg5x"]
-albedo_texture = ExtResource("4_tpg5x")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_524rm"]
-material = SubResource("StandardMaterial3D_tpg5x")
-size = Vector2(3, 1.5)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_524rm"]
 radius = 0.5620117
 height = 1.3979492
@@ -254,6 +150,110 @@ graph_offset = Vector2(-18, -7)
 [sub_resource type="SphereShape3D" id="SphereShape3D_tpg5x"]
 radius = 1.5
 
+[sub_resource type="Gradient" id="Gradient_5g0nn"]
+offsets = PackedFloat32Array(0, 0.50127226, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.58431375, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4kuee"]
+gradient = SubResource("Gradient_5g0nn")
+
+[sub_resource type="Curve" id="Curve_qx1uw"]
+_data = [Vector2(0, 0.25229234), 0.0, 6.0662346, 0, 0, Vector2(0.1113689, 0.89886075), -0.017298238, -0.017298238, 0, 0, Vector2(1, 0), -0.07339892, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4kuee"]
+curve = SubResource("Curve_qx1uw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gfjak"]
+lifetime_randomness = 0.67
+particle_flag_rotate_y = true
+emission_shape_offset = Vector3(0, 0.095, 0)
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -39.79999
+angle_max = 81.90001
+gravity = Vector3(0, 0.98, 0)
+scale_min = 0.79999995
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_4kuee")
+color_ramp = SubResource("GradientTexture1D_4kuee")
+turbulence_enabled = true
+turbulence_noise_strength = 1.32
+turbulence_noise_scale = 1.874
+turbulence_noise_speed_random = 1.59
+turbulence_influence_max = 0.18400002
+turbulence_initial_displacement_min = 1.490116e-06
+turbulence_initial_displacement_max = 1.490116e-06
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_524rm"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_gfjak"]
+material = SubResource("StandardMaterial3D_524rm")
+radius = 0.313
+height = 0.253
+radial_segments = 12
+rings = 12
+
+[sub_resource type="Gradient" id="Gradient_gfjak"]
+offsets = PackedFloat32Array(0, 0.50127226, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.58431375, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tpg5x"]
+gradient = SubResource("Gradient_gfjak")
+
+[sub_resource type="Curve" id="Curve_gfjak"]
+_data = [Vector2(0, 0.25229234), 0.0, 6.0662346, 0, 0, Vector2(0.1113689, 0.89886075), -0.017298238, -0.017298238, 0, 0, Vector2(1, 0), -0.07339892, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_c3xxp"]
+curve = SubResource("Curve_gfjak")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4kuee"]
+lifetime_randomness = 0.67
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.05, 0.5)
+angle_min = -39.79999
+angle_max = 81.90001
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 2.6
+gravity = Vector3(0, 0.98, 0)
+scale_min = 0.79999995
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_c3xxp")
+color_ramp = SubResource("GradientTexture1D_tpg5x")
+turbulence_enabled = true
+turbulence_noise_strength = 1.32
+turbulence_noise_scale = 1.874
+turbulence_noise_speed_random = 1.59
+turbulence_influence_max = 0.18400002
+turbulence_initial_displacement_min = 1.490116e-06
+turbulence_initial_displacement_max = 1.490116e-06
+
+[sub_resource type="Curve" id="Curve_524rm"]
+_data = [Vector2(0, 0), 0.0, 2.0053604, 0, 0, Vector2(0.28074247, 0.8029779), 0.08980836, 0.08980836, 0, 0, Vector2(0.8515081, 0), -2.3614001, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_tpg5x"]
+curve = SubResource("Curve_524rm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c3xxp"]
+lifetime_randomness = 0.18
+emission_shape_scale = Vector3(1, 0.388, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_tpg5x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpg5x"]
+albedo_texture = ExtResource("4_tpg5x")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_524rm"]
+material = SubResource("StandardMaterial3D_tpg5x")
+size = Vector2(3, 1.5)
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer") groups=["Player"]]
 collision_layer = 2
 collision_mask = 785
@@ -268,9 +268,9 @@ sprite = NodePath("Visuals/PlayerSprite")
 package_sprite = NodePath("Visuals/PackageSprite")
 aim_ring = NodePath("AimRing")
 package_visualizer = NodePath("PackageVisualizer/PackageVisualizer")
-swear_partiles = NodePath("Particles/SwearingParticle")
-walk_particle_controller = NodePath("Particles/ParticlesWalk")
-fall_particle_controller = NodePath("Particles/ParticlesFall")
+swear_partiles = NodePath("FX/Particles/SwearingParticle")
+walk_particle_controller = NodePath("FX/Particles/ParticlesWalk")
+fall_particle_controller = NodePath("FX/Particles/ParticlesFall")
 package_throw_node = NodePath("PackageThrower")
 package = ExtResource("2_524rm")
 package_pickup_area = NodePath("PackagePickup/Area3D")
@@ -298,38 +298,12 @@ alpha_cut = 1
 texture_filter = 0
 texture = SubResource("ViewportTexture_c3xxp")
 
-[node name="Particles" type="Node3D" parent="."]
-
-[node name="ParticlesWalk" type="GPUParticles3D" parent="Particles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013, 0.25)
-emitting = false
-amount = 32
-lifetime = 1.46
-randomness = 0.28
-process_material = SubResource("ParticleProcessMaterial_gfjak")
-draw_pass_1 = SubResource("SphereMesh_gfjak")
-
-[node name="ParticlesFall" type="GPUParticles3D" parent="Particles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109, 0.398)
-emitting = false
-amount = 16
-lifetime = 0.6
-one_shot = true
-explosiveness = 1.0
-randomness = 0.28
-process_material = SubResource("ParticleProcessMaterial_4kuee")
-draw_pass_1 = SubResource("SphereMesh_gfjak")
-
-[node name="SwearingParticle" type="GPUParticles3D" parent="Particles"]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 1.8479004, 0)
+[node name="PackageVisualizer" type="Node3D" parent="."]
 visible = false
-emitting = false
-amount = 1
-lifetime = 1.52
-one_shot = true
-explosiveness = 0.49
-process_material = SubResource("ParticleProcessMaterial_c3xxp")
-draw_pass_1 = SubResource("PlaneMesh_524rm")
+
+[node name="PackageVisualizer" parent="PackageVisualizer" instance=ExtResource("4_c3xxp")]
+handle_input_locally = false
+audio_listener_enable_3d = true
 
 [node name="AimRing" parent="." instance=ExtResource("3_4kuee")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -377,12 +351,42 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PackagePickup/Area3D"]
 shape = SubResource("SphereShape3D_tpg5x")
 
-[node name="PackageVisualizer" type="Node3D" parent="."]
-visible = false
+[node name="FX" type="Node3D" parent="."]
 
-[node name="PackageVisualizer" parent="PackageVisualizer" instance=ExtResource("4_c3xxp")]
-handle_input_locally = false
-audio_listener_enable_3d = true
+[node name="Particles" type="Node3D" parent="FX"]
+
+[node name="ParticlesWalk" type="GPUParticles3D" parent="FX/Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013, 0.25)
+emitting = false
+amount = 32
+lifetime = 1.46
+randomness = 0.28
+process_material = SubResource("ParticleProcessMaterial_gfjak")
+draw_pass_1 = SubResource("SphereMesh_gfjak")
+
+[node name="ParticlesFall" type="GPUParticles3D" parent="FX/Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109, 0.398)
+emitting = false
+amount = 16
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+randomness = 0.28
+process_material = SubResource("ParticleProcessMaterial_4kuee")
+draw_pass_1 = SubResource("SphereMesh_gfjak")
+
+[node name="SwearingParticle" type="GPUParticles3D" parent="FX/Particles"]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 1.8479004, 0)
+visible = false
+emitting = false
+amount = 1
+lifetime = 1.52
+one_shot = true
+explosiveness = 0.49
+process_material = SubResource("ParticleProcessMaterial_c3xxp")
+draw_pass_1 = SubResource("PlaneMesh_524rm")
+
+[node name="Effects" type="Node" parent="."]
 
 [connection signal="self_hurt" from="HurtBox and Timer/HurtBox" to="." method="on_hurtbox_hit"]
 [connection signal="body_entered" from="PackagePickup/Area3D" to="." method="on_package_body_enter"]
