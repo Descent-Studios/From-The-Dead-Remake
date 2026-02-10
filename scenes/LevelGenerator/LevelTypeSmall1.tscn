@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c0h106u6pf25k"]
+[gd_scene format=3 uid="uid://c0h106u6pf25k"]
 
 [ext_resource type="Script" uid="uid://bu2ggfuoe3pge" path="res://scripts/levelGenerator/level_generator_main.gd" id="1_oqr3d"]
 [ext_resource type="PackedScene" uid="uid://b1gxdup5pu81y" path="res://scenes/Buildings/Haus.tscn" id="2_d8f03"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="13_rj41f"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="14_wahjq"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="15_dyebd"]
+[ext_resource type="PackedScene" uid="uid://dnwipasmim0ns" path="res://scenes/PowerUps/power_up_template.tscn" id="16_wahjq"]
 
 [sub_resource type="Animation" id="Animation_62ule"]
 length = 0.001
@@ -430,7 +431,7 @@ size = Vector3(40, 0.1, 6)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ixlbf"]
 plane = Plane(-1, 0, 0, 0)
 
-[node name="LevelGenerator" type="Node3D" node_paths=PackedStringArray("player_start_pos", "anim_tree", "house_generate_tree", "nagivation_layer")]
+[node name="LevelGenerator" type="Node3D" unique_id=708254743 node_paths=PackedStringArray("player_start_pos", "anim_tree", "house_generate_tree", "nagivation_layer")]
 script = ExtResource("1_oqr3d")
 colors_to_generate = 4
 packages_to_deliver = 15
@@ -440,24 +441,22 @@ house_generate_tree = NodePath("LevelNavigator/HouseSpawnPoints")
 buildings_to_use = Array[PackedScene]([ExtResource("2_d8f03")])
 nagivation_layer = NodePath("LevelNavigator")
 
-[node name="PlayerSpawn" type="Node3D" parent="."]
+[node name="PlayerSpawn" type="Node3D" parent="." unique_id=714105228]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0126715, 0, 2.2707698)
 
-[node name="LevelAnimator" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_gydmk")
-}
+[node name="LevelAnimator" type="AnimationPlayer" parent="." unique_id=626320342]
+libraries/ = SubResource("AnimationLibrary_gydmk")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1417978716]
 deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_e1teq")
 anim_player = NodePath("../LevelAnimator")
 
-[node name="CameraPath" type="Path3D" parent="."]
+[node name="CameraPath" type="Path3D" parent="." unique_id=1537806983]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -10.558252, 14.665135, 14.020136)
 curve = SubResource("Curve3D_dyebd")
 
-[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "follow_path")]
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1115249838 node_paths=PackedStringArray("follow_target", "follow_path")]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 3.4419994, 14.665135, 14.020136)
 top_level = true
 script = ExtResource("13_rj41f")
@@ -475,202 +474,205 @@ look_at_offset = Vector3(0, -2, -2)
 _preview_noise = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="LevelNavigator" type="NavigationRegion3D" parent="."]
+[node name="LevelNavigator" type="NavigationRegion3D" parent="." unique_id=926968664]
 navigation_mesh = SubResource("NavigationMesh_rj41f")
 use_edge_connections = false
 
-[node name="HouseSpawnPoints" type="Node3D" parent="LevelNavigator"]
+[node name="HouseSpawnPoints" type="Node3D" parent="LevelNavigator" unique_id=215849036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
-[node name="SpawnPoint 1" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" groups=["house_spawner_point"]]
+[node name="SpawnPoint 1" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" unique_id=943867482 groups=["house_spawner_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, -7)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 1"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 1" unique_id=737861341]
 mesh = SubResource("CapsuleMesh_7h67l")
 
-[node name="SpawnPoint 2" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" groups=["house_spawner_point"]]
+[node name="SpawnPoint 2" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" unique_id=2013661478 groups=["house_spawner_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0, -7)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 2"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 2" unique_id=1913382493]
 mesh = SubResource("CapsuleMesh_7h67l")
 
-[node name="SpawnPoint 3" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" groups=["house_spawner_point"]]
+[node name="SpawnPoint 3" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" unique_id=1123520478 groups=["house_spawner_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 3"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 3" unique_id=380125837]
 mesh = SubResource("CapsuleMesh_7h67l")
 
-[node name="SpawnPoint 4" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" groups=["house_spawner_point"]]
+[node name="SpawnPoint 4" type="Node3D" parent="LevelNavigator/HouseSpawnPoints" unique_id=619216901 groups=["house_spawner_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 4"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/HouseSpawnPoints/SpawnPoint 4" unique_id=1320992801]
 mesh = SubResource("CapsuleMesh_7h67l")
 
-[node name="Decorations" type="Node3D" parent="LevelNavigator"]
+[node name="Decorations" type="Node3D" parent="LevelNavigator" unique_id=1355204867]
 
-[node name="HurtEx1" parent="LevelNavigator/Decorations" instance=ExtResource("5_rt1vj")]
+[node name="HurtEx1" parent="LevelNavigator/Decorations" unique_id=504317868 instance=ExtResource("5_rt1vj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
-[node name="fireHydrant" parent="LevelNavigator/Decorations" instance=ExtResource("4_rt1vj")]
+[node name="fireHydrant" parent="LevelNavigator/Decorations" unique_id=1640117489 instance=ExtResource("4_rt1vj")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -2, 0, -3.8668532)
 
-[node name="FencePosts" type="Node3D" parent="LevelNavigator/Decorations"]
+[node name="FencePosts" type="Node3D" parent="LevelNavigator/Decorations" unique_id=529919321]
 
-[node name="FencePost" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost" parent="LevelNavigator/Decorations/FencePosts" unique_id=605675062 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -18.3, 0, -11.2)
 
-[node name="FencePost2" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost2" parent="LevelNavigator/Decorations/FencePosts" unique_id=229410682 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14.947235, 0, -11.2)
 
-[node name="FencePost3" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost3" parent="LevelNavigator/Decorations/FencePosts" unique_id=785595955 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -11.599998, 0, -11.2)
 
-[node name="FencePost4" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost4" parent="LevelNavigator/Decorations/FencePosts" unique_id=758364428 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.247234, 0, -11.2)
 
-[node name="FencePost5" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost5" parent="LevelNavigator/Decorations/FencePosts" unique_id=1011956816 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.899999, 0, -11.2)
 
-[node name="FencePost6" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost6" parent="LevelNavigator/Decorations/FencePosts" unique_id=1990751436 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.5472351, 0, -11.2)
 
-[node name="FencePost7" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost7" parent="LevelNavigator/Decorations/FencePosts" unique_id=1716830148 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.8000015, 0, -11.2)
 
-[node name="FencePost8" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost8" parent="LevelNavigator/Decorations/FencePosts" unique_id=930504160 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.1527658, 0, -11.2)
 
-[node name="FencePost9" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost9" parent="LevelNavigator/Decorations/FencePosts" unique_id=1986832852 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.500002, 0, -11.2)
 
-[node name="FencePost10" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost10" parent="LevelNavigator/Decorations/FencePosts" unique_id=1461661695 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 11.852766, 0, -11.2)
 
-[node name="FencePost11" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost11" parent="LevelNavigator/Decorations/FencePosts" unique_id=110347571 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.200003, 0, -11.2)
 
-[node name="FencePost12" parent="LevelNavigator/Decorations/FencePosts" instance=ExtResource("5_ixlbf")]
+[node name="FencePost12" parent="LevelNavigator/Decorations/FencePosts" unique_id=1744415854 instance=ExtResource("5_ixlbf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.552767, 0, -11.2)
 
-[node name="Cars" type="Node3D" parent="LevelNavigator/Decorations"]
+[node name="Cars" type="Node3D" parent="LevelNavigator/Decorations" unique_id=2058525084]
 
-[node name="Car" parent="LevelNavigator/Decorations/Cars" instance=ExtResource("6_ixlbf")]
+[node name="Car" parent="LevelNavigator/Decorations/Cars" unique_id=964286944 instance=ExtResource("6_ixlbf")]
 transform = Transform3D(-0.20876527, 0.94464165, 0.25311595, 4.2221952e-08, 0.25881886, -0.965925, -0.9779657, -0.2016516, -0.054032426, -19.21228, 0.7, -1.045068)
 
-[node name="Car2" parent="LevelNavigator/Decorations/Cars" instance=ExtResource("6_ixlbf")]
-transform = Transform3D(0.808216, 0.56882024, 0.15241472, 4.5332758e-08, 0.25881878, -0.96592504, -0.5888861, 0.78067666, 0.20918132, -18.460476, 0.7, 1.785254)
+[node name="Car2" parent="LevelNavigator/Decorations/Cars" unique_id=306302557 instance=ExtResource("6_ixlbf")]
+transform = Transform3D(0.808216, 0.56882024, 0.15241472, 4.5332758e-08, 0.25881878, -0.96592504, -0.5888861, 0.78067666, 0.20918131, -18.460476, 0.7, 1.785254)
 
-[node name="Car3" parent="LevelNavigator/Decorations/Cars" instance=ExtResource("6_ixlbf")]
-transform = Transform3D(0.9849433, 0, -0.17287458, 0, 0.99999976, 0, 0.1728746, 0, 0.9849432, 16.914558, 0, -3.0514414)
+[node name="Car3" parent="LevelNavigator/Decorations/Cars" unique_id=1443069924 instance=ExtResource("6_ixlbf")]
+transform = Transform3D(0.9849432, 0, -0.17287458, 0, 0.99999976, 0, 0.17287458, 0, 0.9849432, 16.914558, 0, -3.0514414)
 
-[node name="Car4" parent="LevelNavigator/Decorations/Cars" instance=ExtResource("6_ixlbf")]
+[node name="Car4" parent="LevelNavigator/Decorations/Cars" unique_id=19099619 instance=ExtResource("6_ixlbf")]
 transform = Transform3D(0.9669345, 0, -0.2550239, 0, 1, 0, 0.25502387, 0, 0.9669346, 16.938, 0, 3.361)
 
-[node name="Decorative Houses" type="Node3D" parent="LevelNavigator/Decorations"]
+[node name="Decorative Houses" type="Node3D" parent="LevelNavigator/Decorations" unique_id=1965226415]
 
-[node name="Haus1" parent="LevelNavigator/Decorations/Decorative Houses" instance=ExtResource("7_r70oo")]
+[node name="Haus1" parent="LevelNavigator/Decorations/Decorative Houses" unique_id=359465916 instance=ExtResource("7_r70oo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
 packageAcceptorType = -1
 
-[node name="Ground World Node Thing" type="Node3D" parent="LevelNavigator"]
+[node name="Ground World Node Thing" type="Node3D" parent="LevelNavigator" unique_id=1356245063]
 
-[node name="GroundMesh" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing"]
+[node name="GroundMesh" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing" unique_id=1061639900]
 mesh = SubResource("BoxMesh_47btf")
 material = SubResource("StandardMaterial3D_0wq2w")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LevelNavigator/Ground World Node Thing/GroundMesh"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelNavigator/Ground World Node Thing/GroundMesh" unique_id=2065083760]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.046246946, 0)
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelNavigator/Ground World Node Thing/GroundMesh/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelNavigator/Ground World Node Thing/GroundMesh/StaticBody3D" unique_id=2011496988]
 shape = SubResource("WorldBoundaryShape3D_r70oo")
 
-[node name="CurbTop" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+[node name="CurbTop" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing" unique_id=1001835057]
 use_collision = true
 collision_mask = 0
 
-[node name="Curb" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/CurbTop"]
+[node name="Curb" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/CurbTop" unique_id=977192207]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -3.4)
 mesh = SubResource("BoxMesh_oqr3d")
 material = ExtResource("6_d8f03")
 
-[node name="CurbBottom" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+[node name="CurbBottom" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing" unique_id=1864225711]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 use_collision = true
 collision_mask = 0
 
-[node name="Curb" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/CurbBottom"]
+[node name="Curb" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/CurbBottom" unique_id=350758136]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -3.4)
 mesh = SubResource("BoxMesh_oqr3d")
 material = ExtResource("6_d8f03")
 
-[node name="SideWalk" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+[node name="SideWalk" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing" unique_id=90257106]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.680249)
 use_collision = true
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/SideWalk"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/SideWalk" unique_id=512077656]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 mesh = SubResource("BoxMesh_un68p")
 material = ExtResource("7_fsyrm")
 
-[node name="SideWalk2" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+[node name="SideWalk2" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing" unique_id=1192913885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.68)
 use_collision = true
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/SideWalk2"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/SideWalk2" unique_id=1672313183]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 mesh = SubResource("BoxMesh_un68p")
 material = ExtResource("7_fsyrm")
 
-[node name="GrassLayers" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+[node name="GrassLayers" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing" unique_id=2073212195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.4)
 use_collision = true
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers" unique_id=889547361]
 mesh = SubResource("BoxMesh_rt1vj")
 material = ExtResource("8_un68p")
 
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers"]
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers" unique_id=1449146842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.9999995)
 mesh = SubResource("BoxMesh_ixlbf")
 material = ExtResource("8_un68p")
 
-[node name="GrassLayers2" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing"]
+[node name="GrassLayers2" type="CSGCombiner3D" parent="LevelNavigator/Ground World Node Thing" unique_id=1625344535]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 4.4)
 use_collision = true
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers2"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers2" unique_id=1728299368]
 mesh = SubResource("BoxMesh_rt1vj")
 material = ExtResource("8_un68p")
 
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers2"]
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing/GrassLayers2" unique_id=1943458763]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.9999995)
 mesh = SubResource("BoxMesh_ixlbf")
 material = ExtResource("8_un68p")
 
-[node name="World Border" type="StaticBody3D" parent="LevelNavigator"]
+[node name="World Border" type="StaticBody3D" parent="LevelNavigator" unique_id=1734540051]
 collision_layer = 16
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelNavigator/World Border"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelNavigator/World Border" unique_id=1037782658]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_ixlbf")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelNavigator/World Border"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelNavigator/World Border" unique_id=45056801]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 11)
 shape = SubResource("WorldBoundaryShape3D_ixlbf")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="LevelNavigator/World Border"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="LevelNavigator/World Border" unique_id=1086016706]
 transform = Transform3D(-4.371139e-08, -3.821371e-15, 1, -8.742278e-08, 1, 0, -1, -8.742278e-08, -4.371139e-08, 0, 0, -11)
 shape = SubResource("WorldBoundaryShape3D_ixlbf")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="LevelNavigator/World Border"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="LevelNavigator/World Border" unique_id=1818128262]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -20, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_ixlbf")
 
-[node name="Truck" parent="LevelNavigator" instance=ExtResource("12_62ule")]
+[node name="Truck" parent="LevelNavigator" unique_id=1661101094 instance=ExtResource("12_62ule")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.442, 0.523, -0.122)
 
 [node name="TruckModel" parent="LevelNavigator/Truck" index="3"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="PowerUpTemplate" parent="." unique_id=965896996 instance=ExtResource("16_wahjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.204502, 0.2731217, -6.8888063)
 
 [editable path="LevelNavigator/Truck"]

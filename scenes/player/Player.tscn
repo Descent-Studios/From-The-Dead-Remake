@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://div52utmarvlq"]
+[gd_scene format=3 uid="uid://div52utmarvlq"]
 
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/PlayerCharacter/Player.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
@@ -254,7 +254,7 @@ albedo_texture = ExtResource("4_tpg5x")
 material = SubResource("StandardMaterial3D_tpg5x")
 size = Vector2(3, 1.5)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1238192164 node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer") groups=["Player"]]
 collision_layer = 2
 collision_mask = 785
 script = ExtResource("1_spyh3")
@@ -278,18 +278,18 @@ health_max = 5
 invincibility_timer = NodePath("HurtBox and Timer/Invincibilty Timer")
 invincibility_timer_time = 1.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=672565569]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_spyh3")
 
-[node name="Visuals" type="Node3D" parent="."]
+[node name="Visuals" type="Node3D" parent="." unique_id=968676010]
 
-[node name="PlayerSprite" parent="Visuals" instance=ExtResource("3_c3xxp")]
+[node name="PlayerSprite" parent="Visuals" unique_id=2010354215 instance=ExtResource("3_c3xxp")]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.5, 0)
 billboard = 0
 double_sided = true
 
-[node name="PackageSprite" type="Sprite3D" parent="Visuals"]
+[node name="PackageSprite" type="Sprite3D" parent="Visuals" unique_id=1953750412]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -0.34454715, 1.8663707, -1.4044801)
 layers = 4
 gi_mode = 2
@@ -298,64 +298,62 @@ alpha_cut = 1
 texture_filter = 0
 texture = SubResource("ViewportTexture_c3xxp")
 
-[node name="PackageVisualizer" type="Node3D" parent="."]
+[node name="PackageVisualizer" type="Node3D" parent="." unique_id=121386952]
 visible = false
 
-[node name="PackageVisualizer" parent="PackageVisualizer" instance=ExtResource("4_c3xxp")]
+[node name="PackageVisualizer" parent="PackageVisualizer" unique_id=263398952 instance=ExtResource("4_c3xxp")]
 handle_input_locally = false
 audio_listener_enable_3d = true
 
-[node name="AimRing" parent="." instance=ExtResource("3_4kuee")]
+[node name="AimRing" parent="." unique_id=776506583 instance=ExtResource("3_4kuee")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 visible = false
 
-[node name="PackageThrower" type="Node3D" parent="."]
+[node name="PackageThrower" type="Node3D" parent="." unique_id=1606948264]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5292206, 1.2056346, 0.57055664)
 visible = false
 
-[node name="HurtBox and Timer" type="Node3D" parent="."]
+[node name="HurtBox and Timer" type="Node3D" parent="." unique_id=943599554]
 
-[node name="Invincibilty Timer" type="Timer" parent="HurtBox and Timer"]
+[node name="Invincibilty Timer" type="Timer" parent="HurtBox and Timer" unique_id=466843755]
 one_shot = true
 
-[node name="HurtBox" type="Area3D" parent="HurtBox and Timer"]
+[node name="HurtBox" type="Area3D" parent="HurtBox and Timer" unique_id=847490295]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.20898438)
 collision_layer = 32
 collision_mask = 36864
 monitoring = false
 script = ExtResource("6_npwbq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox and Timer/HurtBox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox and Timer/HurtBox" unique_id=1473555900]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3010254, 0)
 shape = SubResource("CapsuleShape3D_524rm")
 debug_color = Color(0.99, 0, 0.23099978, 0.8)
 
-[node name="Hurt Animations" type="AnimationPlayer" parent="HurtBox and Timer"]
-libraries = {
-&"": SubResource("AnimationLibrary_pn6s4")
-}
+[node name="Hurt Animations" type="AnimationPlayer" parent="HurtBox and Timer" unique_id=1806567334]
+libraries/ = SubResource("AnimationLibrary_pn6s4")
 
-[node name="Hurt Anim Tree" type="AnimationTree" parent="HurtBox and Timer"]
+[node name="Hurt Anim Tree" type="AnimationTree" parent="HurtBox and Timer" unique_id=311713607]
 tree_root = SubResource("AnimationNodeStateMachine_2xrq6")
 anim_player = NodePath("../Hurt Animations")
 
-[node name="PackagePickup" type="Node3D" parent="."]
+[node name="PackagePickup" type="Node3D" parent="." unique_id=1367949677]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.21169996)
 visible = false
 
-[node name="Area3D" type="Area3D" parent="PackagePickup"]
+[node name="Area3D" type="Area3D" parent="PackagePickup" unique_id=1247815627]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PackagePickup/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PackagePickup/Area3D" unique_id=1551991375]
 shape = SubResource("SphereShape3D_tpg5x")
 
-[node name="FX" type="Node3D" parent="."]
+[node name="FX" type="Node3D" parent="." unique_id=1701149958]
 
-[node name="Particles" type="Node3D" parent="FX"]
+[node name="Particles" type="Node3D" parent="FX" unique_id=2122724016]
 
-[node name="ParticlesWalk" type="GPUParticles3D" parent="FX/Particles"]
+[node name="ParticlesWalk" type="GPUParticles3D" parent="FX/Particles" unique_id=1584002402]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013, 0.25)
 emitting = false
 amount = 32
@@ -364,7 +362,7 @@ randomness = 0.28
 process_material = SubResource("ParticleProcessMaterial_gfjak")
 draw_pass_1 = SubResource("SphereMesh_gfjak")
 
-[node name="ParticlesFall" type="GPUParticles3D" parent="FX/Particles"]
+[node name="ParticlesFall" type="GPUParticles3D" parent="FX/Particles" unique_id=1840197851]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109, 0.398)
 emitting = false
 amount = 16
@@ -375,7 +373,7 @@ randomness = 0.28
 process_material = SubResource("ParticleProcessMaterial_4kuee")
 draw_pass_1 = SubResource("SphereMesh_gfjak")
 
-[node name="SwearingParticle" type="GPUParticles3D" parent="FX/Particles"]
+[node name="SwearingParticle" type="GPUParticles3D" parent="FX/Particles" unique_id=532244944]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 1.8479004, 0)
 visible = false
 emitting = false
@@ -386,7 +384,7 @@ explosiveness = 0.49
 process_material = SubResource("ParticleProcessMaterial_c3xxp")
 draw_pass_1 = SubResource("PlaneMesh_524rm")
 
-[node name="Effects" type="Node" parent="."]
+[node name="Effects" type="Node" parent="." unique_id=1147804518]
 
 [connection signal="self_hurt" from="HurtBox and Timer/HurtBox" to="." method="on_hurtbox_hit"]
 [connection signal="body_entered" from="PackagePickup/Area3D" to="." method="on_package_body_enter"]

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dnwipasmim0ns"]
+
+[ext_resource type="Script" uid="uid://b1oe0hkkmttpc" path="res://scripts/resources/powerup.gd" id="1_3em68"]
+[ext_resource type="Script" uid="uid://bylql6jlovm4j" path="res://scripts/resources/powerup_resource.gd" id="2_l40to"]
+
+[sub_resource type="Resource" id="Resource_evspj"]
+script = ExtResource("2_l40to")
+metadata/_custom_type_script = "uid://bylql6jlovm4j"
+
+[sub_resource type="SphereMesh" id="SphereMesh_l40to"]
+radial_segments = 4
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evspj"]
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+disable_specular_occlusion = true
+emission_enabled = true
+emission = Color(0.8812269, 0.6471961, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3em68"]
+radius = 1.0
+
+[node name="PowerUpTemplate" type="Node3D" unique_id=965896996]
+script = ExtResource("1_3em68")
+powerup_resource = SubResource("Resource_evspj")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=1280088461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_l40to")
+material = SubResource("StandardMaterial3D_evspj")
+
+[node name="PickupCollision" type="Area3D" parent="." unique_id=1390230415]
+collision_layer = 8192
+collision_mask = 2
+monitorable = false
+priority = -1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupCollision" unique_id=2068062099]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_3em68")
+debug_color = Color(1.8289685e-06, 0.6409504, 0.34685358, 0.41960785)
+
+[connection signal="body_entered" from="PickupCollision" to="." method="_on_pickup_collision_body_entered"]

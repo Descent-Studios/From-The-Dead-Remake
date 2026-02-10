@@ -1,21 +1,13 @@
 extends Node
+class_name PowerUp
 
-@export var time_active : float = 1.0
+@export var powerup_resource : PowerUp_Resource
 
-@export var speed_effect : float = 1.0
-## Do you want the new effect value to multiply or override?
-@export var speed_override : bool = false
-@export var acceleration_effect : float = 1.0
-## Do you want the new effect value to multiply or override?
-@export var acceleration_override : bool = false
-@export var deceleration_effect : float = 1.0
-## Do you want the new effect value to multiply or override?
-@export var deceleration_override : bool = false
-
-@export var sprite_override : AnimatedSprite3D
-
-@export var throw_force_multiplier : float = 1.0
-
-@export var package_pickup_radius_multiplier : float = 1.0
-
-@export var knockback_force_effect : float = 1.0
+func _on_pickup_collision_body_entered(body : Player):
+	if body: #which it should be...
+		print_debug("Sending powerup data to player")
+		var powerup_consumed : bool = await body.add_powerup(powerup_resource)
+		if powerup_consumed:
+			self.queue_free()
+			
+	pass # Replace with function body.

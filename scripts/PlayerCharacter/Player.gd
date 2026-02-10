@@ -29,9 +29,6 @@ var ride_height : float
 var spring_strength : float
 var spring_dampner : float
 
-#@export_group("Package Settings")
-#@export var package_list : Array[PackedScene]
-
 @export_group("Package Throwing")
 @export var package_throw_node : Node3D
 @export var package : PackedScene
@@ -56,7 +53,17 @@ var should_check_packages := false
 var packages_in_radius : Array[RigidBody3D]
 var closest_package : PackageSmall
 
-
+@export_group("Powerups")
+@export var powerup_array : Array[PowerUp_Resource]
+var speed_effect : float = 1.0
+var speed_override : bool = false
+var accel_effect : float = 1.0
+var accel_override : bool = false
+var decel_effect : float = 1.0
+var decel_override : bool = false
+var throw_effect : float = 1.0
+var pickup_effect : float = 1.0
+var knockback_effect : float = 1.0
 
 @export_group("Player Health Settings")
 @export var health_max : int
@@ -67,8 +74,6 @@ var cur_health : int
 var is_invulnerable := true
 
 
-# Priv Inventory 
-## Vector2(Package Type, Color from GameManager.Color
 @export var package_inventory : Array[Vector2i]
 
 # Priv animation params
@@ -162,19 +167,51 @@ func update_input_mkb(_delta) -> void:
 	var dir = (transform.basis * Vector3(input_dir.x,0,input_dir.y)).normalized()
 	var wanted_vel := velocity
 	if dir:
-		wanted_vel.x = lerp(wanted_vel.x, dir.x * speed, acceleration)
-		wanted_vel.z = lerp(wanted_vel.z, dir.z * speed, acceleration)
+		wanted_vel.x = lerp(wanted_vel.x, dir.x * speed * speed_effect, acceleration * accel_effect)
+		wanted_vel.z = lerp(wanted_vel.z, dir.z * speed * speed_effect, acceleration * accel_effect)
 		walk_particle_controller.set_emitting(should_emit_particles_override)
 		#wanted_vel.x = dir.x * speed
 		#wanted_vel.z = dir.z * speed
 		
 	else:
-		wanted_vel.x = move_toward(wanted_vel.x, 0, deceleration)
-		wanted_vel.z = move_toward(wanted_vel.z, 0, deceleration)
+		wanted_vel.x = move_toward(wanted_vel.x, 0, deceleration * decel_effect)
+		wanted_vel.z = move_toward(wanted_vel.z, 0, deceleration * decel_effect)
 	#var speed_vector = Vector3(speed,velocity.y,speed)
 	#wanted_vel.clamp(-speed_vector, speed_vector)
 	velocity = wanted_vel
-	
+
+#region Powerup updates
+func add_powerup(powerup : PowerUp_Resource):
+	print_debug("recieved powerup data")
+	if powerup:
+		var powerup_instance = powerup
+		print_debug("instancing powerup data and applying...", "\n" , powerup_instance)
+		speed_effect += powerup_instance.speed_effect
+		accel_effect += powerup_instance.acceleration_effect
+		decel_effect += powerup_instance.deceleration_effect
+		throw_effect += powerup_instance.throw_force_multiplier
+		pickup_effect += powerup_instance.package_pickup_radius_multiplier
+		knockback_effect += powerup_instance.knockback_force_effect
+		powerup_array.append(powerup_instance)
+		
+		if powerup_instance.time_active > 0.0:
+			print_debug("Setting decay timer for powerup for ", powerup_instance.time_active , " seconds")
+			get_tree().create_timer(powerup_instance.time_active).timeout.connect(remove_powerup.bind(powerup_instance))
+		
+		return true
+	return false
+			
+func remove_powerup(powerup_instance : PowerUp_Resource):
+	print_debug("removing powerup effects for instance : ", powerup_instance)
+	if powerup_instance:
+		speed_effect -= powerup_instance.speed_effect
+		accel_effect -= powerup_instance.acceleration_effect
+		decel_effect -= powerup_instance.deceleration_effect
+		throw_effect -= powerup_instance.throw_force_multiplier
+		pickup_effect -= powerup_instance.package_pickup_radius_multiplier
+		knockback_effect -= powerup_instance.knockback_force_effect
+		powerup_array.erase(powerup_instance)
+
 func update_player_input():
 	
 	#region Throw package
@@ -226,7 +263,7 @@ func throw_package(towards : Vector3):
 	package_instance.freeze = false
 	package_instance.set_in_air(true)
 	package_instance.linear_velocity = velocity
-	package_instance.apply_impulse(towards * throw_force)
+	package_instance.apply_impulse(towards * throw_force * throw_effect)
 	package_created = false
 	pass
 

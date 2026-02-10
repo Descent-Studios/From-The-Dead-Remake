@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8hp3due050ik"]
+[gd_scene format=3 uid="uid://c8hp3due050ik"]
 
 [ext_resource type="Shader" uid="uid://cvv20gbi8qk4i" path="res://shaders/subpixel.gdshader" id="1_8r7t2"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_tve3b"]
@@ -47,35 +47,35 @@ reflected_light_source = 1
 tonemap_mode = 4
 tonemap_exposure = 2.0
 
-[node name="World" type="Node3D"]
+[node name="World" type="Node3D" unique_id=1855958335]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 14.142136, 14.142136)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=854686484]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 3.4419994, 14.665135, 14.020136)
 projection = 1
 size = 10.0
 
-[node name="SubPixel" type="MeshInstance3D" parent="Camera3D"]
+[node name="SubPixel" type="MeshInstance3D" parent="Camera3D" unique_id=1215758485]
 visible = false
 cast_shadow = 0
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_wg7ke")
 surface_material_override/0 = SubResource("ShaderMaterial_pcxry")
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=463163970]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("2_tve3b")
 host_layers = 3
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="Player" parent="." instance=ExtResource("3_7jinb")]
+[node name="Player" parent="." unique_id=2080098024 instance=ExtResource("3_7jinb")]
 visible = false
 speed = 10.0
 acceleration = 0.15
 deceleration = 0.5
 throw_force = 100.0
 
-[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1133268526 node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 14.142136, 14.142136)
 top_level = true
 script = ExtResource("4_gydmk")
@@ -92,10 +92,10 @@ look_at_offset = Vector3(0, -2, -2)
 _preview_noise = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1679120328]
 environment = SubResource("Environment_1vy8g")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1551856386]
 transform = Transform3D(0.66446286, 0.7071067, 0.24184476, -0.34202012, -1.4950174e-08, 0.93969256, 0.664463, -0.7071067, 0.24184476, 0, 12.996275, 0)
 layers = 7
 light_color = Color(0.95, 0.88444996, 0.73149997, 1)
@@ -105,11 +105,11 @@ directional_shadow_split_1 = 0.008
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 200.0
 
-[node name="LevelGenerator" parent="." instance=ExtResource("9_8r7t2")]
+[node name="LevelGenerator" parent="." unique_id=1556118333 instance=ExtResource("9_8r7t2")]
 
-[node name="NPCS" type="Node" parent="."]
+[node name="NPCS" type="Node" parent="." unique_id=227605832]
 
-[node name="Zombies" type="Node" parent="NPCS"]
+[node name="Zombies" type="Node" parent="NPCS" unique_id=1796846346]
 
-[node name="Zombie" parent="NPCS/Zombies" instance=ExtResource("9_tve3b")]
+[node name="Zombie" parent="NPCS/Zombies" unique_id=2058604282 instance=ExtResource("9_tve3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.88, 0, 6.847118)
