@@ -197,6 +197,8 @@ func add_powerup(powerup : PowerUp_Resource):
 		if powerup_instance.time_active > 0.0:
 			print_debug("Setting decay timer for powerup for ", powerup_instance.time_active , " seconds")
 			get_tree().create_timer(powerup_instance.time_active).timeout.connect(remove_powerup.bind(powerup_instance))
+		else : 
+			print_debug("Permanent upgrade set")
 		
 		return true
 	return false

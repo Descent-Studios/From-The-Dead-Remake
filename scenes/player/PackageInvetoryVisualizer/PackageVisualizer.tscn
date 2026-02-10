@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://buy1qgroisfwh"]
+[gd_scene format=3 uid="uid://buy1qgroisfwh"]
 
 [ext_resource type="Script" uid="uid://bok83i5aljfn2" path="res://scripts/packages/package_visualizer.gd" id="1_pnbhj"]
 
@@ -65,7 +65,7 @@ states/bob/position = Vector2(583.99994, 101.333336)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_ly1rs"), "RESET", "bob", SubResource("AnimationNodeStateMachineTransition_dk1k0"), "bob", "RESET", SubResource("AnimationNodeStateMachineTransition_iiy7s")]
 graph_offset = Vector2(-360, -66)
 
-[node name="PackageVisualizer" type="SubViewport" node_paths=PackedStringArray("hole", "animation_tree", "package_spawn_pos")]
+[node name="PackageVisualizer" type="SubViewport" unique_id=1232988155 node_paths=PackedStringArray("hole", "animation_tree", "package_spawn_pos")]
 transparent_bg = true
 gui_disable_input = true
 size = Vector2i(120, 512)
@@ -75,36 +75,34 @@ hole = NodePath("Hole")
 animation_tree = NodePath("AnimationTree")
 package_spawn_pos = NodePath("Hole/PackageSpawnPos")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=571925191]
 transform = Transform3D(1, 0, 0, 0, 0.9774122, 0.21134186, 0, -0.21134186, 0.9774122, 0, 52.415222, 1.5545044)
 cull_mask = 4
 projection = 1
 size = 4.754404
 
-[node name="Hole" type="Node3D" parent="."]
+[node name="Hole" type="Node3D" parent="." unique_id=664901252]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 0, 50, 0)
 
-[node name="AnimatableBody" type="AnimatableBody3D" parent="Hole"]
+[node name="AnimatableBody" type="AnimatableBody3D" parent="Hole" unique_id=112381207]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09700012, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hole/AnimatableBody"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hole/AnimatableBody" unique_id=1709035592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("BoxShape3D_iiy7s")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Hole/AnimatableBody"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Hole/AnimatableBody" unique_id=1917370596]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1969986, 0)
 visible = false
 layers = 5
 size = Vector3(1, 0.2, 1)
 
-[node name="PackageSpawnPos" type="Node3D" parent="Hole"]
+[node name="PackageSpawnPos" type="Node3D" parent="Hole" unique_id=74769507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70000076, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_pnbhj")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1978771833]
+libraries/ = SubResource("AnimationLibrary_pnbhj")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1970939551]
 tree_root = SubResource("AnimationNodeStateMachine_ly1rs")
 anim_player = NodePath("../AnimationPlayer")

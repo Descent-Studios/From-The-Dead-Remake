@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cypf2c753bon1"]
+[gd_scene format=3 uid="uid://cypf2c753bon1"]
 
 [ext_resource type="PackedScene" uid="uid://c8hp3due050ik" path="res://scenes/Game/world.tscn" id="1_21h3k"]
 [ext_resource type="Theme" uid="uid://rqqina6b204y" path="res://textures/Themes/MainScreenTheme.tres" id="2_443qg"]
 
-[node name="Main Screen" type="Control"]
+[node name="Main Screen" type="Control" unique_id=596565771]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1364886124]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -24,43 +24,44 @@ grow_vertical = 2
 stretch = true
 stretch_shrink = 5
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1810684706]
 handle_input_locally = false
 audio_listener_enable_3d = true
 size = Vector2i(384, 216)
 render_target_update_mode = 4
 
-[node name="World" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_21h3k")]
+[node name="World" parent="SubViewportContainer/SubViewport" unique_id=873087221 instance=ExtResource("1_21h3k")]
 
-[node name="GameUI" type="Control" parent="."]
+[node name="GameUI" type="Control" parent="." unique_id=1232151416]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("2_443qg")
 
-[node name="PanelContainer" type="PanelContainer" parent="GameUI"]
+[node name="PanelContainer" type="PanelContainer" parent="GameUI" unique_id=85580662]
 layout_mode = 0
 offset_right = 726.0
 offset_bottom = 88.0
 
-[node name="MarginContainer" type="MarginContainer" parent="GameUI/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GameUI/PanelContainer" unique_id=1424420323]
 layout_mode = 2
 theme = ExtResource("2_443qg")
 
-[node name="Container" type="VBoxContainer" parent="GameUI/PanelContainer/MarginContainer"]
+[node name="Container" type="VBoxContainer" parent="GameUI/PanelContainer/MarginContainer" unique_id=1460013438]
 layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameUI/PanelContainer/MarginContainer/Container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameUI/PanelContainer/MarginContainer/Container" unique_id=1664262960]
 layout_mode = 2
 
-[node name="Health" type="Label" parent="GameUI/PanelContainer/MarginContainer/Container/HBoxContainer"]
+[node name="Health" type="Label" parent="GameUI/PanelContainer/MarginContainer/Container/HBoxContainer" unique_id=840964441]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = " Rage : "
 
-[node name="ProgressBar" type="ProgressBar" parent="GameUI/PanelContainer/MarginContainer/Container/HBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="GameUI/PanelContainer/MarginContainer/Container/HBoxContainer" unique_id=1162576402]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -71,6 +72,6 @@ rounded = true
 allow_greater = true
 show_percentage = false
 
-[node name="WhiteSpace" type="Label" parent="GameUI/PanelContainer/MarginContainer/Container/HBoxContainer"]
+[node name="WhiteSpace" type="Label" parent="GameUI/PanelContainer/MarginContainer/Container/HBoxContainer" unique_id=225002724]
 layout_mode = 2
 text = " "

@@ -3,6 +3,7 @@ class_name LevelGenerator
 
 
 @export_group("Level Info")
+@export var debug_mode := false
 @export var colors_to_generate : int = 1
 @export var packages_to_deliver : int = 1
 @export var player_start_pos : Node3D
@@ -82,4 +83,8 @@ func generate_nav():
 
 func start_level():
 	# Start level animation after everything has been loaded properly
-	anim_state.travel("level_start")
+	if debug_mode : 
+		call_player_drop()
+		$LevelNavigator/Truck/TrcukAnimator.play("open door_2")
+	else:
+		anim_state.travel("level_start")

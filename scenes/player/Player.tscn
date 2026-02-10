@@ -299,7 +299,6 @@ texture_filter = 0
 texture = SubResource("ViewportTexture_c3xxp")
 
 [node name="PackageVisualizer" type="Node3D" parent="." unique_id=121386952]
-visible = false
 
 [node name="PackageVisualizer" parent="PackageVisualizer" unique_id=263398952 instance=ExtResource("4_c3xxp")]
 handle_input_locally = false

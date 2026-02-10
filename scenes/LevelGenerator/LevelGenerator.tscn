@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddxdn1ak02saj"]
+[gd_scene format=3 uid="uid://ddxdn1ak02saj"]
 
 [ext_resource type="Texture2D" uid="uid://cnh2w7yf5asxt" path="res://textures/Neighborhoods/test_road_1.png" id="1_7h67l"]
 [ext_resource type="Script" uid="uid://bu2ggfuoe3pge" path="res://scripts/levelGenerator/level_generator_main.gd" id="1_n12v3"]
@@ -20,43 +20,43 @@ size = Vector3(33, 0.1, 22)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7h67l"]
 
-[node name="LevelGenerator" type="Node3D"]
+[node name="LevelGenerator" type="Node3D" unique_id=599409289]
 script = ExtResource("1_n12v3")
 buildings_to_use = Array[PackedScene]([ExtResource("3_47btf"), ExtResource("2_pp82p")])
 
-[node name="GroundMesh" type="CSGMesh3D" parent="."]
+[node name="GroundMesh" type="CSGMesh3D" parent="." unique_id=612744572]
 mesh = SubResource("BoxMesh_47btf")
 material = SubResource("StandardMaterial3D_0wq2w")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="GroundMesh"]
+[node name="StaticBody3D" type="StaticBody3D" parent="GroundMesh" unique_id=1507608434]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.046246946, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundMesh/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundMesh/StaticBody3D" unique_id=2038286854]
 shape = SubResource("BoxShape3D_ttdbx")
 
-[node name="HurtEx1" parent="." instance=ExtResource("3_c8dm0")]
+[node name="HurtEx1" parent="." unique_id=1386922681 instance=ExtResource("3_c8dm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
-[node name="SpawnPoint 1" type="Node3D" parent="." groups=["house_spawner_point"]]
+[node name="SpawnPoint 1" type="Node3D" parent="." unique_id=1787928013 groups=["house_spawner_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, -7)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="SpawnPoint 1"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SpawnPoint 1" unique_id=1456606811]
 mesh = SubResource("CapsuleMesh_7h67l")
 
-[node name="SpawnPoint 2" type="Node3D" parent="." groups=["house_spawner_point"]]
+[node name="SpawnPoint 2" type="Node3D" parent="." unique_id=1760971991 groups=["house_spawner_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0, -7)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="SpawnPoint 2"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SpawnPoint 2" unique_id=1031811989]
 mesh = SubResource("CapsuleMesh_7h67l")
 
-[node name="SpawnPoint 3" type="Node3D" parent="." groups=["house_spawner_point"]]
+[node name="SpawnPoint 3" type="Node3D" parent="." unique_id=1002390608 groups=["house_spawner_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="SpawnPoint 3"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SpawnPoint 3" unique_id=631659250]
 mesh = SubResource("CapsuleMesh_7h67l")
 
-[node name="SpawnPoint 4" type="Node3D" parent="." groups=["house_spawner_point"]]
+[node name="SpawnPoint 4" type="Node3D" parent="." unique_id=1215862458 groups=["house_spawner_point"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="SpawnPoint 4"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SpawnPoint 4" unique_id=1198737180]
 mesh = SubResource("CapsuleMesh_7h67l")
