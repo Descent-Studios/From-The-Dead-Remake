@@ -110,7 +110,6 @@ func initiate(spawnPos : Vector3 = Vector3.ZERO):
 func _process(_delta):
 	if can_move :
 		update_player_input()
-	#print(cur_health)
 	
 	pass
 

@@ -1,0 +1,364 @@
+[gd_scene format=3 uid="uid://cpp8e4mvdlixm"]
+
+[ext_resource type="Theme" uid="uid://c0yakm4bjodxa" path="res://UI/generalTheme.res" id="1_btr2c"]
+[ext_resource type="Script" uid="uid://bjhfrk0ype2l" path="res://UI/scripts/pause_screen.gd" id="2_5ssfw"]
+[ext_resource type="Script" uid="uid://i4jxoyrcy1m1" path="res://UI/scripts/settings_container.gd" id="2_eaots"]
+[ext_resource type="Script" uid="uid://b53a61ydkeqm6" path="res://UI/scripts/main_pause_menu.gd" id="3_btr2c"]
+[ext_resource type="Script" uid="uid://cc8icgthe8efp" path="res://UI/scripts/audio_settings.gd" id="4_n358k"]
+
+[node name="Control" type="Control" unique_id=47639227 node_paths=PackedStringArray("mainPauseMenu", "backgroundFade", "settingsContainer")]
+process_mode = 3
+process_priority = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_btr2c")
+script = ExtResource("2_5ssfw")
+mainPauseMenu = NodePath("mainPauseMenu")
+backgroundFade = NodePath("BackgroundFade")
+settingsContainer = NodePath("settingsContainer")
+
+[node name="BackgroundFade" type="ColorRect" parent="." unique_id=1852324760]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.20392157)
+
+[node name="mainPauseMenu" type="PanelContainer" parent="." unique_id=892702060]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -356.0
+offset_top = -120.0
+offset_right = 356.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_btr2c")
+script = ExtResource("3_btr2c")
+
+[node name="HBoxContainer" type="BoxContainer" parent="mainPauseMenu" unique_id=635188709]
+layout_mode = 2
+theme_override_constants/separation = 55
+alignment = 1
+
+[node name="Panel" type="Panel" parent="mainPauseMenu/HBoxContainer" unique_id=1603090702]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Label" type="Label" parent="mainPauseMenu/HBoxContainer/Panel" unique_id=166979743]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -42.5
+offset_right = 34.0
+offset_bottom = -19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level 9-9"
+
+[node name="Label2" type="Label" parent="mainPauseMenu/HBoxContainer/Panel" unique_id=58106429]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = 12.5
+offset_right = 34.0
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Extra text?"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="mainPauseMenu/HBoxContainer" unique_id=1455396002]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_btr2c")
+alignment = 1
+
+[node name="ReusmeButton" type="Button" parent="mainPauseMenu/HBoxContainer/VBoxContainer" unique_id=1270983562]
+layout_mode = 2
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="mainPauseMenu/HBoxContainer/VBoxContainer" unique_id=946189420]
+layout_mode = 2
+text = "Settings"
+
+[node name="Exit Button" type="Button" parent="mainPauseMenu/HBoxContainer/VBoxContainer" unique_id=1674603599]
+layout_mode = 2
+text = "Exit"
+
+[node name="Spacer" type="Panel" parent="mainPauseMenu/HBoxContainer" unique_id=1131624445]
+layout_mode = 2
+
+[node name="settingsContainer" type="PanelContainer" parent="." unique_id=1639563074 node_paths=PackedStringArray("tabContainer")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -118.0
+offset_right = 191.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_eaots")
+tabContainer = NodePath("TabContainer")
+
+[node name="TabContainer" type="TabContainer" parent="settingsContainer" unique_id=1126299765]
+layout_mode = 2
+current_tab = 0
+tab_0/title = "Audio"
+
+[node name="AudioTab" type="HBoxContainer" parent="settingsContainer/TabContainer" unique_id=2095106384]
+layout_mode = 2
+theme_override_constants/separation = 105
+alignment = 1
+script = ExtResource("4_n358k")
+metadata/_tab_index = 0
+metadata/_tab_name = "Audio"
+
+[node name="Audio Controls" type="VBoxContainer" parent="settingsContainer/TabContainer/AudioTab" unique_id=905611806]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Master" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls" unique_id=2102314509]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "Master Volume"
+
+[node name="volumeSlider" type="HSlider" parent="settingsContainer/TabContainer/AudioTab/Audio Controls/Master" unique_id=2047637670]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -5.0
+offset_right = 42.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="#" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls/Master/volumeSlider" unique_id=1931144223]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -13.5
+offset_right = 43.0
+offset_bottom = 9.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFx" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls" unique_id=1844805028]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Sound Effects Volume"
+
+[node name="volumeSlider" type="HSlider" parent="settingsContainer/TabContainer/AudioTab/Audio Controls/SFx" unique_id=468813745]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -5.0
+offset_right = -8.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="#" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls/SFx/volumeSlider" unique_id=1581791877]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -13.0
+offset_right = 43.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="settingsContainer/TabContainer/AudioTab" unique_id=2032746093]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/AudioTab/VBoxContainer2" unique_id=1354930754]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Flavor Text?"
+horizontal_alignment = 1
+
+[node name="Controls" type="HBoxContainer" parent="settingsContainer/TabContainer" unique_id=1421150885]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 105
+alignment = 1
+script = ExtResource("4_n358k")
+metadata/_tab_index = 1
+
+[node name="Audio Controls" type="VBoxContainer" parent="settingsContainer/TabContainer/Controls" unique_id=276519407]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Master" type="Label" parent="settingsContainer/TabContainer/Controls/Audio Controls" unique_id=1802403387]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "Master Volume"
+
+[node name="volumeSlider" type="HSlider" parent="settingsContainer/TabContainer/Controls/Audio Controls/Master" unique_id=476957059]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -5.0
+offset_right = 42.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="#" type="Label" parent="settingsContainer/TabContainer/Controls/Audio Controls/Master/volumeSlider" unique_id=1119927261]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -13.5
+offset_right = 43.0
+offset_bottom = 9.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFx" type="Label" parent="settingsContainer/TabContainer/Controls/Audio Controls" unique_id=693840436]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Sound Effects Volume"
+
+[node name="volumeSlider" type="HSlider" parent="settingsContainer/TabContainer/Controls/Audio Controls/SFx" unique_id=556266458]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -5.0
+offset_right = -8.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="#" type="Label" parent="settingsContainer/TabContainer/Controls/Audio Controls/SFx/volumeSlider" unique_id=941119120]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -13.0
+offset_right = 43.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="settingsContainer/TabContainer/Controls" unique_id=389708711]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/Controls/VBoxContainer2" unique_id=458643775]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Flavor Text?"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="settingsContainer" unique_id=1640026933]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="BackButton" type="Button" parent="settingsContainer/Control" unique_id=774593669]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -25.0
+offset_right = 53.0
+offset_bottom = -2.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+text = "Back..."
+
+[connection signal="on_exit" from="mainPauseMenu" to="." method="on_game_close"]
+[connection signal="on_resume" from="mainPauseMenu" to="." method="on_resume"]
+[connection signal="on_settings" from="mainPauseMenu" to="." method="show_settings"]
+[connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/ReusmeButton" to="mainPauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/SettingsButton" to="mainPauseMenu" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/Exit Button" to="mainPauseMenu" method="_on_exit_button_pressed"]
+[connection signal="on_settings_exit" from="settingsContainer" to="." method="hide_settings"]
+[connection signal="value_changed" from="settingsContainer/TabContainer/AudioTab/Audio Controls/Master/volumeSlider" to="settingsContainer/TabContainer/AudioTab" method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="settingsContainer/TabContainer/AudioTab/Audio Controls/SFx/volumeSlider" to="settingsContainer/TabContainer/AudioTab" method="_on_sfx_volume_slider_value_changed"]
+[connection signal="value_changed" from="settingsContainer/TabContainer/Controls/Audio Controls/Master/volumeSlider" to="settingsContainer/TabContainer/Controls" method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="settingsContainer/TabContainer/Controls/Audio Controls/SFx/volumeSlider" to="settingsContainer/TabContainer/Controls" method="_on_sfx_volume_slider_value_changed"]
+[connection signal="pressed" from="settingsContainer/Control/BackButton" to="settingsContainer" method="_on_back_button_pressed"]
