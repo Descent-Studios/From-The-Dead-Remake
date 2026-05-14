@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d115u0cewkyd2"
+path="res://.godot/imported/SWSH_Airy_02.wav-8ae74476989500ee095a2c684c4f107e.sample"
+
+[deps]
+
+source_file="res://sfx/source files/action/throw/SWSH_Airy_02.wav"
+dest_files=["res://.godot/imported/SWSH_Airy_02.wav-8ae74476989500ee095a2c684c4f107e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,43 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://c1rjb5p7fm1qu"]
+
+[ext_resource type="AudioStream" uid="uid://c7x84j486nj8" path="res://sfx/source files/action/throw/SWSH_Airy_01.wav" id="1_sui40"]
+[ext_resource type="AudioStream" uid="uid://d115u0cewkyd2" path="res://sfx/source files/action/throw/SWSH_Airy_02.wav" id="2_r624s"]
+[ext_resource type="AudioStream" uid="uid://djstrcic8qsat" path="res://sfx/source files/action/throw/SWSH_Racket_01.wav" id="3_jfn7c"]
+[ext_resource type="AudioStream" uid="uid://bokbmmkgnl2uu" path="res://sfx/source files/action/throw/SWSH_Racket_02.wav" id="4_c3eap"]
+[ext_resource type="AudioStream" uid="uid://dpbuqryamkder" path="res://sfx/source files/action/throw/SWSH_Racket_03.wav" id="5_s0r54"]
+[ext_resource type="AudioStream" uid="uid://b7b1c8xaltc40" path="res://sfx/source files/action/throw/SWSH_Racket_04.wav" id="6_8tonj"]
+[ext_resource type="AudioStream" uid="uid://pjqbanvsawb6" path="res://sfx/source files/action/throw/SWSH_Racket_05.wav" id="7_jjiqy"]
+[ext_resource type="AudioStream" uid="uid://cujif3x8jexo5" path="res://sfx/source files/action/throw/SWSH_Airy_03.wav" id="8_tc4ju"]
+[ext_resource type="AudioStream" uid="uid://bfrlakd3ps8nm" path="res://sfx/source files/action/throw/SWSH_Airy_04.wav" id="9_jtdqs"]
+[ext_resource type="AudioStream" uid="uid://jls42e6ow0t" path="res://sfx/source files/action/throw/SWSH_Airy_05.wav" id="10_0gvdq"]
+[ext_resource type="AudioStream" uid="uid://carep2emw0i7u" path="res://sfx/source files/action/throw/SWSH_Bamboo_01.wav" id="11_vvurg"]
+[ext_resource type="AudioStream" uid="uid://dkj7nicpkgq3n" path="res://sfx/source files/action/throw/SWSH_Bamboo_02.wav" id="12_jnseo"]
+[ext_resource type="AudioStream" uid="uid://biurk2pnuktcs" path="res://sfx/source files/action/throw/SWSH_Bamboo_03.wav" id="13_t35oh"]
+[ext_resource type="AudioStream" uid="uid://o2e8kfxxvipt" path="res://sfx/source files/action/throw/SWSH_Bamboo_04.wav" id="14_3qtbc"]
+[ext_resource type="AudioStream" uid="uid://d2cubpvvfs00q" path="res://sfx/source files/action/throw/SWSH_Bamboo_05.wav" id="15_s5nju"]
+
+[resource]
+playback_mode = 1
+random_pitch = 1.0116194
+random_volume_offset_db = 0.35
+streams_count = 15
+stream_0/stream = ExtResource("1_sui40")
+stream_0/weight = 0.0
+stream_1/stream = ExtResource("2_r624s")
+stream_1/weight = 0.0
+stream_2/stream = ExtResource("8_tc4ju")
+stream_2/weight = 0.0
+stream_3/stream = ExtResource("9_jtdqs")
+stream_3/weight = 0.0
+stream_4/stream = ExtResource("10_0gvdq")
+stream_4/weight = 0.0
+stream_5/stream = ExtResource("11_vvurg")
+stream_6/stream = ExtResource("12_jnseo")
+stream_7/stream = ExtResource("13_t35oh")
+stream_8/stream = ExtResource("14_3qtbc")
+stream_9/stream = ExtResource("15_s5nju")
+stream_10/stream = ExtResource("3_jfn7c")
+stream_11/stream = ExtResource("4_c3eap")
+stream_12/stream = ExtResource("5_s0r54")
+stream_13/stream = ExtResource("6_8tonj")
+stream_14/stream = ExtResource("7_jjiqy")

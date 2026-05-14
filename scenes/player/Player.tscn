@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://vhunc8mtgk3w" path="res://textures/swears/fuck.png" id="4_tpg5x"]
 [ext_resource type="Script" uid="uid://dk0bppg8ocnk" path="res://scripts/Hit/generic_hurt.gd" id="6_npwbq"]
 [ext_resource type="AudioStream" uid="uid://c6v8gytx0db10" path="res://sfx/res/concrete_run_random.tres" id="8_v42im"]
+[ext_resource type="AudioStream" uid="uid://c1rjb5p7fm1qu" path="res://sfx/res/throw_package.tres" id="10_7oing"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
 
@@ -104,6 +105,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [24, 26, 29]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"throw_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_tpg5x"]
@@ -502,7 +517,7 @@ albedo_texture = ExtResource("4_tpg5x")
 material = SubResource("StandardMaterial3D_tpg5x")
 size = Vector2(3, 1.5)
 
-[node name="Player" type="CharacterBody3D" unique_id=1238192164 node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "player_step_player", "walk_particle_controller", "fall_particle_controller", "floor_raycast", "package_throw_node", "package_pickup_area", "invincibility_timer") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1238192164 node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "player_step_player", "player_throw_player", "walk_particle_controller", "fall_particle_controller", "floor_raycast", "package_throw_node", "package_pickup_area", "invincibility_timer") groups=["Player"]]
 collision_layer = 2
 collision_mask = 785
 script = ExtResource("1_spyh3")
@@ -520,6 +535,7 @@ swear_partiles = NodePath("FX/Particles/SwearingParticle")
 step_audio_playback_list = Array[AudioStream]([ExtResource("8_v42im"), ExtResource("3_pn6s4")])
 active_audio_playback = ExtResource("8_v42im")
 player_step_player = NodePath("FX/PlayerStep")
+player_throw_player = NodePath("FX/PlayerThrow")
 walk_particle_controller = NodePath("FX/Particles/ParticlesWalk")
 fall_particle_controller = NodePath("FX/Particles/ParticlesFall")
 floor_raycast = NodePath("FloorChecker")
@@ -654,6 +670,17 @@ draw_pass_1 = SubResource("PlaneMesh_524rm")
 [node name="PlayerStep" type="AudioStreamPlayer3D" parent="FX" unique_id=1807159140]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104872376, 0)
 stream = ExtResource("8_v42im")
+volume_db = 10.0
+max_polyphony = 2
+panning_strength = 0.0
+bus = &"SFX"
+
+[node name="PlayerThrow" type="AudioStreamPlayer3D" parent="FX" unique_id=1782595030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+stream = ExtResource("10_7oing")
+volume_db = 10.0
+pitch_scale = 1.21
+max_polyphony = 10
 panning_strength = 0.0
 bus = &"SFX"
 

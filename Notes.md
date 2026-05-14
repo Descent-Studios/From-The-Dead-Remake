@@ -7,7 +7,7 @@ Powerup ideas
 
 Player : 
 - Actual character model [ ]
-- SFX for walking[x], hurting, idle
+- SFX for walking[x], hurting, idle?
 - Implementation of rage and exhaustion 
 	- Rage
 		- Rage increases with level time and hurt damage

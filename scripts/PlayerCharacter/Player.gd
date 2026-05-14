@@ -24,6 +24,7 @@ var sprite_flip_override := false
 @export var step_audio_playback_list : Array[AudioStream]
 @export var active_audio_playback : AudioStream
 @export var player_step_player : AudioStreamPlayer3D
+@export var player_throw_player: AudioStreamPlayer3D
 
 @export_group("Walk Params")
 @export var walk_particle_controller : GPUParticles3D
@@ -257,6 +258,7 @@ func update_player_input():
 		aim_ring.hide()
 		var target_vector = (_mouse_pos - global_position).normalized()
 		throw_package(target_vector)
+		throw_sound()
 		pass
 	#endregion
 	
@@ -399,5 +401,8 @@ func footstep_sound():
 
 func hurt_sound():
 	pass
+
+func throw_sound():
+	player_throw_player.play()
 
 #endregion
