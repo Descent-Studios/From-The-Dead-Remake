@@ -35,6 +35,7 @@ SignalBus="*res://scripts/autoload/signal_bus.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
@@ -48,6 +49,7 @@ folder_colors={
 "res://resources/": "pink",
 "res://scenes/": "purple",
 "res://scripts/": "red",
+"res://sfx/": "orange",
 "res://shaders/": "green",
 "res://textures/": "blue"
 }
@@ -112,6 +114,7 @@ pause={
 3d_physics/layer_12="NPC Damage"
 3d_physics/layer_13="Evil Objects"
 3d_physics/layer_14="powerups"
+3d_physics/layer_15="TerrainFloor"
 3d_physics/layer_16="Player Damage"
 
 [physics]

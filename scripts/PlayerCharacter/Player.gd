@@ -20,14 +20,18 @@ class_name Player
 @export var swear_partiles : GPUParticles3D
 var sprite_flip_override := false
 
+@export_group("Sound effects")
+@export var step_audio_playback_list : Array[AudioStream]
+@export var active_audio_playback : AudioStream
+@export var player_step_player : AudioStreamPlayer3D
+
 @export_group("Walk Params")
 @export var walk_particle_controller : GPUParticles3D
 @export var fall_particle_controller : GPUParticles3D
 @export var can_move : bool = true
-var floor_raycast : RayCast3D
-var ride_height : float
-var spring_strength : float
-var spring_dampner : float
+@export var default_floor_material : GameManager.FLOOR_TYPES
+@export var current_floor_material : GameManager.FLOOR_TYPES
+@export var floor_raycast : RayCast3D
 
 @export_group("Package Throwing")
 @export var package_throw_node : Node3D
@@ -121,6 +125,7 @@ func _physics_process(_delta):
 		if wants_throw : anim_state_machine.travel("throw_walk")
 		else : anim_state_machine.travel("walk")
 		package_visualizer.start_walk()
+		check_ground_type()
 	else:
 		if wants_throw : anim_state_machine.travel("throw_hold")
 		else : anim_state_machine.travel("default")
@@ -178,6 +183,29 @@ func update_input_mkb(_delta) -> void:
 	#var speed_vector = Vector3(speed,velocity.y,speed)
 	#wanted_vel.clamp(-speed_vector, speed_vector)
 	velocity = wanted_vel
+#region ground detection types
+
+func check_ground_type():
+	if !is_on_floor(): return
+	var collider = floor_raycast.get_collider() as StaticBodyFloor3D
+	var result := GameManager.FLOOR_TYPES.DEFAULT
+	if collider and collider.has_method('get_floor_type'):
+		result = collider.get_floor_type()
+	if result != current_floor_material:
+		#print("changing floor audio to " , result as GameManager.FLOOR_TYPES)
+		change_footstep_sound(result)
+
+func change_footstep_sound(floor_type : GameManager.FLOOR_TYPES) -> void:
+	current_floor_material = floor_type
+	if floor_type == GameManager.FLOOR_TYPES.DEFAULT:
+		player_step_player.stream = step_audio_playback_list[default_floor_material]
+	else: 
+		player_step_player.stream = step_audio_playback_list[floor_type]
+
+
+
+#endregion
+
 
 #region Powerup updates
 func add_powerup(powerup : PowerUp_Resource):
@@ -212,6 +240,7 @@ func remove_powerup(powerup_instance : PowerUp_Resource):
 		pickup_effect -= powerup_instance.package_pickup_radius_multiplier
 		knockback_effect -= powerup_instance.knockback_force_effect
 		powerup_array.erase(powerup_instance)
+#endregion
 
 func update_player_input():
 	
@@ -362,4 +391,13 @@ func on_hurtbox_hit(dmg : int = 1, hit_pos : Vector3 = self.global_position, kno
 		var knockback_force = knockback_amt + (knockback_mult * knockback_amt)
 		knockback(hit_pos, knockback_force)
 	pass # Replace with function body.
+#endregion
+
+#region Player sound calls
+func footstep_sound():
+	player_step_player.play()
+
+func hurt_sound():
+	pass
+
 #endregion

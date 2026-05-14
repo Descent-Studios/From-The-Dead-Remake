@@ -20,6 +20,11 @@ enum PackageType {
 	MEDIUM = 2
 }
 
+enum FLOOR_TYPES {
+	CONCRETE = 0,
+	GRASS = 1,
+	DEFAULT = -1
+}
 
 var level_generator : LevelGenerator
 var truck : Truck

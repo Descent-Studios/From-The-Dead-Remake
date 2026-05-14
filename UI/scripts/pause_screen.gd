@@ -18,18 +18,18 @@ func on_pause():
 	
 	is_paused = true
 	get_tree().paused = true
-	self.visible = true
+	self.show()
 	
-	mainPauseMenu.visible = true
-	backgroundFade.visible = true
+	mainPauseMenu.show()
+	backgroundFade.show()
 
 func on_resume():
 	is_paused = false
 	get_tree().paused = false
-	self.visible = false
+	self.hide()
 	
-	mainPauseMenu.visible = false
-	backgroundFade.visible = false
+	mainPauseMenu.hide()
+	backgroundFade.hide()
 	settingsContainer.reset()
 
 func on_game_close():

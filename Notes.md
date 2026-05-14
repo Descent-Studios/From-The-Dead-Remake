@@ -6,8 +6,8 @@ Powerup ideas
 # Road to MVP
 
 Player : 
-- Actual character model 
-- SFX for walking, hurting, idle
+- Actual character model [ ]
+- SFX for walking[x], hurting, idle
 - Implementation of rage and exhaustion 
 	- Rage
 		- Rage increases with level time and hurt damage
@@ -45,11 +45,11 @@ Levels :
 - 5 total variants
 - adaptive zombie spawning
 
-Package Delivery:
-- Color based package delivery 
+Package Delivery: (why not... both?)
+- Color based package delivery [~]
 	- Same as game jam
 	- Houses will only accept a certain amount of packages dependent on level difficulty
-- Crazy taxi based package delivery
+- Crazy taxi based package delivery[ ]
 	- Each package has one dedicated delivery area
 	- Player is given a Crazy Taxi style delivery arrow pointing towards the delivery goal. 
 	- Each delivery area would still have multiple packages at higher difficulties

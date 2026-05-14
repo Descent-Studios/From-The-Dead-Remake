@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cwfof1mp1fyt3"
+path="res://.godot/imported/FOLEYFeet_Leaves_Shoes_Run 10.wav-90c7c0bb2caf526a46556e14fc4efc48.sample"
+
+[deps]
+
+source_file="res://sfx/source files/run/leaves/FOLEYFeet_Leaves_Shoes_Run 10.wav"
+dest_files=["res://.godot/imported/FOLEYFeet_Leaves_Shoes_Run 10.wav-90c7c0bb2caf526a46556e14fc4efc48.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -3,12 +3,260 @@
 [ext_resource type="Script" uid="uid://eqa8rb84kgvt" path="res://scripts/PlayerCharacter/Player.gd" id="1_spyh3"]
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://blhy7c7dcd4fr" path="res://scenes/player/aim_ring.tscn" id="3_4kuee"]
-[ext_resource type="PackedScene" uid="uid://c5kyea1dj7ulu" path="res://scenes/player/PlayerSpriteGodotTexture.tscn" id="3_c3xxp"]
+[ext_resource type="AudioStream" uid="uid://cog70uj8iisdl" path="res://sfx/res/gravel_run_random.tres" id="3_pn6s4"]
+[ext_resource type="Texture2D" uid="uid://g473t1pf6aee" path="res://textures/Player/PlayerSprites/sprite_sheet.png" id="3_v42im"]
 [ext_resource type="PackedScene" uid="uid://buy1qgroisfwh" path="res://scenes/player/PackageInvetoryVisualizer/PackageVisualizer.tscn" id="4_c3xxp"]
 [ext_resource type="Texture2D" uid="uid://vhunc8mtgk3w" path="res://textures/swears/fuck.png" id="4_tpg5x"]
 [ext_resource type="Script" uid="uid://dk0bppg8ocnk" path="res://scripts/Hit/generic_hurt.gd" id="6_npwbq"]
+[ext_resource type="AudioStream" uid="uid://c6v8gytx0db10" path="res://sfx/res/concrete_run_random.tres" id="8_v42im"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_spyh3"]
+
+[sub_resource type="Animation" id="Animation_4kuee"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5stf6"]
+resource_name = "dead_anim"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.26666668, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 7, 8, 11]
+}
+
+[sub_resource type="Animation" id="Animation_524rm"]
+resource_name = "idle_anim"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_180ig"]
+resource_name = "pickup"
+length = 0.20000334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.16666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 15, 17, 20, 22, 23]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.06666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"kill_nearest_package"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_npwbq"]
+resource_name = "throw_anim"
+length = 0.26667002
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.099999994),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [24, 26, 29]
+}
+
+[sub_resource type="Animation" id="Animation_tpg5x"]
+resource_name = "throw_hold"
+length = 0.03333667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [36]
+}
+
+[sub_resource type="Animation" id="Animation_c3xxp"]
+resource_name = "throw_walk"
+length = 0.40000334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.20000002, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [36, 38, 41, 44, 47]
+}
+
+[sub_resource type="Animation" id="Animation_gfjak"]
+resource_name = "walk_anim"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [48, 50, 53, 56, 59]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"footstep_sound"
+}, {
+"args": [],
+"method": &"footstep_sound"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_524rm"]
+_data = {
+&"RESET": SubResource("Animation_4kuee"),
+&"dead_anim": SubResource("Animation_5stf6"),
+&"idle_anim": SubResource("Animation_524rm"),
+&"pickup": SubResource("Animation_180ig"),
+&"throw_anim": SubResource("Animation_npwbq"),
+&"throw_hold": SubResource("Animation_tpg5x"),
+&"throw_walk": SubResource("Animation_c3xxp"),
+&"walk_anim": SubResource("Animation_gfjak")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pn6s4"]
+animation = &"dead_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gfjak"]
+animation = &"idle_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7oing"]
+animation = &"pickup"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c3xxp"]
+animation = &"throw_anim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_524rm"]
+animation = &"throw_hold"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tpg5x"]
+animation = &"throw_walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4kuee"]
+animation = &"walk_anim"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_524rm"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tpg5x"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c3xxp"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_npwbq"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pn6s4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5stf6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_180ig"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v42im"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7oing"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_20koh"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ov1oi"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2xrq6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pi3ps"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kswpp"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_npwbq"]
+states/End/position = Vector2(1210, 154.66667)
+states/dead/node = SubResource("AnimationNodeAnimation_pn6s4")
+states/dead/position = Vector2(357.8889, -26.666662)
+states/default/node = SubResource("AnimationNodeAnimation_gfjak")
+states/default/position = Vector2(358, 102.33333)
+states/pickup/node = SubResource("AnimationNodeAnimation_7oing")
+states/pickup/position = Vector2(357.03705, 229)
+states/throw_anim/node = SubResource("AnimationNodeAnimation_c3xxp")
+states/throw_anim/position = Vector2(590.6666, 114.93415)
+states/throw_hold/node = SubResource("AnimationNodeAnimation_524rm")
+states/throw_hold/position = Vector2(577.6667, 332.99997)
+states/throw_walk/node = SubResource("AnimationNodeAnimation_tpg5x")
+states/throw_walk/position = Vector2(840.99994, 114.88203)
+states/walk/node = SubResource("AnimationNodeAnimation_4kuee")
+states/walk/position = Vector2(601.3334, -53.66667)
+transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_524rm"), "default", "walk", SubResource("AnimationNodeStateMachineTransition_tpg5x"), "walk", "default", SubResource("AnimationNodeStateMachineTransition_c3xxp"), "walk", "throw_walk", SubResource("AnimationNodeStateMachineTransition_npwbq"), "default", "throw_hold", SubResource("AnimationNodeStateMachineTransition_pn6s4"), "throw_walk", "throw_hold", SubResource("AnimationNodeStateMachineTransition_5stf6"), "throw_hold", "throw_walk", SubResource("AnimationNodeStateMachineTransition_180ig"), "throw_hold", "throw_anim", SubResource("AnimationNodeStateMachineTransition_v42im"), "throw_walk", "throw_anim", SubResource("AnimationNodeStateMachineTransition_7oing"), "throw_anim", "walk", SubResource("AnimationNodeStateMachineTransition_20koh"), "throw_anim", "default", SubResource("AnimationNodeStateMachineTransition_ov1oi"), "default", "dead", SubResource("AnimationNodeStateMachineTransition_2xrq6"), "default", "pickup", SubResource("AnimationNodeStateMachineTransition_pi3ps"), "pickup", "default", SubResource("AnimationNodeStateMachineTransition_kswpp")]
+graph_offset = Vector2(-342, -186)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_c3xxp"]
 viewport_path = NodePath("PackageVisualizer/PackageVisualizer")
@@ -254,7 +502,7 @@ albedo_texture = ExtResource("4_tpg5x")
 material = SubResource("StandardMaterial3D_tpg5x")
 size = Vector2(3, 1.5)
 
-[node name="Player" type="CharacterBody3D" unique_id=1238192164 node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "walk_particle_controller", "fall_particle_controller", "package_throw_node", "package_pickup_area", "invincibility_timer") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1238192164 node_paths=PackedStringArray("anim_player", "anim_tree", "hurt_anim_tree", "sprite", "package_sprite", "aim_ring", "package_visualizer", "swear_partiles", "player_step_player", "walk_particle_controller", "fall_particle_controller", "floor_raycast", "package_throw_node", "package_pickup_area", "invincibility_timer") groups=["Player"]]
 collision_layer = 2
 collision_mask = 785
 script = ExtResource("1_spyh3")
@@ -269,8 +517,12 @@ package_sprite = NodePath("Visuals/PackageSprite")
 aim_ring = NodePath("AimRing")
 package_visualizer = NodePath("PackageVisualizer/PackageVisualizer")
 swear_partiles = NodePath("FX/Particles/SwearingParticle")
+step_audio_playback_list = Array[AudioStream]([ExtResource("8_v42im"), ExtResource("3_pn6s4")])
+active_audio_playback = ExtResource("8_v42im")
+player_step_player = NodePath("FX/PlayerStep")
 walk_particle_controller = NodePath("FX/Particles/ParticlesWalk")
 fall_particle_controller = NodePath("FX/Particles/ParticlesFall")
+floor_raycast = NodePath("FloorChecker")
 package_throw_node = NodePath("PackageThrower")
 package = ExtResource("2_524rm")
 package_pickup_area = NodePath("PackagePickup/Area3D")
@@ -284,10 +536,26 @@ shape = SubResource("SphereShape3D_spyh3")
 
 [node name="Visuals" type="Node3D" parent="." unique_id=968676010]
 
-[node name="PlayerSprite" parent="Visuals" unique_id=2010354215 instance=ExtResource("3_c3xxp")]
+[node name="PlayerSprite" type="Sprite3D" parent="Visuals" unique_id=2010354215]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.5, 0)
-billboard = 0
-double_sided = true
+layers = 2
+gi_mode = 2
+pixel_size = 0.02
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_v42im")
+hframes = 12
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/PlayerSprite" unique_id=2033077983]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_524rm")
+
+[node name="AnimationTree" type="AnimationTree" parent="Visuals/PlayerSprite" unique_id=1132750509]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_npwbq")
+anim_player = NodePath("../AnimationPlayer")
 
 [node name="PackageSprite" type="Sprite3D" parent="Visuals" unique_id=1953750412]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -0.34454715, 1.8663707, -1.4044801)
@@ -383,11 +651,18 @@ explosiveness = 0.49
 process_material = SubResource("ParticleProcessMaterial_c3xxp")
 draw_pass_1 = SubResource("PlaneMesh_524rm")
 
-[node name="Effects" type="Node" parent="." unique_id=1147804518]
+[node name="PlayerStep" type="AudioStreamPlayer3D" parent="FX" unique_id=1807159140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104872376, 0)
+stream = ExtResource("8_v42im")
+panning_strength = 0.0
+bus = &"SFX"
+
+[node name="FloorChecker" type="RayCast3D" parent="." unique_id=842709486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.25)
+collision_mask = 16384
 
 [connection signal="self_hurt" from="HurtBox and Timer/HurtBox" to="." method="on_hurtbox_hit"]
 [connection signal="body_entered" from="PackagePickup/Area3D" to="." method="on_package_body_enter"]
 [connection signal="body_exited" from="PackagePickup/Area3D" to="." method="on_package_body_exit"]
 
-[editable path="Visuals/PlayerSprite"]
 [editable path="PackageVisualizer/PackageVisualizer"]

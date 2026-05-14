@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b5nrltovqhyk3"
+path="res://.godot/imported/FOLEYFeet_CleanConcrete_Sneakers_Run 08.wav-8994212eb30b413be95031fea4b4cc49.sample"
+
+[deps]
+
+source_file="res://sfx/source files/run/concrete/FOLEYFeet_CleanConcrete_Sneakers_Run 08.wav"
+dest_files=["res://.godot/imported/FOLEYFeet_CleanConcrete_Sneakers_Run 08.wav-8994212eb30b413be95031fea4b4cc49.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

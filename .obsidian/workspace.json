@@ -20,18 +20,6 @@
               "icon": "lucide-file",
               "title": "Notes"
             }
-          },
-          {
-            "id": "37677d7febfa9ac9",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.11.5"
-              },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.11.5"
-            }
           }
         ]
       }
@@ -183,18 +171,18 @@
   },
   "active": "a230f1950da5199c",
   "lastOpenFiles": [
-    "scenes/Game/world.tscn478364675.tmp",
-    "scenes/player/Player.tscn476644124.tmp",
-    "scenes/player/Player.tscn370634578.tmp",
-    "scenes/player/Player.tscn352941449.tmp",
-    "scenes/player/AnimatedPlayerSpriteGodotTexture.tscn267987103.tmp",
-    "scenes/player/AnimatedPlayerSpriteGodotTexture.tscn202759560.tmp",
-    "scenes/player/Player.tscn201366007.tmp",
-    "project.godot188989435.tmp",
-    "shaders/sketchSahder.gdshader119709014.tmp",
-    "shaders/seethrough.gdshader119692734.tmp",
-    "shaders/outline.gdshader119675536.tmp",
-    "icon.svg",
-    "Notes.md"
+    "scenes/LevelGenerator/TestLevel.tscn-luei9y",
+    "scenes/LevelGenerator/TestLevel.tscn-HvGwih",
+    "scenes/LevelGenerator/TestLevel.tscn-0iIMMj",
+    "scenes/LevelGenerator/TestLevel.tscn-JXUTam",
+    "scenes/player/Player.tscn-HakXra",
+    "scenes/LevelGenerator/TestLevel.tscn-61yDHG",
+    "scenes/player/Player.tscn-kwTaw3",
+    "scenes/player/Player.tscn-AASsdI",
+    "scenes/player/Player.tscn-f4iTOl",
+    "scenes/player/Player.tscn-WFXWMd",
+    "scenes/player/Player.tscn-Eh0Hlj",
+    "Notes.md",
+    "icon.svg"
   ]
 }

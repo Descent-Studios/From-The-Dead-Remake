@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ble6xf3ht4vk7"
+path="res://.godot/imported/FOLEYFeet_Gravel_Sneakers_Run 02.wav-50f49584145bd8fe3ad74fb264502bda.sample"
+
+[deps]
+
+source_file="res://sfx/source files/run/gravel/FOLEYFeet_Gravel_Sneakers_Run 02.wav"
+dest_files=["res://.godot/imported/FOLEYFeet_Gravel_Sneakers_Run 02.wav-50f49584145bd8fe3ad74fb264502bda.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

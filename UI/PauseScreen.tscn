@@ -31,17 +31,16 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.20392157)
 
 [node name="mainPauseMenu" type="PanelContainer" parent="." unique_id=892702060]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -356.0
-offset_top = -120.0
-offset_right = 356.0
-offset_bottom = 120.0
+offset_left = -482.0
+offset_top = -199.0
+offset_right = 482.0
+offset_bottom = 199.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_btr2c")
@@ -94,14 +93,17 @@ alignment = 1
 
 [node name="ReusmeButton" type="Button" parent="mainPauseMenu/HBoxContainer/VBoxContainer" unique_id=1270983562]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Resume"
 
 [node name="SettingsButton" type="Button" parent="mainPauseMenu/HBoxContainer/VBoxContainer" unique_id=946189420]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Settings"
 
 [node name="Exit Button" type="Button" parent="mainPauseMenu/HBoxContainer/VBoxContainer" unique_id=1674603599]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Exit"
 
 [node name="Spacer" type="Panel" parent="mainPauseMenu/HBoxContainer" unique_id=1131624445]
@@ -115,10 +117,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -191.0
-offset_top = -118.0
-offset_right = 191.0
-offset_bottom = 118.0
+offset_left = -478.39197
+offset_top = -350.0
+offset_right = 478.39197
+offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_eaots")
@@ -126,6 +128,7 @@ tabContainer = NodePath("TabContainer")
 
 [node name="TabContainer" type="TabContainer" parent="settingsContainer" unique_id=1126299765]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 current_tab = 0
 tab_0/title = "Audio"
 
@@ -139,7 +142,7 @@ metadata/_tab_name = "Audio"
 
 [node name="Audio Controls" type="VBoxContainer" parent="settingsContainer/TabContainer/AudioTab" unique_id=905611806]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 
 [node name="Master" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls" unique_id=2102314509]
 layout_mode = 2
@@ -170,37 +173,37 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 1.0
-offset_top = -13.5
-offset_right = 43.0
-offset_bottom = 9.5
+offset_left = 5.0
+offset_top = -21.5
+offset_right = 77.0
+offset_bottom = 17.5
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SFx" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls" unique_id=1844805028]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 1
 text = "Sound Effects Volume"
 
 [node name="volumeSlider" type="HSlider" parent="settingsContainer/TabContainer/AudioTab/Audio Controls/SFx" unique_id=468813745]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = -1
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.702
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -5.0
-offset_right = -8.0
+offset_top = -3.0
+offset_right = 42.063995
 offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 1.0
-step = 0.001
-value = 1.0
+step = 0.01
+value = 0.805
 
 [node name="#" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls/SFx/volumeSlider" unique_id=1581791877]
 layout_mode = 1
@@ -209,13 +212,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 1.0
-offset_top = -13.0
-offset_right = 43.0
-offset_bottom = 10.0
+offset_left = 5.0
+offset_top = -21.0
+offset_right = 77.0
+offset_bottom = 18.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -341,13 +344,12 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 2.0
-offset_top = -25.0
-offset_right = 53.0
+offset_top = -41.0
+offset_right = 88.478264
 offset_bottom = -2.0
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 12
 text = "Back..."
 
 [connection signal="on_exit" from="mainPauseMenu" to="." method="on_game_close"]

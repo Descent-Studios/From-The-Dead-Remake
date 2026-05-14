@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bho36u7mdbm7k" path="res://3d models import/decorations/FencePost.blend" id="8_j8plw"]
 [ext_resource type="PackedScene" uid="uid://dfxwoeusbeh5s" path="res://scenes/Decorative_Assets/Car.tscn" id="9_kgd0m"]
 [ext_resource type="Texture2D" uid="uid://tdkotqkv8lf5" path="res://textures/Vector/texture_08.svg" id="10_ro3el"]
+[ext_resource type="Script" uid="uid://bkitu8qpx2ico" path="res://scripts/levelGenerator/static_body_floor.gd" id="11_et0t7"]
+[ext_resource type="Material" uid="uid://brh8n87wpaq1n" path="res://textures/Neighborhoods/GrassMaterial.tres" id="12_cd1k5"]
 [ext_resource type="Script" uid="uid://bylql6jlovm4j" path="res://scripts/resources/powerup_resource.gd" id="13_gi6dp"]
 [ext_resource type="FontFile" uid="uid://ybpf4u88kpew" path="res://textures/TinyPixie2.ttf" id="14_oakbp"]
 [ext_resource type="PackedScene" uid="uid://7051m57uajg3" path="res://scenes/Truck/truck.tscn" id="15_ua6cp"]
@@ -410,6 +412,12 @@ texture_filter = 2
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_r70oo"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_d7sbl"]
+size = Vector3(4, 0.125, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k445k"]
+size = Vector3(4, 0.125, 4)
+
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ixlbf"]
 plane = Plane(-1, 0, 0, 0)
 
@@ -485,7 +493,7 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70
 curve = SubResource("Curve3D_dyebd")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1115249838 node_paths=PackedStringArray("follow_target", "follow_path")]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -10.558252, 14.665135, 14.020136)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 3.4419994, 14.665135, 14.020136)
 top_level = true
 script = ExtResource("3_k445k")
 priority = 1
@@ -603,10 +611,27 @@ material = SubResource("StandardMaterial3D_0wq2w")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="LevelNavigator/Ground World Node Thing/GroundMesh" unique_id=2065083760]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.046246946, 0)
+collision_layer = 16385
 collision_mask = 0
+script = ExtResource("11_et0t7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelNavigator/Ground World Node Thing/GroundMesh/StaticBody3D" unique_id=2011496988]
 shape = SubResource("WorldBoundaryShape3D_r70oo")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="LevelNavigator/Ground World Node Thing" unique_id=1908279820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.027315497, -23)
+mesh = SubResource("BoxMesh_d7sbl")
+material = ExtResource("12_cd1k5")
+
+[node name="StaticBodyFloor3D" type="StaticBody3D" parent="LevelNavigator/Ground World Node Thing/CSGMesh3D" unique_id=2090761844]
+collision_layer = 16385
+collision_mask = 0
+script = ExtResource("11_et0t7")
+floor_type = 1
+metadata/_custom_type_script = "uid://bkitu8qpx2ico"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelNavigator/Ground World Node Thing/CSGMesh3D/StaticBodyFloor3D" unique_id=1725459349]
+shape = SubResource("BoxShape3D_k445k")
 
 [node name="World Border" type="StaticBody3D" parent="LevelNavigator" unique_id=1734540051]
 collision_layer = 16

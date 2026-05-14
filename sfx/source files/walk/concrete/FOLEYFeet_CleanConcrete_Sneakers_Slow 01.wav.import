@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://divngpuka6lwg"
+path="res://.godot/imported/FOLEYFeet_CleanConcrete_Sneakers_Slow 01.wav-5898df4cb4147317c4302d6786107c95.sample"
+
+[deps]
+
+source_file="res://sfx/source files/walk/concrete/FOLEYFeet_CleanConcrete_Sneakers_Slow 01.wav"
+dest_files=["res://.godot/imported/FOLEYFeet_CleanConcrete_Sneakers_Slow 01.wav-5898df4cb4147317c4302d6786107c95.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

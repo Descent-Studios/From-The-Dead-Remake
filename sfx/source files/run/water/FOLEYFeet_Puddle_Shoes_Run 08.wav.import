@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bosx7v8x53m3q"
+path="res://.godot/imported/FOLEYFeet_Puddle_Shoes_Run 08.wav-5cdfd9f980a3a73e8574fe666d868abb.sample"
+
+[deps]
+
+source_file="res://sfx/source files/run/water/FOLEYFeet_Puddle_Shoes_Run 08.wav"
+dest_files=["res://.godot/imported/FOLEYFeet_Puddle_Shoes_Run 08.wav-5cdfd9f980a3a73e8574fe666d868abb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
