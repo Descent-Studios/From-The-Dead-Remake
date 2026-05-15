@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Notes"
+              "title": "README"
             }
           }
         ]
@@ -171,17 +171,23 @@
   },
   "active": "a230f1950da5199c",
   "lastOpenFiles": [
-    "3d models import/player character blend files/test_godot_char.blend@",
-    "3d models import/player character blend files/test_godot_char.blend1",
-    "scenes/LevelGenerator/TestLevel.tscn-luei9y",
-    "scenes/LevelGenerator/TestLevel.tscn-HvGwih",
-    "scenes/LevelGenerator/TestLevel.tscn-0iIMMj",
-    "scenes/LevelGenerator/TestLevel.tscn-JXUTam",
-    "scenes/player/Player.tscn-HakXra",
-    "scenes/LevelGenerator/TestLevel.tscn-61yDHG",
-    "scenes/player/Player.tscn-kwTaw3",
-    "scenes/player/Player.tscn-AASsdI",
-    "scenes/player/Player.tscn-f4iTOl",
+    "docs/Pasted image 20260514180856.png",
+    "textures/Player/alpha_mask_clean.png",
+    "textures/Player/PlayerSprites/alpha_mask_clean.png",
+    "README.md",
+    "3d models import/player character blend files/char_template.blend@",
+    "scenes/player/Player.tscn-4ZoVel",
+    "textures/Player/PlayerSprites/slobby_dude.png.import",
+    "textures/Player/PlayerSprites/slobby_dude.png",
+    "textures/Player/PlayerSprites/sprite_sheet_7.png",
+    "3d models import/player character blend files/char_template_sketch1778805235307.png.import",
+    "3d models import/player character blend files/char_template_sketch1778805235307.png",
+    "3d models import/player character blend files/char_template_sketch1778805235307.png-gRPPs4",
+    "3d models import/player character blend files/archive/char_template.blend.import",
+    "3d models import/player character blend files/archive/3dCharTest.blend.import",
+    "docs/Pasted image 20260514180856.png.import",
+    "3d models import/player character blend files/char_template.blend1",
+    "3d models import/player character blend files/char_template.blend",
     "Notes.md",
     "icon.svg"
   ]

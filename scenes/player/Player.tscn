@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bnrv1y6r2duuq" path="res://scenes/Packages/package_init.tscn" id="2_524rm"]
 [ext_resource type="PackedScene" uid="uid://blhy7c7dcd4fr" path="res://scenes/player/aim_ring.tscn" id="3_4kuee"]
 [ext_resource type="AudioStream" uid="uid://cog70uj8iisdl" path="res://sfx/res/gravel_run_random.tres" id="3_pn6s4"]
-[ext_resource type="Texture2D" uid="uid://g473t1pf6aee" path="res://textures/Player/PlayerSprites/sprite_sheet.png" id="3_v42im"]
 [ext_resource type="PackedScene" uid="uid://buy1qgroisfwh" path="res://scenes/player/PackageInvetoryVisualizer/PackageVisualizer.tscn" id="4_c3xxp"]
 [ext_resource type="Texture2D" uid="uid://vhunc8mtgk3w" path="res://textures/swears/fuck.png" id="4_tpg5x"]
+[ext_resource type="Texture2D" uid="uid://13b24rccaxkt" path="res://textures/Player/PlayerSprites/godot_character.png" id="5_7oing"]
 [ext_resource type="Script" uid="uid://dk0bppg8ocnk" path="res://scripts/Hit/generic_hurt.gd" id="6_npwbq"]
 [ext_resource type="AudioStream" uid="uid://c6v8gytx0db10" path="res://sfx/res/concrete_run_random.tres" id="8_v42im"]
 [ext_resource type="AudioStream" uid="uid://c1rjb5p7fm1qu" path="res://sfx/res/throw_package.tres" id="10_7oing"]
@@ -556,11 +556,11 @@ shape = SubResource("SphereShape3D_spyh3")
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.5, 0)
 layers = 2
 gi_mode = 2
-pixel_size = 0.02
+pixel_size = 0.0025
 shaded = true
 alpha_cut = 1
 texture_filter = 0
-texture = ExtResource("3_v42im")
+texture = ExtResource("5_7oing")
 hframes = 12
 vframes = 5
 
