@@ -1,18 +1,15 @@
 extends PanelContainer
 
+@export var resume_button : Button
+
 signal on_resume
 signal on_settings
 signal on_exit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	resume_button.grab_focus()
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func _on_resume_button_pressed() -> void:
 	on_resume.emit()

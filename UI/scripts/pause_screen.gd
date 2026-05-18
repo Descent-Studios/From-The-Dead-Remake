@@ -6,8 +6,12 @@ extends Control
 
 var is_paused := false
 
+func _ready() -> void:
+	mainPauseMenu.hide()
+	settingsContainer.hide()
+
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_released("pause"):
 		if !is_paused:
 			on_pause()
 		else:
@@ -24,6 +28,8 @@ func on_pause():
 	backgroundFade.show()
 
 func on_resume():
+	print("resuming...")
+	
 	is_paused = false
 	get_tree().paused = false
 	self.hide()
