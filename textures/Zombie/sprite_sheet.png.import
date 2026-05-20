@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://do4afahsj6ifc"
 path.s3tc="res://.godot/imported/sprite_sheet.png-cfda441650f3f8f2a4d0993461dcaf7e.s3tc.ctex"
+path.etc2="res://.godot/imported/sprite_sheet.png-cfda441650f3f8f2a4d0993461dcaf7e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/Zombie/sprite_sheet.png"
-dest_files=["res://.godot/imported/sprite_sheet.png-cfda441650f3f8f2a4d0993461dcaf7e.s3tc.ctex"]
+dest_files=["res://.godot/imported/sprite_sheet.png-cfda441650f3f8f2a4d0993461dcaf7e.s3tc.ctex", "res://.godot/imported/sprite_sheet.png-cfda441650f3f8f2a4d0993461dcaf7e.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://beh633ayan6bi"
 path.s3tc="res://.godot/imported/SideWalk.png-b9dc37268af75fad4f4a99b2246673dd.s3tc.ctex"
+path.etc2="res://.godot/imported/SideWalk.png-b9dc37268af75fad4f4a99b2246673dd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/ASE/SideWalk.png"
-dest_files=["res://.godot/imported/SideWalk.png-b9dc37268af75fad4f4a99b2246673dd.s3tc.ctex"]
+dest_files=["res://.godot/imported/SideWalk.png-b9dc37268af75fad4f4a99b2246673dd.s3tc.ctex", "res://.godot/imported/SideWalk.png-b9dc37268af75fad4f4a99b2246673dd.etc2.ctex"]
 
 [params]
 
