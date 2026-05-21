@@ -12,7 +12,13 @@ var anim_state_machine : AnimationNodeStateMachinePlayback
 
 func _ready():
 	anim_state_machine = animation_tree["parameters/playback"]
+	SignalBus.deinitialize_player.connect(deinitalize)
 
+func deinitalize():
+	for package in package_inventory:
+		remove_package()
+	print(package_inventory)
+	stop_walk()
 
 func add_package(package_info : Vector2i):
 	package_inventory.push_back(package_info)

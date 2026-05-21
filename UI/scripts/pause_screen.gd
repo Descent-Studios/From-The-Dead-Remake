@@ -14,7 +14,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_released("pause"):
 		if !is_paused:
 			on_pause()
-		else:
+		elif is_paused == true:
 			on_resume()
 
 func on_pause():
@@ -37,6 +37,10 @@ func on_resume():
 	mainPauseMenu.hide()
 	backgroundFade.hide()
 	settingsContainer.reset()
+
+func on_restart() -> void:
+	GameManager.transition_to_new_level(true)
+	on_resume()
 
 func on_game_close():
 	get_tree().quit()

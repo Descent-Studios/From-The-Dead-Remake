@@ -53,6 +53,11 @@ func reset():
 	level_generator = null
 	selectedColors = []
 
+func transition_to_new_level(restart_level : bool = false) -> void:
+	print("restarting level...")
+	SignalBus.loading_level_start.emit(restart_level)
+	pass
+
 
 func return_all_buildings() -> Array[PackedScene]:
 	var buildings : Array[PackedScene] = []
@@ -98,7 +103,6 @@ func level_generated(colorsUsed, amtPackages := 5):
 	selectedColors = colorsUsed
 	truck.colors_to_use = selectedColors
 	distribute_packages(amtPackages)
-	# update navmesh ?
 	# spawn zombies  
 	pass
 

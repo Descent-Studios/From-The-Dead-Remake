@@ -99,6 +99,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Resume"
 
+[node name="RestartButton" type="Button" parent="mainPauseMenu/HBoxContainer/VBoxContainer" unique_id=18277645]
+layout_mode = 2
+text = "Restart"
+
 [node name="SettingsButton" type="Button" parent="mainPauseMenu/HBoxContainer/VBoxContainer" unique_id=946189420]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -367,9 +371,11 @@ theme_override_font_sizes/font_size = 36
 text = "Press new Button"
 
 [connection signal="on_exit" from="mainPauseMenu" to="." method="on_game_close"]
+[connection signal="on_restart" from="mainPauseMenu" to="." method="on_restart"]
 [connection signal="on_resume" from="mainPauseMenu" to="." method="on_resume"]
 [connection signal="on_settings" from="mainPauseMenu" to="." method="show_settings"]
 [connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/ReusmeButton" to="mainPauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/RestartButton" to="mainPauseMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/SettingsButton" to="mainPauseMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/Exit Button" to="mainPauseMenu" method="_on_exit_button_pressed"]
 [connection signal="on_settings_exit" from="settingsContainer" to="." method="hide_settings"]

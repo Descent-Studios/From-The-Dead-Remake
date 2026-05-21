@@ -3,6 +3,97 @@
 [ext_resource type="PackedScene" uid="uid://c8hp3due050ik" path="res://scenes/Game/world.tscn" id="1_21h3k"]
 [ext_resource type="Theme" uid="uid://rqqina6b204y" path="res://textures/Themes/MainScreenTheme.tres" id="2_443qg"]
 [ext_resource type="PackedScene" uid="uid://cpp8e4mvdlixm" path="res://UI/PauseScreen.tscn" id="3_pcxry"]
+[ext_resource type="Script" uid="uid://bl4hpdctxqgel" path="res://UI/scripts/transition_screen.gd" id="4_hptnq"]
+
+[sub_resource type="Animation" id="Animation_djiyx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_hptnq"]
+resource_name = "transition_end"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qou8i"]
+resource_name = "transition_start"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_djiyx"]
+_data = {
+&"RESET": SubResource("Animation_djiyx"),
+&"transition_end": SubResource("Animation_hptnq"),
+&"transition_start": SubResource("Animation_qou8i")
+}
 
 [node name="Main Screen" type="Control" unique_id=596565771]
 layout_mode = 3
@@ -77,6 +168,33 @@ show_percentage = false
 layout_mode = 2
 text = " "
 
-[node name="Control" parent="." unique_id=47639227 instance=ExtResource("3_pcxry")]
+[node name="PauseMenu" parent="." unique_id=47639227 instance=ExtResource("3_pcxry")]
 visible = false
 layout_mode = 1
+
+[node name="TransitionScreen" type="Control" parent="." unique_id=1473451210]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_hptnq")
+default_color = Color(0.20392157, 0.12156863, 0.003921569, 1)
+hidden_color = Color(0.20392157, 0.12156863, 0.003921569, 0)
+
+[node name="ColorRect" type="ColorRect" parent="TransitionScreen" unique_id=1636012611]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2021389, 0.121486075, 0.0023995948, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionScreen" unique_id=558559409]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_djiyx")

@@ -249,7 +249,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "clips": PackedStringArray("Drive_anim", "[stop]", "open door_2"),
-"times": PackedFloat32Array(0.06666667, 4.3, 5)
+"times": PackedFloat32Array(0.06666667, 4.3, 4.8333335)
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -465,9 +465,8 @@ package_pickup_radius_multiplier = 2.0
 knockback_force_effect = 0.0
 metadata/_custom_type_script = "uid://bylql6jlovm4j"
 
-[node name="LevelGenerator" type="Node3D" unique_id=708254743 node_paths=PackedStringArray("player_start_pos", "anim_tree", "house_generate_tree", "nagivation_layer")]
+[node name="LevelTest1" type="Node3D" unique_id=708254743 node_paths=PackedStringArray("player_start_pos", "anim_tree", "house_generate_tree", "nagivation_layer")]
 script = ExtResource("1_cd1k5")
-debug_mode = true
 colors_to_generate = 4
 packages_to_deliver = 15
 player_start_pos = NodePath("PlayerSpawn")
@@ -483,8 +482,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0126715, 0, 2.2707698)
 libraries/ = SubResource("AnimationLibrary_gydmk")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1417978716]
-active = false
-deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_e1teq")
 anim_player = NodePath("../LevelAnimator")
 
@@ -493,7 +490,7 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70
 curve = SubResource("Curve3D_dyebd")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1115249838 node_paths=PackedStringArray("follow_target", "follow_path")]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 3.4419994, 14.665135, 14.020136)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -10.558252, 14.665135, 14.020136)
 top_level = true
 script = ExtResource("3_k445k")
 priority = 1
@@ -654,6 +651,9 @@ shape = SubResource("WorldBoundaryShape3D_ixlbf")
 
 [node name="Truck" parent="LevelNavigator" unique_id=1661101094 instance=ExtResource("15_ua6cp")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.442, 0.523, -0.122)
+
+[node name="AnimatableBody3D" parent="LevelNavigator/Truck/AnimatableBody3D2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.9493213, -0.31430727, 0, 0.31430727, 0.9493213, 0, -0.4290043, -0.9698751)
 
 [node name="TruckModel" parent="LevelNavigator/Truck" index="3"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)

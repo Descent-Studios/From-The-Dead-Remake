@@ -430,7 +430,7 @@ size = Vector3(40, 0.1, 6)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ixlbf"]
 plane = Plane(-1, 0, 0, 0)
 
-[node name="LevelGenerator" type="Node3D" unique_id=708254743 node_paths=PackedStringArray("player_start_pos", "anim_tree", "house_generate_tree", "nagivation_layer")]
+[node name="LevelSmall1" type="Node3D" unique_id=708254743 node_paths=PackedStringArray("player_start_pos", "anim_tree", "house_generate_tree", "nagivation_layer")]
 script = ExtResource("1_oqr3d")
 colors_to_generate = 4
 packages_to_deliver = 15
@@ -447,7 +447,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0126715, 0, 2.2707698)
 libraries/ = SubResource("AnimationLibrary_gydmk")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1417978716]
-deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_e1teq")
 anim_player = NodePath("../LevelAnimator")
 

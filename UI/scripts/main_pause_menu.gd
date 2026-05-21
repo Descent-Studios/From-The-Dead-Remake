@@ -3,6 +3,7 @@ extends PanelContainer
 @export var resume_button : Button
 
 signal on_resume
+signal on_restart
 signal on_settings
 signal on_exit
 
@@ -23,4 +24,9 @@ func _on_settings_button_pressed() -> void:
 
 func _on_exit_button_pressed() -> void:
 	on_exit.emit()
+	pass # Replace with function body.
+
+
+func _on_restart_button_pressed() -> void:
+	on_restart.emit()
 	pass # Replace with function body.
