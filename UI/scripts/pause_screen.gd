@@ -6,11 +6,15 @@ extends Control
 
 var is_paused := false
 
+func _ready() -> void:
+	mainPauseMenu.hide()
+	settingsContainer.hide()
+
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_released("pause"):
 		if !is_paused:
 			on_pause()
-		else:
+		elif is_paused == true:
 			on_resume()
 
 func on_pause():
@@ -24,6 +28,8 @@ func on_pause():
 	backgroundFade.show()
 
 func on_resume():
+	print("resuming...")
+	
 	is_paused = false
 	get_tree().paused = false
 	self.hide()
@@ -31,6 +37,10 @@ func on_resume():
 	mainPauseMenu.hide()
 	backgroundFade.hide()
 	settingsContainer.reset()
+
+func on_restart() -> void:
+	GameManager.transition_to_new_level(true)
+	on_resume()
 
 func on_game_close():
 	get_tree().quit()

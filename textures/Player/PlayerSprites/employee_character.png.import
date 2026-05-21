@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvrafyvc00iig"
 path.s3tc="res://.godot/imported/employee_character.png-c2bbe1c907c8de67007d9d6cd759013f.s3tc.ctex"
+path.etc2="res://.godot/imported/employee_character.png-c2bbe1c907c8de67007d9d6cd759013f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/Player/PlayerSprites/employee_character.png"
-dest_files=["res://.godot/imported/employee_character.png-c2bbe1c907c8de67007d9d6cd759013f.s3tc.ctex"]
+dest_files=["res://.godot/imported/employee_character.png-c2bbe1c907c8de67007d9d6cd759013f.s3tc.ctex", "res://.godot/imported/employee_character.png-c2bbe1c907c8de67007d9d6cd759013f.etc2.ctex"]
 
 [params]
 

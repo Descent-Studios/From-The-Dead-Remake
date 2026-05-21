@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://i4jxoyrcy1m1" path="res://UI/scripts/settings_container.gd" id="2_eaots"]
 [ext_resource type="Script" uid="uid://b53a61ydkeqm6" path="res://UI/scripts/main_pause_menu.gd" id="3_btr2c"]
 [ext_resource type="Script" uid="uid://cc8icgthe8efp" path="res://UI/scripts/audio_settings.gd" id="4_n358k"]
+[ext_resource type="PackedScene" uid="uid://bpvgu7m1bjda7" path="res://UI/ControllerBind.tscn" id="7_sgdig"]
 
 [node name="Control" type="Control" unique_id=47639227 node_paths=PackedStringArray("mainPauseMenu", "backgroundFade", "settingsContainer")]
 process_mode = 3
@@ -30,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.20392157)
 
-[node name="mainPauseMenu" type="PanelContainer" parent="." unique_id=892702060]
+[node name="mainPauseMenu" type="PanelContainer" parent="." unique_id=892702060 node_paths=PackedStringArray("resume_button")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -45,6 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_btr2c")
 script = ExtResource("3_btr2c")
+resume_button = NodePath("HBoxContainer/VBoxContainer/ReusmeButton")
 
 [node name="HBoxContainer" type="BoxContainer" parent="mainPauseMenu" unique_id=635188709]
 layout_mode = 2
@@ -88,6 +90,7 @@ text = "Extra text?"
 [node name="VBoxContainer" type="VBoxContainer" parent="mainPauseMenu/HBoxContainer" unique_id=1455396002]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 2
 theme = ExtResource("1_btr2c")
 alignment = 1
 
@@ -95,6 +98,10 @@ alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Resume"
+
+[node name="RestartButton" type="Button" parent="mainPauseMenu/HBoxContainer/VBoxContainer" unique_id=18277645]
+layout_mode = 2
+text = "Restart"
 
 [node name="SettingsButton" type="Button" parent="mainPauseMenu/HBoxContainer/VBoxContainer" unique_id=946189420]
 layout_mode = 2
@@ -128,11 +135,16 @@ tabContainer = NodePath("TabContainer")
 
 [node name="TabContainer" type="TabContainer" parent="settingsContainer" unique_id=1126299765]
 layout_mode = 2
+theme_override_constants/tab_separation = 8
+theme_override_constants/icon_separation = 4
+theme_override_constants/icon_max_width = 0
+theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 24
-current_tab = 0
+current_tab = 1
 tab_0/title = "Audio"
 
 [node name="AudioTab" type="HBoxContainer" parent="settingsContainer/TabContainer" unique_id=2095106384]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 105
 alignment = 1
@@ -203,7 +215,7 @@ grow_horizontal = 2
 grow_vertical = 0
 max_value = 1.0
 step = 0.01
-value = 0.805
+value = 0.81
 
 [node name="#" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls/SFx/volumeSlider" unique_id=1581791877]
 layout_mode = 1
@@ -233,106 +245,68 @@ size_flags_horizontal = 4
 text = "Flavor Text?"
 horizontal_alignment = 1
 
-[node name="Controls" type="HBoxContainer" parent="settingsContainer/TabContainer" unique_id=1421150885]
-visible = false
+[node name="ControllerTab" type="ScrollContainer" parent="settingsContainer/TabContainer" unique_id=1280974464]
 layout_mode = 2
-theme_override_constants/separation = 105
-alignment = 1
-script = ExtResource("4_n358k")
+size_flags_horizontal = 3
+draw_focus_border = true
+scroll_hint_mode = 1
 metadata/_tab_index = 1
 
-[node name="Audio Controls" type="VBoxContainer" parent="settingsContainer/TabContainer/Controls" unique_id=276519407]
+[node name="VBoxContainer" type="VBoxContainer" parent="settingsContainer/TabContainer/ControllerTab" unique_id=1103611016]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer" unique_id=1839901071]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header" unique_id=1382019313]
+layout_mode = 2
+theme_override_constants/separation = 275
+
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header/HBoxContainer" unique_id=1778648870]
+layout_mode = 2
+text = "Binding Name"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header/HBoxContainer" unique_id=1289980905]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 29
+
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=1699462430]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Keyboard"
+
+[node name="Label2" type="Label" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=1001947257]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Mouse"
+
+[node name="Label3" type="Label" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=808036212]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Controller"
+
+[node name="ThrowPackage" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer" unique_id=2118958783]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/ThrowPackage" unique_id=1968293714]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/ThrowPackage/HBoxContainer" unique_id=1190066130]
+layout_mode = 2
+text = "Throw Package"
+
+[node name="ControllerBind" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/ThrowPackage/HBoxContainer" unique_id=88068179 node_paths=PackedStringArray("rebind_gui") instance=ExtResource("7_sgdig")]
 layout_mode = 2
 size_flags_horizontal = 0
-
-[node name="Master" type="Label" parent="settingsContainer/TabContainer/Controls/Audio Controls" unique_id=1802403387]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 1
-text = "Master Volume"
-
-[node name="volumeSlider" type="HSlider" parent="settingsContainer/TabContainer/Controls/Audio Controls/Master" unique_id=476957059]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -5.0
-offset_right = 42.0
-offset_bottom = 11.0
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 1.0
-step = 0.01
-value = 1.0
-
-[node name="#" type="Label" parent="settingsContainer/TabContainer/Controls/Audio Controls/Master/volumeSlider" unique_id=1119927261]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 1.0
-offset_top = -13.5
-offset_right = 43.0
-offset_bottom = 9.5
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 12
-text = "100%"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SFx" type="Label" parent="settingsContainer/TabContainer/Controls/Audio Controls" unique_id=693840436]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Sound Effects Volume"
-
-[node name="volumeSlider" type="HSlider" parent="settingsContainer/TabContainer/Controls/Audio Controls/SFx" unique_id=556266458]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -5.0
-offset_right = -8.0
-offset_bottom = 11.0
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 1.0
-step = 0.001
-value = 1.0
-
-[node name="#" type="Label" parent="settingsContainer/TabContainer/Controls/Audio Controls/SFx/volumeSlider" unique_id=941119120]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 1.0
-offset_top = -13.0
-offset_right = 43.0
-offset_bottom = 10.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 12
-text = "100%"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="settingsContainer/TabContainer/Controls" unique_id=389708711]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="settingsContainer/TabContainer/Controls/VBoxContainer2" unique_id=458643775]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Flavor Text?"
-horizontal_alignment = 1
+size_flags_vertical = 4
+theme_override_constants/separation = 58
+rebind_gui = NodePath("../../../../../../../newInputOverlay")
 
 [node name="Control" type="Control" parent="settingsContainer" unique_id=1640026933]
 layout_mode = 2
@@ -352,15 +326,59 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "Back..."
 
+[node name="newInputOverlay" type="ColorRect" parent="." unique_id=371165942]
+visible = false
+z_index = 999
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+color = Color(0, 0, 0, 0.4627451)
+
+[node name="Panel" type="Panel" parent="newInputOverlay" unique_id=1010693326]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = -56.0
+offset_right = 183.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_btr2c")
+
+[node name="Label" type="Label" parent="newInputOverlay/Panel" unique_id=1112984565]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -19.5
+offset_right = 119.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Press new Button"
+
 [connection signal="on_exit" from="mainPauseMenu" to="." method="on_game_close"]
+[connection signal="on_restart" from="mainPauseMenu" to="." method="on_restart"]
 [connection signal="on_resume" from="mainPauseMenu" to="." method="on_resume"]
 [connection signal="on_settings" from="mainPauseMenu" to="." method="show_settings"]
 [connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/ReusmeButton" to="mainPauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/RestartButton" to="mainPauseMenu" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/SettingsButton" to="mainPauseMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/Exit Button" to="mainPauseMenu" method="_on_exit_button_pressed"]
 [connection signal="on_settings_exit" from="settingsContainer" to="." method="hide_settings"]
 [connection signal="value_changed" from="settingsContainer/TabContainer/AudioTab/Audio Controls/Master/volumeSlider" to="settingsContainer/TabContainer/AudioTab" method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="settingsContainer/TabContainer/AudioTab/Audio Controls/SFx/volumeSlider" to="settingsContainer/TabContainer/AudioTab" method="_on_sfx_volume_slider_value_changed"]
-[connection signal="value_changed" from="settingsContainer/TabContainer/Controls/Audio Controls/Master/volumeSlider" to="settingsContainer/TabContainer/Controls" method="_on_master_volume_slider_value_changed"]
-[connection signal="value_changed" from="settingsContainer/TabContainer/Controls/Audio Controls/SFx/volumeSlider" to="settingsContainer/TabContainer/Controls" method="_on_sfx_volume_slider_value_changed"]
 [connection signal="pressed" from="settingsContainer/Control/BackButton" to="settingsContainer" method="_on_back_button_pressed"]

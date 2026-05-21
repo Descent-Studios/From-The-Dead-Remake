@@ -104,6 +104,7 @@ func _ready():
 	visible = false
 	
 	SignalBus.initiate_player.connect(initiate)
+	SignalBus.deinitialize_player.connect(deinitialize)
 	pass
 
 func initiate(spawnPos : Vector3 = Vector3.ZERO):
@@ -111,6 +112,17 @@ func initiate(spawnPos : Vector3 = Vector3.ZERO):
 	self.visible = true
 	can_move = true
 	is_invulnerable = false
+
+func deinitialize():
+	self.global_position = Vector3.ZERO
+	self.visible = false
+	can_move = false
+	
+	is_invulnerable = true
+	cur_health = health_max
+	clear_powerups()
+	package_inventory.clear()
+
 
 func _process(_delta):
 	if can_move :
@@ -241,6 +253,18 @@ func remove_powerup(powerup_instance : PowerUp_Resource):
 		pickup_effect -= powerup_instance.package_pickup_radius_multiplier
 		knockback_effect -= powerup_instance.knockback_force_effect
 		powerup_array.erase(powerup_instance)
+
+func clear_powerups():
+	for powerup in powerup_array:
+		remove_powerup(powerup)
+	powerup_array.clear()
+	#reset incase there were permanent effects
+	speed_effect = 1.0
+	accel_effect = 1.0
+	decel_effect = 1.0
+	throw_effect = 1.0
+	pickup_effect = 1.0
+	knockback_effect = 1.0
 #endregion
 
 func update_player_input():

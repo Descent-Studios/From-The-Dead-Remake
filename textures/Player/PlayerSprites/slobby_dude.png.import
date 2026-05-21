@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh5mlkyr6fmc3"
 path.s3tc="res://.godot/imported/slobby_dude.png-2b4abb485278ce6e78788d0ecce11093.s3tc.ctex"
+path.etc2="res://.godot/imported/slobby_dude.png-2b4abb485278ce6e78788d0ecce11093.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/Player/PlayerSprites/slobby_dude.png"
-dest_files=["res://.godot/imported/slobby_dude.png-2b4abb485278ce6e78788d0ecce11093.s3tc.ctex"]
+dest_files=["res://.godot/imported/slobby_dude.png-2b4abb485278ce6e78788d0ecce11093.s3tc.ctex", "res://.godot/imported/slobby_dude.png-2b4abb485278ce6e78788d0ecce11093.etc2.ctex"]
 
 [params]
 

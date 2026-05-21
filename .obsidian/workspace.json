@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "Notes"
             }
           }
         ]
@@ -171,24 +171,25 @@
   },
   "active": "a230f1950da5199c",
   "lastOpenFiles": [
+    "UI/PauseScreen.tscn-8tisyK",
+    "UI/PauseScreen.tscn-6dPhXh",
+    "UI/PauseScreen.tscn-OPpOx0",
+    "UI/PauseScreen.tscn-1Uh9uo",
+    "UI/PauseScreen.tscn-R8ogaR",
+    "UI/PauseScreen.tscn-oqNTzB",
+    "UI/PauseScreen.tscn-Hi5G2y",
+    "scenes/Game/world.tscn-lSlS1j",
+    "scenes/Game/world.tscn-0ctYnc",
+    "scenes/Game/world.tscn-lNqbza",
+    "UI/PauseScreen.tscn-AawT3l",
+    "README.md",
+    "Notes.md",
+    "icon.svg",
     "docs/Pasted image 20260514180856.png",
     "textures/Player/alpha_mask_clean.png",
     "textures/Player/PlayerSprites/alpha_mask_clean.png",
-    "README.md",
-    "3d models import/player character blend files/char_template.blend@",
-    "scenes/player/Player.tscn-4ZoVel",
-    "textures/Player/PlayerSprites/slobby_dude.png.import",
     "textures/Player/PlayerSprites/slobby_dude.png",
     "textures/Player/PlayerSprites/sprite_sheet_7.png",
-    "3d models import/player character blend files/char_template_sketch1778805235307.png.import",
-    "3d models import/player character blend files/char_template_sketch1778805235307.png",
-    "3d models import/player character blend files/char_template_sketch1778805235307.png-gRPPs4",
-    "3d models import/player character blend files/archive/char_template.blend.import",
-    "3d models import/player character blend files/archive/3dCharTest.blend.import",
-    "docs/Pasted image 20260514180856.png.import",
-    "3d models import/player character blend files/char_template.blend1",
-    "3d models import/player character blend files/char_template.blend",
-    "Notes.md",
-    "icon.svg"
+    "3d models import/player character blend files/char_template_sketch1778805235307.png"
   ]
 }

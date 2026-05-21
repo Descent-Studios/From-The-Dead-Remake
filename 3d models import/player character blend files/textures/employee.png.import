@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjaupw68dak3g"
 path.s3tc="res://.godot/imported/employee.png-403a731ac33c78ab4c105c5b15565264.s3tc.ctex"
+path.etc2="res://.godot/imported/employee.png-403a731ac33c78ab4c105c5b15565264.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://3d models import/player character blend files/textures/employee.png"
-dest_files=["res://.godot/imported/employee.png-403a731ac33c78ab4c105c5b15565264.s3tc.ctex"]
+dest_files=["res://.godot/imported/employee.png-403a731ac33c78ab4c105c5b15565264.s3tc.ctex", "res://.godot/imported/employee.png-403a731ac33c78ab4c105c5b15565264.etc2.ctex"]
 
 [params]
 

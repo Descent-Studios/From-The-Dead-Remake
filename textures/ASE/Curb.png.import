@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://2ba8kj7e8bve"
 path.s3tc="res://.godot/imported/Curb.png-acdb911e506e509d40ec8e9f47804c12.s3tc.ctex"
+path.etc2="res://.godot/imported/Curb.png-acdb911e506e509d40ec8e9f47804c12.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/ASE/Curb.png"
-dest_files=["res://.godot/imported/Curb.png-acdb911e506e509d40ec8e9f47804c12.s3tc.ctex"]
+dest_files=["res://.godot/imported/Curb.png-acdb911e506e509d40ec8e9f47804c12.s3tc.ctex", "res://.godot/imported/Curb.png-acdb911e506e509d40ec8e9f47804c12.etc2.ctex"]
 
 [params]
 

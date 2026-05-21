@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bq5bhej01wecl"
 path.s3tc="res://.godot/imported/Zombie Texture.png-0f4b5fd611fda74de6c7b6fdf9c6cc40.s3tc.ctex"
+path.etc2="res://.godot/imported/Zombie Texture.png-0f4b5fd611fda74de6c7b6fdf9c6cc40.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://3d models import/player character blend files/Zombie Texture.png"
-dest_files=["res://.godot/imported/Zombie Texture.png-0f4b5fd611fda74de6c7b6fdf9c6cc40.s3tc.ctex"]
+dest_files=["res://.godot/imported/Zombie Texture.png-0f4b5fd611fda74de6c7b6fdf9c6cc40.s3tc.ctex", "res://.godot/imported/Zombie Texture.png-0f4b5fd611fda74de6c7b6fdf9c6cc40.etc2.ctex"]
 
 [params]
 

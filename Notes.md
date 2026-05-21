@@ -6,7 +6,7 @@ Powerup ideas
 # Road to MVP
 
 Player : 
-- Actual character model [ ]
+- Actual character model [x]
 - SFX for walking[x], hurting, idle?
 - Implementation of rage and exhaustion 
 	- Rage
@@ -23,24 +23,24 @@ Player :
 		- Rage bar max decreases
 		- Player needs to do damage or deliver packages to bring the bar back to normal
 Powerups : 
-- Super Speed! 
+- Super Speed! (needs UI element) [~]
 	- Increase the players base walking and throwing speed for a limited time
 	- Energy Drink? Cocaine? 
-- Serious Throw
+- Serious Throw [ ]
 	- Epic OPM style throw that kills all zombies in a line
--  Its a bird! Its a plane! Oh fuck it **is** a plane!
+-  Its a bird! Its a plane! Oh fuck it **is** a plane! [ ]
 	- Throw a package skyhigh to knock a plane off course, slamming into the map killing most zombies (also destroying houses??)
-- Ricochet
+- Ricochet [ ]
 	- Throw a package and it will bounce towards other zombies to deal daa
-- USPS Sends its regards
+- USPS Sends its regards [ ]
 	- Throwing a package spawns a USPS Truck that brings 2-4 USPS workers that beat up a AOE of zombies
 - 
 Zombies :
-- Actual models
-- 2-3 variants 
+- Actual models [ ]
+- 2-3 variants  [ ]
 	- Larger variants with more strength  / damage?
 - Hit fx (red flash and such)
-- SFX for walking, hurting, idle, hitting ("oo a box"?)
+- SFX for walking, hurting, idle, hitting ("oo a box"?) [ ]
 Levels : 
 - 5 total variants
 - adaptive zombie spawning
@@ -58,3 +58,16 @@ Progression :
 - As more levels are completed, more unique packages need to be delivered and a higher minimum needs to be completed
 - More zombies / more higher level zombies
 - More powerups 
+
+UI :
+- Pause screen
+	- Settings
+		- Control rebind [~]
+		- Audio settings [x]
+		- Video settings [ ]
+	- Resume [x]
+	- Quit (to desktop) [x]
+- Main menu
+	-  Level Select [ ]
+	- Character Select [ ] (read from documents)
+	- Settings [ ]
