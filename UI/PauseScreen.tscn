@@ -16,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_btr2c")
 script = ExtResource("2_5ssfw")
 mainPauseMenu = NodePath("mainPauseMenu")
@@ -32,6 +33,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.20392157)
 
 [node name="mainPauseMenu" type="PanelContainer" parent="." unique_id=892702060 node_paths=PackedStringArray("resume_button")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -44,12 +46,14 @@ offset_right = 482.0
 offset_bottom = 199.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_btr2c")
 script = ExtResource("3_btr2c")
 resume_button = NodePath("HBoxContainer/VBoxContainer/ReusmeButton")
 
 [node name="HBoxContainer" type="BoxContainer" parent="mainPauseMenu" unique_id=635188709]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 55
 alignment = 1
 
@@ -90,7 +94,6 @@ text = "Extra text?"
 [node name="VBoxContainer" type="VBoxContainer" parent="mainPauseMenu/HBoxContainer" unique_id=1455396002]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
 theme = ExtResource("1_btr2c")
 alignment = 1
 
@@ -117,7 +120,6 @@ text = "Exit"
 layout_mode = 2
 
 [node name="settingsContainer" type="PanelContainer" parent="." unique_id=1639563074 node_paths=PackedStringArray("tabContainer")]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -135,6 +137,7 @@ tabContainer = NodePath("TabContainer")
 
 [node name="TabContainer" type="TabContainer" parent="settingsContainer" unique_id=1126299765]
 layout_mode = 2
+focus_mode = 2
 theme_override_constants/tab_separation = 8
 theme_override_constants/icon_separation = 4
 theme_override_constants/icon_max_width = 0
@@ -252,61 +255,65 @@ draw_focus_border = true
 scroll_hint_mode = 1
 metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="settingsContainer/TabContainer/ControllerTab" unique_id=1103611016]
+[node name="MarginContainer" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab" unique_id=621840358]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer" unique_id=1103611016]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Header" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer" unique_id=1839901071]
+[node name="Header" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer" unique_id=1839901071]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header" unique_id=1382019313]
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/Header" unique_id=1382019313]
 layout_mode = 2
 theme_override_constants/separation = 275
 
-[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header/HBoxContainer" unique_id=1778648870]
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/Header/HBoxContainer" unique_id=1778648870]
 layout_mode = 2
 text = "Binding Name"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header/HBoxContainer" unique_id=1289980905]
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/Header/HBoxContainer" unique_id=1289980905]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 29
 
-[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=1699462430]
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=1699462430]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Keyboard"
 
-[node name="Label2" type="Label" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=1001947257]
+[node name="Label2" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=1001947257]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Mouse"
 
-[node name="Label3" type="Label" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=808036212]
+[node name="Label3" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=808036212]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Controller"
 
-[node name="ThrowPackage" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer" unique_id=2118958783]
+[node name="ThrowPackage" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer" unique_id=2118958783]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/ThrowPackage" unique_id=1968293714]
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage" unique_id=1968293714]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/ThrowPackage/HBoxContainer" unique_id=1190066130]
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage/HBoxContainer" unique_id=1190066130]
 layout_mode = 2
 text = "Throw Package"
 
-[node name="ControllerBind" parent="settingsContainer/TabContainer/ControllerTab/VBoxContainer/ThrowPackage/HBoxContainer" unique_id=88068179 node_paths=PackedStringArray("rebind_gui") instance=ExtResource("7_sgdig")]
+[node name="ControllerBind" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage/HBoxContainer" unique_id=88068179 node_paths=PackedStringArray("rebind_gui") instance=ExtResource("7_sgdig")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 58
-rebind_gui = NodePath("../../../../../../../newInputOverlay")
+rebind_gui = NodePath("../../../../../../../../newInputOverlay")
 
 [node name="Control" type="Control" parent="settingsContainer" unique_id=1640026933]
 layout_mode = 2
@@ -324,6 +331,7 @@ offset_bottom = -2.0
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
+focus_mode = 0
 text = "Back..."
 
 [node name="newInputOverlay" type="ColorRect" parent="." unique_id=371165942]

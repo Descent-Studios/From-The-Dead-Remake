@@ -490,7 +490,7 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70
 curve = SubResource("Curve3D_dyebd")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1115249838 node_paths=PackedStringArray("follow_target", "follow_path")]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -10.558252, 14.665135, 14.020136)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 3.4419994, 14.665135, 14.020136)
 top_level = true
 script = ExtResource("3_k445k")
 priority = 1

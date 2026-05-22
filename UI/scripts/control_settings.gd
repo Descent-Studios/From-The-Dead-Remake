@@ -1,4 +1,4 @@
-@tool extends HBoxContainer
+extends HBoxContainer
 
 
 @export var keybind_button : Button
@@ -17,11 +17,10 @@ func _ready():
 	
 func remap_control():
 	rebind_gui.show()
+	rebind_gui.grab_focus()
 	rebind_gui.gui_input.connect(on_gui_input)
-	# signal emit "rebind!"
 
 func on_gui_input(event: InputEvent) -> void:
-	print("grungle")
 	get_viewport().set_input_as_handled()
 	if (event is InputEventKey or event is InputEventMouseButton) and event.is_pressed() :
 		InputHelper.set_keyboard_input_for_action(control_name.action, event)

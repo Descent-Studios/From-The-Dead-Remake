@@ -42,7 +42,7 @@ Zombies :
 - Hit fx (red flash and such)
 - SFX for walking, hurting, idle, hitting ("oo a box"?) [ ]
 Levels : 
-- 5 total variants
+- 5 total variants (?)
 - adaptive zombie spawning
 
 Package Delivery: (why not... both?)
@@ -68,6 +68,6 @@ UI :
 	- Resume [x]
 	- Quit (to desktop) [x]
 - Main menu
-	-  Level Select [ ]
+	- Level Select [ ]
 	- Character Select [ ] (read from documents)
 	- Settings [ ]

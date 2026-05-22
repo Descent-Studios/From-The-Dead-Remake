@@ -50,6 +50,8 @@ func generate_level(colors : Array[GameManager.PackageColors]):
 	while(colorsUsed.is_empty()):
 		for point in house_generate_points:
 			if randi_range(1,20) >= 16:
+				if decorations.is_empty():
+					continue
 				var decoration : Node3D = decorations.pick_random().instantiate()
 				decoration.global_position = point.global_position
 				# Add deco to navigation layer

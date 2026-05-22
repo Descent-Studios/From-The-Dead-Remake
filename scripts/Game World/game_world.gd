@@ -31,6 +31,9 @@ func generate_level(restart : bool = false):
 	SignalBus.deinitialize_player.emit()
 	if current_level:
 		# delete zombies and stray packages too. but later
+		for child in get_children():
+			if child.is_in_group("Packages"):
+				child.queue_free()
 		current_level.queue_free()
 	var new_level_scene : PackedScene
 	if restart:

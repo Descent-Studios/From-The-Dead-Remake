@@ -6,16 +6,21 @@ extends Control
 
 var is_paused := false
 
+var settings_shown := false
+
 func _ready() -> void:
 	mainPauseMenu.hide()
 	settingsContainer.hide()
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_released("pause"):
+	#if Input.is_action_just_released("pause"):
+	if event.is_action_released("pause"):
 		if !is_paused:
 			on_pause()
 		elif is_paused == true:
 			on_resume()
+	if event.is_action_pressed("ui_close_dialog") and !settings_shown:
+		on_resume()
 
 func on_pause():
 	print("paused")
@@ -26,6 +31,8 @@ func on_pause():
 	
 	mainPauseMenu.show()
 	backgroundFade.show()
+	
+	$mainPauseMenu/HBoxContainer/VBoxContainer/ReusmeButton.grab_focus()
 
 func on_resume():
 	print("resuming...")
@@ -49,9 +56,14 @@ func show_settings():
 	mainPauseMenu.hide()
 	settingsContainer.reset()
 	settingsContainer.show()
+	
+	settings_shown = true
+	$settingsContainer/TabContainer.get_tab_bar().grab_focus()
 
 func hide_settings():
 	settingsContainer.hide()
 	settingsContainer.reset()
 	mainPauseMenu.show()
-	pass
+	
+	settings_shown = false
+	$mainPauseMenu/HBoxContainer/VBoxContainer/ReusmeButton.grab_focus()

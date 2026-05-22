@@ -4,6 +4,10 @@ class_name SettingsContainer extends PanelContainer
 
 signal on_settings_exit
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		_on_back_button_pressed()
+
 
 func reset():
 	tabContainer.current_tab = 0

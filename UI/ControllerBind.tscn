@@ -2,33 +2,30 @@
 
 [ext_resource type="Theme" uid="uid://dag76b0046cvv" path="res://UI/controlBinding.tres" id="1_obk4e"]
 [ext_resource type="Script" uid="uid://s2ix31jab7lt" path="res://UI/scripts/control_settings.gd" id="2_ynij5"]
+[ext_resource type="Texture2D" uid="uid://buptp0crgtf4x" path="res://textures/Kenney/Keyboard & Mouse/Default/keyboard.png" id="3_6hr6k"]
+[ext_resource type="Texture2D" uid="uid://bevespjuxwswa" path="res://textures/Kenney/Steam Controller/Default/controller_steam_new.png" id="4_46nt8"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_ynij5"]
 action = &"throw_package"
 
 [node name="ControllerBind" type="HBoxContainer" unique_id=368137998 node_paths=PackedStringArray("keybind_button", "mousebind_button", "controlbind_button")]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 294.0
+offset_bottom = 72.0
 theme = ExtResource("1_obk4e")
 script = ExtResource("2_ynij5")
 keybind_button = NodePath("Keybind")
-mousebind_button = NodePath("Mousebind")
+mousebind_button = NodePath("")
 controlbind_button = NodePath("Controlbind")
 control_name = SubResource("InputEventAction_ynij5")
 
 [node name="Keybind" type="Button" parent="." unique_id=1879147]
 layout_mode = 2
-text = "Kb
-"
-
-[node name="Mousebind" type="Button" parent="." unique_id=1188493255]
-visible = false
-layout_mode = 2
-text = "Mb"
+size_flags_horizontal = 0
+icon = ExtResource("3_6hr6k")
 
 [node name="Controlbind" type="Button" parent="." unique_id=1544201608]
 layout_mode = 2
-text = "Cb"
+icon = ExtResource("4_46nt8")
 
 [connection signal="pressed" from="Keybind" to="." method="remap_control"]
 [connection signal="pressed" from="Controlbind" to="." method="remap_control"]
