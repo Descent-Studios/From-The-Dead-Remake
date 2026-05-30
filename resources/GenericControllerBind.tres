@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="ControllerBind" format=3 uid="uid://bg7gwbdgdap48"]
+
+[ext_resource type="Script" uid="uid://dmeysoc2y2q11" path="res://scripts/resources/controller_bind.gd" id="1_msfu1"]
+[ext_resource type="Texture2D" uid="uid://byrtt4q0kgob3" path="res://textures/Kenney/Steam Controller/Vector/steam_button_color_a.svg" id="1_ngfio"]
+[ext_resource type="Texture2D" uid="uid://cgj0ggom35aso" path="res://textures/Kenney/Steam Controller/Vector/steam_button_color_b.svg" id="2_ns2xb"]
+[ext_resource type="Texture2D" uid="uid://dasae0wa71meq" path="res://textures/Kenney/Steam Controller/Vector/steam_button_color_x.svg" id="3_2imr4"]
+[ext_resource type="Texture2D" uid="uid://x0utllskhs0q" path="res://textures/Kenney/Steam Controller/Vector/steam_button_color_y.svg" id="4_xq8il"]
+[ext_resource type="Texture2D" uid="uid://b8n1rte3gvv7e" path="res://textures/Kenney/Steam Controller/Double/controller_steam_new.png" id="5_ud0i0"]
+[ext_resource type="Texture2D" uid="uid://cxi85134buwc2" path="res://textures/Kenney/Steam Controller/Vector/steam_dpad_down_outline.svg" id="6_o1nrh"]
+[ext_resource type="Texture2D" uid="uid://cf6ci777ce8p3" path="res://textures/Kenney/Steam Controller/Vector/steam_dpad_left_outline.svg" id="7_ki0mc"]
+[ext_resource type="Texture2D" uid="uid://dk3baftiewyua" path="res://textures/Kenney/Steam Controller/Vector/steam_lb.svg" id="8_mgufe"]
+[ext_resource type="Texture2D" uid="uid://evfsdqht8h5y" path="res://textures/Kenney/Steam Controller/Vector/steam_stick_l_press.svg" id="9_a1v0v"]
+[ext_resource type="Texture2D" uid="uid://dv6cpah6iwwh2" path="res://textures/Kenney/Steam Controller/Vector/steam_lt.svg" id="10_d6p8g"]
+[ext_resource type="Texture2D" uid="uid://chd2ho0wnfpl5" path="res://textures/Kenney/Steam Controller/Vector/steam_dpad_right_outline.svg" id="11_dx5ad"]
+[ext_resource type="Texture2D" uid="uid://bnhen7d1vhn58" path="res://textures/Kenney/Steam Controller/Vector/steam_rb.svg" id="12_d6fp8"]
+[ext_resource type="Texture2D" uid="uid://338xbu0kkcd7" path="res://textures/Kenney/Steam Controller/Vector/steam_rt.svg" id="13_xyxh0"]
+[ext_resource type="Texture2D" uid="uid://c168iweslr8oo" path="res://textures/Kenney/Steam Controller/Vector/steam_button_back_icon.svg" id="15_rlb40"]
+[ext_resource type="Texture2D" uid="uid://bw7demm40uhy7" path="res://textures/Kenney/Steam Controller/Vector/steam_button_start_icon.svg" id="16_imq2o"]
+[ext_resource type="Texture2D" uid="uid://nepo74p13cus" path="res://textures/Kenney/Steam Controller/Vector/steam_dpad_up_outline.svg" id="17_07xs4"]
+
+[resource]
+script = ExtResource("1_msfu1")
+button_0 = ExtResource("1_ngfio")
+button_1 = ExtResource("2_ns2xb")
+button_2 = ExtResource("3_2imr4")
+button_3 = ExtResource("4_xq8il")
+left_shoulder = ExtResource("8_mgufe")
+right_shoulder = ExtResource("12_d6fp8")
+left_trigger = ExtResource("10_d6p8g")
+right_trigger = ExtResource("13_xyxh0")
+select_button = ExtResource("15_rlb40")
+start_button = ExtResource("16_imq2o")
+left_stick = ExtResource("9_a1v0v")
+right_stick = ExtResource("9_a1v0v")
+up_button = ExtResource("17_07xs4")
+down_button = ExtResource("6_o1nrh")
+left_button = ExtResource("7_ki0mc")
+right_button = ExtResource("11_dx5ad")
+default = ExtResource("5_ud0i0")
+metadata/_custom_type_script = "uid://dmeysoc2y2q11"

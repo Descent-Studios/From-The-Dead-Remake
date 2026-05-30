@@ -19,7 +19,7 @@ func _input(event: InputEvent) -> void:
 			on_pause()
 		elif is_paused == true:
 			on_resume()
-	if event.is_action_pressed("ui_close_dialog") and !settings_shown:
+	if event.is_action_pressed("ui_close_dialog") and !settings_shown and is_paused:
 		on_resume()
 
 func on_pause():

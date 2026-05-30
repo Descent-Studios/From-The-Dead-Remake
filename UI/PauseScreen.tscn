@@ -312,8 +312,10 @@ text = "Throw Package"
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+focus_mode = 0
 theme_override_constants/separation = 58
 rebind_gui = NodePath("../../../../../../../../newInputOverlay")
+current_joypad = 0
 
 [node name="Control" type="Control" parent="settingsContainer" unique_id=1640026933]
 layout_mode = 2

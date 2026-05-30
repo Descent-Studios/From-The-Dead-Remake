@@ -8,13 +8,13 @@
 [sub_resource type="InputEventAction" id="InputEventAction_ynij5"]
 action = &"throw_package"
 
-[node name="ControllerBind" type="HBoxContainer" unique_id=368137998 node_paths=PackedStringArray("keybind_button", "mousebind_button", "controlbind_button")]
+[node name="ControllerBind" type="HBoxContainer" unique_id=368137998 node_paths=PackedStringArray("keybind_button", "controlbind_button")]
+texture_filter = 1
 offset_right = 294.0
 offset_bottom = 72.0
 theme = ExtResource("1_obk4e")
 script = ExtResource("2_ynij5")
 keybind_button = NodePath("Keybind")
-mousebind_button = NodePath("")
 controlbind_button = NodePath("Controlbind")
 control_name = SubResource("InputEventAction_ynij5")
 

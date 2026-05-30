@@ -69,6 +69,7 @@ default_level = ExtResource("8_lsiie")
 current_level = NodePath("LevelGenerator2")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=854686484]
+physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 3.4419994, 14.665135, 14.020136)
 projection = 1
 size = 10.0
