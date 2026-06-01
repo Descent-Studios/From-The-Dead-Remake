@@ -42,22 +42,23 @@ class_name ControllerBind
 @export_category("")
 @export var default : Texture
 
-func find_button(index : int) -> Texture:
+func find_button(index : JoyButton) -> Texture:
+	print(index as JoyButton)
 	match index:
-		0: return button_0
-		1: return button_1
-		2: return button_2
-		3: return button_3
-		4: return left_shoulder
-		5: return right_shoulder
-		6: return left_trigger
-		7: return right_trigger
-		8: return select_button
-		9: return start_button
-		10: return left_stick
-		11: return right_stick
-		12: return up_button
-		13: return down_button
-		14: return left_button
-		15: return right_button
+		JOY_BUTTON_A: return button_0
+		JOY_BUTTON_B: return button_1
+		JOY_BUTTON_X: return button_2
+		JOY_BUTTON_Y: return button_3
+		JOY_BUTTON_LEFT_SHOULDER: return left_shoulder
+		JOY_BUTTON_RIGHT_SHOULDER: return right_shoulder
+		#JOY_AXIS_TRIGGER_LEFT: return left_trigger
+		#JOY_AXIS_TRIGGER_RIGHT: return right_trigger
+		JOY_BUTTON_BACK: return select_button
+		JOY_BUTTON_START: return start_button
+		JOY_BUTTON_LEFT_STICK: return left_stick
+		JOY_BUTTON_RIGHT_STICK: return right_stick
+		JOY_BUTTON_DPAD_UP: return up_button
+		JOY_BUTTON_DPAD_DOWN: return down_button
+		JOY_BUTTON_DPAD_LEFT: return left_button
+		JOY_BUTTON_DPAD_RIGHT: return right_button
 		_: return default

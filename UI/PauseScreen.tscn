@@ -7,6 +7,12 @@
 [ext_resource type="Script" uid="uid://cc8icgthe8efp" path="res://UI/scripts/audio_settings.gd" id="4_n358k"]
 [ext_resource type="PackedScene" uid="uid://bpvgu7m1bjda7" path="res://UI/ControllerBind.tscn" id="7_sgdig"]
 
+[sub_resource type="InputEventAction" id="InputEventAction_y8gg8"]
+action = &"throw_package"
+
+[sub_resource type="InputEventAction" id="InputEventAction_sgdig"]
+action = &"retrieve_package"
+
 [node name="Control" type="Control" unique_id=47639227 node_paths=PackedStringArray("mainPauseMenu", "backgroundFade", "settingsContainer")]
 process_mode = 3
 process_priority = 10
@@ -22,6 +28,7 @@ script = ExtResource("2_5ssfw")
 mainPauseMenu = NodePath("mainPauseMenu")
 backgroundFade = NodePath("BackgroundFade")
 settingsContainer = NodePath("settingsContainer")
+metadata/_edit_vertical_guides_ = [1140.0]
 
 [node name="BackgroundFade" type="ColorRect" parent="." unique_id=1852324760]
 layout_mode = 1
@@ -267,6 +274,7 @@ size_flags_horizontal = 3
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/Header" unique_id=1382019313]
 layout_mode = 2
@@ -288,6 +296,7 @@ theme_override_font_sizes/font_size = 20
 text = "Keyboard"
 
 [node name="Label2" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=1001947257]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Mouse"
@@ -300,6 +309,7 @@ text = "Controller"
 [node name="ThrowPackage" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer" unique_id=2118958783]
 layout_mode = 2
 theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage" unique_id=1968293714]
 layout_mode = 2
@@ -312,10 +322,29 @@ text = "Throw Package"
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-focus_mode = 0
 theme_override_constants/separation = 58
+control_name = SubResource("InputEventAction_y8gg8")
 rebind_gui = NodePath("../../../../../../../../newInputOverlay")
-current_joypad = 0
+
+[node name="ThrowPackage2" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer" unique_id=1544488765]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage2" unique_id=1529690638]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage2/HBoxContainer" unique_id=1070858626]
+layout_mode = 2
+text = "Throw Package"
+
+[node name="ControllerBind" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage2/HBoxContainer" unique_id=368137998 node_paths=PackedStringArray("rebind_gui") instance=ExtResource("7_sgdig")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 58
+control_name = SubResource("InputEventAction_sgdig")
+rebind_gui = NodePath("../../../../../../../../newInputOverlay")
 
 [node name="Control" type="Control" parent="settingsContainer" unique_id=1640026933]
 layout_mode = 2
