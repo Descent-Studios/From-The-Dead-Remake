@@ -521,7 +521,7 @@ func _update_joypad_input_for_action(action: String, input: InputEvent, swap_if_
 
 func _update_input_for_action(action: String, input: InputEvent, swap_if_taken: bool, replacing_input: InputEvent, check_is_valid: Callable, did_change_signal: Signal) -> Error:
 	# Find any action that is already mapped to this input
-	var clashing_action = ""
+	var clashing_action : String = ""
 	var clashing_event
 	if swap_if_taken:
 		for other_action in InputMap.get_actions():
@@ -542,7 +542,7 @@ func _update_input_for_action(action: String, input: InputEvent, swap_if_taken: 
 				continue
 
 			# Remap the other event if there is a clashing one
-			if clashing_action:
+			if clashing_action and !clashing_action.begins_with("ui"):
 				_update_input_for_action(clashing_action, event, false, clashing_event, check_is_valid, did_change_signal)
 
 			# Replace the event
