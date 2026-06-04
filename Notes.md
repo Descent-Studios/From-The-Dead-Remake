@@ -5,6 +5,9 @@ Powerup ideas
 
 # Road to MVP
 
+Player Character model ideas
+-  Mesh in a subviewport and flip the subviewport when moving left
+
 Player : 
 - Actual character model [x]
 - SFX for walking[x], hurting, idle?
@@ -62,9 +65,10 @@ Progression :
 UI :
 - Pause screen
 	- Settings
-		- Control rebind [~]
+		- Control rebind [x]
+			- cancel rebind [x]
 		- Audio settings [x]
-		- Video settings [ ]
+		- Video settings [?]
 	- Resume [x]
 	- Quit (to desktop) [x]
 - Main menu

@@ -5,13 +5,9 @@
 [ext_resource type="Script" uid="uid://i4jxoyrcy1m1" path="res://UI/scripts/settings_container.gd" id="2_eaots"]
 [ext_resource type="Script" uid="uid://b53a61ydkeqm6" path="res://UI/scripts/main_pause_menu.gd" id="3_btr2c"]
 [ext_resource type="Script" uid="uid://cc8icgthe8efp" path="res://UI/scripts/audio_settings.gd" id="4_n358k"]
+[ext_resource type="Texture2D" uid="uid://7f0dy34u0mak" path="res://textures/Kenney/Keyboard & Mouse/Vector/keyboard_backspace.svg" id="7_6ywpv"]
 [ext_resource type="PackedScene" uid="uid://bpvgu7m1bjda7" path="res://UI/ControllerBind.tscn" id="7_sgdig"]
-
-[sub_resource type="InputEventAction" id="InputEventAction_y8gg8"]
-action = &"throw_package"
-
-[sub_resource type="InputEventAction" id="InputEventAction_sgdig"]
-action = &"retrieve_package"
+[ext_resource type="Script" uid="uid://fy6cboa80jyp" path="res://UI/scripts/control_bind_texture_standalone.gd" id="8_gl3t6"]
 
 [node name="Control" type="Control" unique_id=47639227 node_paths=PackedStringArray("mainPauseMenu", "backgroundFade", "settingsContainer")]
 process_mode = 3
@@ -28,7 +24,6 @@ script = ExtResource("2_5ssfw")
 mainPauseMenu = NodePath("mainPauseMenu")
 backgroundFade = NodePath("BackgroundFade")
 settingsContainer = NodePath("settingsContainer")
-metadata/_edit_vertical_guides_ = [1140.0]
 
 [node name="BackgroundFade" type="ColorRect" parent="." unique_id=1852324760]
 layout_mode = 1
@@ -134,9 +129,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -478.39197
-offset_top = -350.0
+offset_top = -470.0
 offset_right = 478.39197
-offset_bottom = 350.0
+offset_bottom = 470.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_eaots")
@@ -152,27 +147,32 @@ theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 24
 current_tab = 1
 tab_0/title = "Audio"
+tab_1/title = "Controls"
 
-[node name="AudioTab" type="HBoxContainer" parent="settingsContainer/TabContainer" unique_id=2095106384]
+[node name="AudioTab" type="MarginContainer" parent="settingsContainer/TabContainer" unique_id=531115311]
 visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 10
+metadata/_tab_index = 0
+metadata/_tab_name = "Audio"
+
+[node name="AudioTab" type="HBoxContainer" parent="settingsContainer/TabContainer/AudioTab" unique_id=2095106384]
 layout_mode = 2
 theme_override_constants/separation = 105
 alignment = 1
 script = ExtResource("4_n358k")
-metadata/_tab_index = 0
-metadata/_tab_name = "Audio"
 
-[node name="Audio Controls" type="VBoxContainer" parent="settingsContainer/TabContainer/AudioTab" unique_id=905611806]
+[node name="Audio Controls" type="VBoxContainer" parent="settingsContainer/TabContainer/AudioTab/AudioTab" unique_id=905611806]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Master" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls" unique_id=2102314509]
+[node name="Master" type="Label" parent="settingsContainer/TabContainer/AudioTab/AudioTab/Audio Controls" unique_id=2102314509]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 1
 text = "Master Volume"
 
-[node name="volumeSlider" type="HSlider" parent="settingsContainer/TabContainer/AudioTab/Audio Controls/Master" unique_id=2047637670]
+[node name="volumeSlider" type="HSlider" parent="settingsContainer/TabContainer/AudioTab/AudioTab/Audio Controls/Master" unique_id=2047637670]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -188,7 +188,7 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="#" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls/Master/volumeSlider" unique_id=1931144223]
+[node name="#" type="Label" parent="settingsContainer/TabContainer/AudioTab/AudioTab/Audio Controls/Master/volumeSlider" unique_id=1931144223]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -206,13 +206,13 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SFx" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls" unique_id=1844805028]
+[node name="SFx" type="Label" parent="settingsContainer/TabContainer/AudioTab/AudioTab/Audio Controls" unique_id=1844805028]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 1
 text = "Sound Effects Volume"
 
-[node name="volumeSlider" type="HSlider" parent="settingsContainer/TabContainer/AudioTab/Audio Controls/SFx" unique_id=468813745]
+[node name="volumeSlider" type="HSlider" parent="settingsContainer/TabContainer/AudioTab/AudioTab/Audio Controls/SFx" unique_id=468813745]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -227,7 +227,7 @@ max_value = 1.0
 step = 0.01
 value = 0.81
 
-[node name="#" type="Label" parent="settingsContainer/TabContainer/AudioTab/Audio Controls/SFx/volumeSlider" unique_id=1581791877]
+[node name="#" type="Label" parent="settingsContainer/TabContainer/AudioTab/AudioTab/Audio Controls/SFx/volumeSlider" unique_id=1581791877]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -245,11 +245,11 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="settingsContainer/TabContainer/AudioTab" unique_id=2032746093]
+[node name="VBoxContainer2" type="VBoxContainer" parent="settingsContainer/TabContainer/AudioTab/AudioTab" unique_id=2032746093]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Label" type="Label" parent="settingsContainer/TabContainer/AudioTab/VBoxContainer2" unique_id=1354930754]
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/AudioTab/AudioTab/VBoxContainer2" unique_id=1354930754]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Flavor Text?"
@@ -261,6 +261,7 @@ size_flags_horizontal = 3
 draw_focus_border = true
 scroll_hint_mode = 1
 metadata/_tab_index = 1
+metadata/_tab_name = "Controls"
 
 [node name="MarginContainer" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab" unique_id=621840358]
 layout_mode = 2
@@ -315,35 +316,132 @@ theme_override_constants/margin_right = 50
 layout_mode = 2
 
 [node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage/HBoxContainer" unique_id=1190066130]
+custom_minimum_size = Vector2(290, 39)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Throw Package"
+autowrap_mode = 2
 
 [node name="ControllerBind" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage/HBoxContainer" unique_id=88068179 node_paths=PackedStringArray("rebind_gui") instance=ExtResource("7_sgdig")]
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 58
-control_name = SubResource("InputEventAction_y8gg8")
+control_name = &"throw_package"
 rebind_gui = NodePath("../../../../../../../../newInputOverlay")
 
-[node name="ThrowPackage2" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer" unique_id=1544488765]
+[node name="RetrievePackage" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer" unique_id=1544488765]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_right = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage2" unique_id=1529690638]
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/RetrievePackage" unique_id=1529690638]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage2/HBoxContainer" unique_id=1070858626]
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/RetrievePackage/HBoxContainer" unique_id=1070858626]
+custom_minimum_size = Vector2(290, 39)
 layout_mode = 2
-text = "Throw Package"
+text = "Retrieve Package"
+autowrap_mode = 2
 
-[node name="ControllerBind" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/ThrowPackage2/HBoxContainer" unique_id=368137998 node_paths=PackedStringArray("rebind_gui") instance=ExtResource("7_sgdig")]
+[node name="ControllerBind" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/RetrievePackage/HBoxContainer" unique_id=368137998 node_paths=PackedStringArray("rebind_gui") instance=ExtResource("7_sgdig")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 58
-control_name = SubResource("InputEventAction_sgdig")
+control_name = &"retrieve_package"
+rebind_gui = NodePath("../../../../../../../../newInputOverlay")
+
+[node name="MoveUp" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer" unique_id=919839893]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveUp" unique_id=1676622750]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveUp/HBoxContainer" unique_id=1178431617]
+custom_minimum_size = Vector2(290, 39)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move Up"
+autowrap_mode = 2
+
+[node name="ControllerBind" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveUp/HBoxContainer" unique_id=101746983 node_paths=PackedStringArray("rebind_gui") instance=ExtResource("7_sgdig")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 58
+controller_disable = true
+control_name = &"move_up"
+rebind_gui = NodePath("../../../../../../../../newInputOverlay")
+
+[node name="MoveDown" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer" unique_id=1933707863]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveDown" unique_id=160902422]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveDown/HBoxContainer" unique_id=1151505204]
+custom_minimum_size = Vector2(290, 39)
+layout_mode = 2
+text = "Move Down"
+autowrap_mode = 2
+
+[node name="ControllerBind" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveDown/HBoxContainer" unique_id=633407171 node_paths=PackedStringArray("rebind_gui") instance=ExtResource("7_sgdig")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 58
+controller_disable = true
+control_name = &"move_down"
+rebind_gui = NodePath("../../../../../../../../newInputOverlay")
+
+[node name="MoveLeft" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer" unique_id=936928472]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveLeft" unique_id=586156339]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveLeft/HBoxContainer" unique_id=929145539]
+custom_minimum_size = Vector2(290, 39)
+layout_mode = 2
+text = "Move Left"
+autowrap_mode = 2
+
+[node name="ControllerBind" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveLeft/HBoxContainer" unique_id=1550863995 node_paths=PackedStringArray("rebind_gui") instance=ExtResource("7_sgdig")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 58
+controller_disable = true
+control_name = &"move_left"
+rebind_gui = NodePath("../../../../../../../../newInputOverlay")
+
+[node name="MoveRight" type="MarginContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer" unique_id=737455364]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveRight" unique_id=1271645822]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveRight/HBoxContainer" unique_id=1343288964]
+custom_minimum_size = Vector2(290, 39)
+layout_mode = 2
+text = "Move Right"
+autowrap_mode = 2
+
+[node name="ControllerBind" parent="settingsContainer/TabContainer/ControllerTab/MarginContainer/VBoxContainer/MoveRight/HBoxContainer" unique_id=166730886 node_paths=PackedStringArray("rebind_gui") instance=ExtResource("7_sgdig")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 58
+controller_disable = true
+control_name = &"move_right"
 rebind_gui = NodePath("../../../../../../../../newInputOverlay")
 
 [node name="Control" type="Control" parent="settingsContainer" unique_id=1640026933]
@@ -385,9 +483,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -183.0
-offset_top = -56.0
+offset_top = -36.0
 offset_right = 183.0
-offset_bottom = 56.0
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -400,14 +498,42 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -119.0
-offset_top = -19.5
-offset_right = 119.0
-offset_bottom = 19.5
+offset_left = -152.0
+offset_top = -42.0
+offset_right = 152.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 36
 text = "Press new Button"
+
+[node name="Label2" type="Label" parent="newInputOverlay/Panel" unique_id=190322533]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.5
+offset_top = 8.0
+offset_right = 143.5
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Hold       to cancel"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="newInputOverlay/Panel" unique_id=565358487]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 58.0
+offset_right = 177.0
+offset_bottom = 96.0
+texture = ExtResource("7_6ywpv")
+expand_mode = 1
+script = ExtResource("8_gl3t6")
+control_name = &"ui_cancel"
 
 [connection signal="on_exit" from="mainPauseMenu" to="." method="on_game_close"]
 [connection signal="on_restart" from="mainPauseMenu" to="." method="on_restart"]
@@ -418,6 +544,6 @@ text = "Press new Button"
 [connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/SettingsButton" to="mainPauseMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="mainPauseMenu/HBoxContainer/VBoxContainer/Exit Button" to="mainPauseMenu" method="_on_exit_button_pressed"]
 [connection signal="on_settings_exit" from="settingsContainer" to="." method="hide_settings"]
-[connection signal="value_changed" from="settingsContainer/TabContainer/AudioTab/Audio Controls/Master/volumeSlider" to="settingsContainer/TabContainer/AudioTab" method="_on_master_volume_slider_value_changed"]
-[connection signal="value_changed" from="settingsContainer/TabContainer/AudioTab/Audio Controls/SFx/volumeSlider" to="settingsContainer/TabContainer/AudioTab" method="_on_sfx_volume_slider_value_changed"]
+[connection signal="value_changed" from="settingsContainer/TabContainer/AudioTab/AudioTab/Audio Controls/Master/volumeSlider" to="settingsContainer/TabContainer/AudioTab/AudioTab" method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="settingsContainer/TabContainer/AudioTab/AudioTab/Audio Controls/SFx/volumeSlider" to="settingsContainer/TabContainer/AudioTab/AudioTab" method="_on_sfx_volume_slider_value_changed"]
 [connection signal="pressed" from="settingsContainer/Control/BackButton" to="settingsContainer" method="_on_back_button_pressed"]

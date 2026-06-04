@@ -14,11 +14,12 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	#if Input.is_action_just_released("pause"):
-	if event.is_action_released("pause"):
+	if event.is_action_pressed("pause"):
 		if !is_paused:
 			on_pause()
 		elif is_paused == true:
 			on_resume()
+		return
 	if event.is_action_pressed("ui_close_dialog") and !settings_shown and is_paused:
 		on_resume()
 
